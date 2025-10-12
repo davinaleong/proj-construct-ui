@@ -1,6 +1,4 @@
 import { useState } from "react"
-import reactLogo from "./assets/react.svg"
-import viteLogo from "/vite.svg"
 import "./App.css"
 
 function App() {
@@ -8,26 +6,6 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex flex-col items-center justify-center p-8">
-      <div className="flex gap-8 mb-8">
-        <a
-          href="https://vite.dev"
-          target="_blank"
-          className="transition-transform hover:scale-110"
-        >
-          <img src={viteLogo} className="h-24 w-24 logo-vite" alt="Vite logo" />
-        </a>
-        <a
-          href="https://react.dev"
-          target="_blank"
-          className="transition-transform hover:scale-110"
-        >
-          <img
-            src={reactLogo}
-            className="h-24 w-24 animate-spin logo-react"
-            alt="React logo"
-          />
-        </a>
-      </div>
       <h1 className="text-4xl font-bold text-gray-800 dark:text-white mb-8">
         Vite + React
       </h1>
