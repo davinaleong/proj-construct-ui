@@ -1,6 +1,6 @@
 import { type LucideIcon } from "lucide-react"
 import clsx from "clsx"
-import { getColorClasses, type ColorVariant } from "./../../utils/colors"
+import { getColorClasses, type ColorVariant } from "./../utils/colors"
 
 type ButtonProps = {
   onClick?: () => void
