@@ -496,28 +496,26 @@ fontFamily: {
 }
 */
 
-@layer base {
+body {
+  background-color: white;
+  color: rgb(17 24 39);
+  font-family: "Montserrat", sans-serif;
+  line-height: 1.6;
+}
+
+:focus {
+  outline: 2px solid;
+  outline-offset: 2px;
+  outline-color: rgb(59 130 246);
+}
+
+.flow > * + * {
+  margin-top: 1.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
   body {
-    @apply bg-white text-gray-900 font-sans;
-    /* Default to Montserrat */
-    font-family: "Montserrat", sans-serif;
-    line-height: 1.6;
-  }
-
-  :focus {
-    outline: 2px solid;
-    outline-offset: 2px;
-    outline-color: theme("colors.blue.500");
-    /* Adjust color as needed */
-  }
-
-  .flow > * + * {
-    margin-top: 1.5rem; /* Adjust spacing as needed */
-  }
-
-  @media (prefers-color-scheme: dark) {
-    body {
-      @apply bg-gray-900 text-gray-100;
-    }
+    background-color: rgb(17 24 39);
+    color: rgb(243 244 246);
   }
 }
