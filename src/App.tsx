@@ -1,74 +1,169 @@
 import { useState } from "react"
+import { Moon, Sun, Palette } from "lucide-react"
+import {
+  ThemeProvider,
+  Paper,
+  Typography,
+  Icon,
+  Container,
+} from "./components/core"
 import "./App.css"
 
 function App() {
-  const [theme, setTheme] = useState("paper")
-  const [darkMode, setDarkMode] = useState(false)
+  return (
+    <ThemeProvider defaultTheme={{ mode: "paper" }}>
+      <AppContent />
+    </ThemeProvider>
+  )
+}
+
+function AppContent() {
+  const [currentTheme, setCurrentTheme] = useState<"light" | "dark" | "paper">(
+    "paper"
+  )
 
   return (
-    <div
-      className={`min-h-screen transition-colors duration-300 font-['Montserrat'] ${
-        theme === "paper"
-          ? "bg-[#faf9f6] text-gray-800"
-          : darkMode
-          ? "bg-gray-900 text-white"
-          : "bg-gray-50 text-gray-900"
-      }`}
-    >
+    <div className="min-h-screen bg-[#faf9f6] dark:bg-gray-900">
       {/* Header */}
-      <header
-        className={`sticky top-0 z-50 backdrop-blur-md border-b transition-colors ${
-          theme === "paper"
-            ? "bg-[#faf9f6]/80 border-gray-200"
-            : darkMode
-            ? "bg-gray-900/80 border-gray-700"
-            : "bg-white/80 border-gray-200"
-        }`}
+      <Paper
+        variant="elevated"
+        padding="md"
+        className="sticky top-0 z-50 backdrop-blur-md"
       >
-        <div className="max-w-7xl mx-auto px-6 py-4">
+        <Container>
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl font-bold font-['Playfair_Display']">
-                Component Library Showcase
-              </h1>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                Paper-themed React components • 70+ components planned
-              </p>
+              <Typography variant="title" className="font-playfair">
+                Paper Design System
+              </Typography>
+              <Typography variant="bodySmall" color="muted" className="mt-1">
+                A warm, tactile component library
+              </Typography>
             </div>
-            <div className="flex items-center gap-4">
-              <select
-                value={theme}
-                onChange={(e) => setTheme(e.target.value)}
-                className="px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-sm"
-              >
-                <option value="paper">📄 Paper Theme</option>
-                <option value="light">☀️ Light</option>
-                <option value="dark">🌙 Dark</option>
-              </select>
+
+            <div className="flex items-center gap-3">
               <button
-                onClick={() => setDarkMode(!darkMode)}
-                className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+                onClick={() => setCurrentTheme("light")}
+                className={`p-2 rounded-lg transition-colors ${
+                  currentTheme === "light"
+                    ? "bg-blue-100 text-blue-700"
+                    : "hover:bg-gray-100 dark:hover:bg-gray-800"
+                }`}
               >
-                {darkMode ? "☀️" : "🌙"}
+                <Icon icon={Sun} size="sm" aria-label="Light theme" />
+              </button>
+
+              <button
+                onClick={() => setCurrentTheme("paper")}
+                className={`p-2 rounded-lg transition-colors ${
+                  currentTheme === "paper"
+                    ? "bg-teal-100 text-teal-700"
+                    : "hover:bg-gray-100 dark:hover:bg-gray-800"
+                }`}
+              >
+                <Icon icon={Palette} size="sm" aria-label="Paper theme" />
+              </button>
+
+              <button
+                onClick={() => setCurrentTheme("dark")}
+                className={`p-2 rounded-lg transition-colors ${
+                  currentTheme === "dark"
+                    ? "bg-gray-700 text-white"
+                    : "hover:bg-gray-100 dark:hover:bg-gray-800"
+                }`}
+              >
+                <Icon icon={Moon} size="sm" aria-label="Dark theme" />
               </button>
             </div>
           </div>
-        </div>
-      </header>
+        </Container>
+      </Paper>
 
       {/* Main Content */}
-      <main className="flex-1 p-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center py-20">
-            <h2 className="text-4xl font-bold font-['Playfair_Display'] mb-4">
-              Coming Soon
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-              Component library is currently in development. Check back soon for
-              interactive component demos and documentation.
-            </p>
+      <main className="py-12">
+        <Container>
+          <div className="text-center max-w-4xl mx-auto">
+            <Typography variant="h1" className="mb-6">
+              Welcome to Paper Design
+            </Typography>
+
+            <Typography variant="subtitle" className="mb-8">
+              Experience the warmth and elegance of our paper-inspired design
+              system. Built with React, TypeScript, and Tailwind CSS.
+            </Typography>
+
+            {/* Core Components Demo */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+              <Paper variant="elevated" padding="lg">
+                <Typography variant="h4" className="mb-4">
+                  ThemeProvider
+                </Typography>
+                <Typography variant="bodySmall" color="muted">
+                  ✅ Context-based theme management with light, dark, and paper
+                  modes
+                </Typography>
+              </Paper>
+
+              <Paper variant="outlined" padding="lg" withTexture>
+                <Typography variant="h4" className="mb-4">
+                  Paper
+                </Typography>
+                <Typography variant="bodySmall" color="muted">
+                  ✅ Surface component with elevation, texture, and paper
+                  aesthetic
+                </Typography>
+              </Paper>
+
+              <Paper variant="flat" padding="lg" background="accent">
+                <Typography variant="h4" className="mb-4" color="paper">
+                  Typography
+                </Typography>
+                <Typography variant="bodySmall" color="paper" intensity="soft">
+                  ✅ Complete text hierarchy with three beautiful font families
+                </Typography>
+              </Paper>
+
+              <Paper variant="elevated" padding="lg">
+                <div className="flex items-center gap-3 mb-4">
+                  <Icon icon={Palette} size="lg" color="primary" />
+                  <Typography variant="h4">Icon</Typography>
+                </div>
+                <Typography variant="bodySmall" color="muted">
+                  ✅ Lucide React integration with consistent sizing and theming
+                </Typography>
+              </Paper>
+
+              <Paper variant="outlined" padding="lg">
+                <Typography variant="h4" className="mb-4">
+                  Container
+                </Typography>
+                <Typography variant="bodySmall" color="muted">
+                  ✅ Responsive width management with consistent padding system
+                </Typography>
+              </Paper>
+
+              <Paper variant="elevated" padding="lg" background="success">
+                <Typography variant="h4" className="mb-4" color="paper">
+                  Phase 1.1 Complete!
+                </Typography>
+                <Typography variant="bodySmall" color="paper" intensity="soft">
+                  🎉 All core foundation components are ready for use
+                </Typography>
+              </Paper>
+            </div>
+
+            <div className="mt-12">
+              <Typography variant="body" color="muted" className="mb-4">
+                Next up: Layout & Structure components (Grid, Stack, Card,
+                Avatar, Badge)
+              </Typography>
+
+              <Typography variant="caption" color="muted">
+                Built with ❤️ using the Paper Design System
+              </Typography>
+            </div>
           </div>
-        </div>
+        </Container>
       </main>
     </div>
   )
