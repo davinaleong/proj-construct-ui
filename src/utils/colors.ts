@@ -1,3 +1,18 @@
+/**
+ * Comprehensive color utilities for the Paper Design System
+ *
+ * This module provides a complete color system with support for:
+ * - All Tailwind CSS color variants (22 total)
+ * - 4 color styles: soft, solid, outline, ghost
+ * - 4 color intensities: subtle, soft, bold, strong
+ * - Light and dark mode support
+ * - Custom paper theme colors
+ * - Full spectrum of semantic colors (primary, secondary, danger, success, etc.)
+ *
+ * Colors are designed to work harmoniously with the paper theme (#faf9f6 base)
+ * while providing maximum flexibility for component theming.
+ */
+
 import clsx from "clsx"
 
 export type ColorVariant =
