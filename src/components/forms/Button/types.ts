@@ -48,6 +48,16 @@ export interface ButtonProps {
   iconPosition?: "left" | "right"
 
   /**
+   * Truncate text if too long
+   */
+  truncate?: boolean
+
+  /**
+   * Minimum width for the button
+   */
+  minWidth?: boolean
+
+  /**
    * Button type
    */
   type?: "button" | "submit" | "reset"

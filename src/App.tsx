@@ -783,6 +783,262 @@ function AppContent() {
                 </div>
               </div>
 
+              {/* Button Min Width and Truncation Showcase */}
+              <div className="mb-12">
+                <Typography variant="h3" className="mb-4">
+                  Button Min Width & Text Truncation
+                </Typography>
+                <Typography variant="body" className="mb-6 text-stone-600">
+                  Control button minimum width and handle long text with
+                  truncation for consistent layouts.
+                </Typography>
+
+                <div className="space-y-8">
+                  {/* Minimum Width Examples */}
+                  <div>
+                    <Typography variant="h4" className="mb-4">
+                      Minimum Width
+                    </Typography>
+                    <Typography variant="body" className="mb-4 text-stone-600">
+                      Ensures buttons maintain consistent width even with short
+                      text.
+                    </Typography>
+
+                    <div className="space-y-4">
+                      <div>
+                        <Typography
+                          variant="bodySmall"
+                          className="mb-2 text-stone-500"
+                        >
+                          Without minWidth (default)
+                        </Typography>
+                        <Flex gap="sm" align="center" wrap="wrap">
+                          <Button size="sm" variant="solid">
+                            Yes
+                          </Button>
+                          <Button size="sm" variant="solid">
+                            No
+                          </Button>
+                          <Button size="sm" variant="solid">
+                            Cancel
+                          </Button>
+                          <Button size="sm" variant="solid">
+                            OK
+                          </Button>
+                        </Flex>
+                      </div>
+
+                      <div>
+                        <Typography
+                          variant="bodySmall"
+                          className="mb-2 text-stone-500"
+                        >
+                          With minWidth enabled
+                        </Typography>
+                        <Flex gap="sm" align="center" wrap="wrap">
+                          <Button size="sm" variant="solid" minWidth>
+                            Yes
+                          </Button>
+                          <Button size="sm" variant="solid" minWidth>
+                            No
+                          </Button>
+                          <Button size="sm" variant="solid" minWidth>
+                            Cancel
+                          </Button>
+                          <Button size="sm" variant="solid" minWidth>
+                            OK
+                          </Button>
+                        </Flex>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Text Truncation Examples */}
+                  <div>
+                    <Typography variant="h4" className="mb-4">
+                      Text Truncation
+                    </Typography>
+                    <Typography variant="body" className="mb-4 text-stone-600">
+                      Handles long text gracefully with ellipsis truncation.
+                    </Typography>
+
+                    <div className="space-y-4">
+                      <div>
+                        <Typography
+                          variant="bodySmall"
+                          className="mb-2 text-stone-500"
+                        >
+                          Without truncation (text wraps or overflows)
+                        </Typography>
+                        <div className="w-64">
+                          <Button variant="solid" className="w-full">
+                            This is a very long button text that might cause
+                            layout issues
+                          </Button>
+                        </div>
+                      </div>
+
+                      <div>
+                        <Typography
+                          variant="bodySmall"
+                          className="mb-2 text-stone-500"
+                        >
+                          With truncation enabled
+                        </Typography>
+                        <div className="w-64">
+                          <Button variant="solid" truncate className="w-full">
+                            This is a very long button text that might cause
+                            layout issues
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Combined Examples */}
+                  <div>
+                    <Typography variant="h4" className="mb-4">
+                      Combined: MinWidth + Truncation
+                    </Typography>
+                    <Typography variant="body" className="mb-4 text-stone-600">
+                      Perfect for consistent button layouts with varying text
+                      lengths.
+                    </Typography>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <Typography
+                          variant="bodySmall"
+                          className="mb-3 text-stone-500"
+                        >
+                          Action buttons with consistent width
+                        </Typography>
+                        <div className="space-y-2">
+                          <Button
+                            variant="outline"
+                            minWidth
+                            truncate
+                            className="w-full"
+                          >
+                            Save
+                          </Button>
+                          <Button
+                            variant="outline"
+                            minWidth
+                            truncate
+                            className="w-full"
+                          >
+                            Save and Continue
+                          </Button>
+                          <Button
+                            variant="outline"
+                            minWidth
+                            truncate
+                            className="w-full"
+                          >
+                            Save as Draft and Send for Review
+                          </Button>
+                          <Button
+                            variant="outline"
+                            minWidth
+                            truncate
+                            className="w-full"
+                          >
+                            Cancel
+                          </Button>
+                        </div>
+                      </div>
+
+                      <div>
+                        <Typography
+                          variant="bodySmall"
+                          className="mb-3 text-stone-500"
+                        >
+                          Navigation buttons
+                        </Typography>
+                        <Flex gap="sm" wrap="wrap">
+                          <Button variant="ghost" minWidth truncate>
+                            Home
+                          </Button>
+                          <Button variant="ghost" minWidth truncate>
+                            Dashboard
+                          </Button>
+                          <Button variant="ghost" minWidth truncate>
+                            User Profile Settings
+                          </Button>
+                          <Button variant="ghost" minWidth truncate>
+                            Logout
+                          </Button>
+                        </Flex>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Different Sizes */}
+                  <div>
+                    <Typography variant="h4" className="mb-4">
+                      Size Variations
+                    </Typography>
+                    <div className="space-y-4">
+                      {(["xs", "sm", "md", "lg", "xl"] as const).map((size) => (
+                        <div key={size} className="space-y-2">
+                          <Typography
+                            variant="bodySmall"
+                            className="text-stone-500"
+                          >
+                            Size: {size}
+                          </Typography>
+                          <Flex gap="sm" align="center" wrap="wrap">
+                            <Button size={size} variant="solid" minWidth>
+                              Short
+                            </Button>
+                            <Button
+                              size={size}
+                              variant="solid"
+                              minWidth
+                              truncate
+                            >
+                              Medium length text
+                            </Button>
+                            <div className="w-32">
+                              <Button
+                                size={size}
+                                variant="solid"
+                                minWidth
+                                truncate
+                                className="w-full"
+                              >
+                                Very long button text that demonstrates
+                                truncation
+                              </Button>
+                            </div>
+                          </Flex>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <Paper
+                  variant="elevated"
+                  padding="lg"
+                  background="success"
+                  className="mt-8"
+                >
+                  <Typography variant="h4" className="mb-4" color="paper">
+                    🎯 Button Enhancements Complete!
+                  </Typography>
+                  <Typography variant="body" color="paper" intensity="soft">
+                    ✅ Minimum width prevents buttons from being too narrow
+                    <br />
+                    ✅ Text truncation handles long text gracefully
+                    <br />
+                    ✅ Consistent layouts with varying text lengths
+                    <br />✅ Works across all button sizes and variants
+                  </Typography>
+                </Paper>
+              </div>
+
               {/* Input Components */}
               <div className="mb-12">
                 <Typography variant="h3" className="mb-4">

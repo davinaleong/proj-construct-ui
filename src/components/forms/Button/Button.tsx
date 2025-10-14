@@ -12,6 +12,14 @@ const sizeClasses = {
   xl: `px-8 py-3 ${containerResponsiveUI.button.lg} gap-2.5`,
 }
 
+const minWidthClasses = {
+  xs: "min-w-16",
+  sm: "min-w-20",
+  md: "min-w-24",
+  lg: "min-w-32",
+  xl: "min-w-40",
+}
+
 const baseClasses = [
   "inline-flex",
   "items-center",
@@ -78,6 +86,8 @@ export function Button({
   disabled = false,
   icon: Icon,
   iconPosition = "left",
+  truncate = false,
+  minWidth = false,
   type = "button",
   onClick,
   className,
@@ -88,6 +98,9 @@ export function Button({
     baseClasses,
     sizeClasses[size],
     variantClasses[variant],
+
+    // Apply minimum width if enabled
+    minWidth && minWidthClasses[size],
 
     // Apply color classes for non-link variants
     variant !== "link" &&
@@ -122,11 +135,18 @@ export function Button({
   const renderContent = () => {
     const iconElement = renderIcon()
 
+    // Wrap children in truncation span if truncate is enabled
+    const textContent = truncate ? (
+      <span className="truncate min-w-0">{children}</span>
+    ) : (
+      children
+    )
+
     if (variant === "link") {
       return (
         <>
           {iconElement && iconPosition === "left" && iconElement}
-          {children}
+          {textContent}
           {iconElement && iconPosition === "right" && iconElement}
         </>
       )
@@ -135,7 +155,7 @@ export function Button({
     return (
       <>
         {iconElement && iconPosition === "left" && iconElement}
-        {children}
+        {textContent}
         {iconElement && iconPosition === "right" && iconElement}
       </>
     )
