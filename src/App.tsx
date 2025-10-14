@@ -15,6 +15,12 @@ import {
   CardHeader,
   CardBody,
   CardFooter,
+  Avatar,
+  AvatarGroup,
+  Badge,
+  Divider,
+  Section,
+  Panel,
 } from "./components/layout"
 import "./App.css"
 
@@ -294,12 +300,209 @@ function AppContent() {
               </div>
             </div>
 
+            {/* Phase 2.2 UI Primitives Showcase */}
+            <div className="mt-16">
+              <Typography variant="h2" className="mb-8">
+                UI Primitives
+              </Typography>
+
+              {/* Avatar Components */}
+              <div className="mb-12">
+                <Typography variant="h3" className="mb-4">
+                  Avatar & Avatar Group
+                </Typography>
+                <div className="space-y-6">
+                  <div>
+                    <Typography variant="body" className="mb-3">
+                      Individual Avatars
+                    </Typography>
+                    <Flex gap="md" align="center">
+                      <Avatar
+                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face"
+                        alt="John Doe"
+                        size="sm"
+                      />
+                      <Avatar fallback="AB" size="md" />
+                      <Avatar fallback="CD" size="lg" variant="rounded" />
+                      <Avatar fallback="EF" size="xl" variant="square" />
+                    </Flex>
+                  </div>
+
+                  <div>
+                    <Typography variant="body" className="mb-3">
+                      Avatar Groups
+                    </Typography>
+                    <Stack gap="md">
+                      <AvatarGroup max={3} size="md">
+                        <Avatar src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face" />
+                        <Avatar fallback="AB" />
+                        <Avatar fallback="CD" />
+                        <Avatar fallback="EF" />
+                        <Avatar fallback="GH" />
+                      </AvatarGroup>
+
+                      <AvatarGroup max={5} size="sm">
+                        <Avatar fallback="A" />
+                        <Avatar fallback="B" />
+                        <Avatar fallback="C" />
+                        <Avatar fallback="D" />
+                        <Avatar fallback="E" />
+                        <Avatar fallback="F" />
+                        <Avatar fallback="G" />
+                      </AvatarGroup>
+                    </Stack>
+                  </div>
+                </div>
+              </div>
+
+              {/* Badge Components */}
+              <div className="mb-12">
+                <Typography variant="h3" className="mb-4">
+                  Badges
+                </Typography>
+                <div className="space-y-4">
+                  <div>
+                    <Typography variant="body" className="mb-3">
+                      Color Variants
+                    </Typography>
+                    <Flex gap="sm" wrap="wrap">
+                      <Badge color="primary">Primary</Badge>
+                      <Badge color="secondary">Secondary</Badge>
+                      <Badge color="success">Success</Badge>
+                      <Badge color="warning">Warning</Badge>
+                      <Badge color="danger">Danger</Badge>
+                      <Badge color="info">Info</Badge>
+                    </Flex>
+                  </div>
+
+                  <div>
+                    <Typography variant="body" className="mb-3">
+                      Style Variants
+                    </Typography>
+                    <Flex gap="sm" wrap="wrap">
+                      <Badge variant="solid" color="primary">
+                        Solid
+                      </Badge>
+                      <Badge variant="soft" color="primary">
+                        Soft
+                      </Badge>
+                      <Badge variant="outline" color="primary">
+                        Outline
+                      </Badge>
+                      <Badge variant="ghost" color="primary">
+                        Ghost
+                      </Badge>
+                    </Flex>
+                  </div>
+
+                  <div>
+                    <Typography variant="body" className="mb-3">
+                      Sizes
+                    </Typography>
+                    <Flex gap="sm" align="center">
+                      <Badge size="xs">Extra Small</Badge>
+                      <Badge size="sm">Small</Badge>
+                      <Badge size="md">Medium</Badge>
+                      <Badge size="lg">Large</Badge>
+                    </Flex>
+                  </div>
+                </div>
+              </div>
+
+              {/* Divider Components */}
+              <div className="mb-12">
+                <Typography variant="h3" className="mb-4">
+                  Dividers
+                </Typography>
+                <div className="space-y-6">
+                  <div>
+                    <Typography variant="body" className="mb-3">
+                      Simple Horizontal Divider
+                    </Typography>
+                    <div>
+                      <Typography variant="caption">Content above</Typography>
+                      <Divider className="my-4" />
+                      <Typography variant="caption">Content below</Typography>
+                    </div>
+                  </div>
+
+                  <div>
+                    <Typography variant="body" className="mb-3">
+                      Labeled Dividers
+                    </Typography>
+                    <div className="space-y-4">
+                      <Divider label="Section Break" />
+                      <Divider label="Or continue with" variant="dashed" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Section & Panel Components */}
+              <div className="mb-12">
+                <Typography variant="h3" className="mb-4">
+                  Sections & Panels
+                </Typography>
+                <div className="space-y-6">
+                  <Section
+                    title="Default Section"
+                    description="A section with transparent background for organizing content"
+                  >
+                    <Typography variant="body">
+                      This is content within a default section. It has no
+                      background but provides semantic structure.
+                    </Typography>
+                  </Section>
+
+                  <Section
+                    title="Elevated Section"
+                    description="A section with paper theme styling and elevation"
+                    variant="elevated"
+                  >
+                    <Typography variant="body">
+                      This elevated section has the paper theme background and
+                      subtle shadow.
+                    </Typography>
+                  </Section>
+
+                  <Panel
+                    header={<Typography variant="h4">Simple Panel</Typography>}
+                    footer={
+                      <Typography variant="caption" color="muted">
+                        Panel footer
+                      </Typography>
+                    }
+                  >
+                    <Typography variant="body">
+                      This is a panel with header and footer sections.
+                    </Typography>
+                  </Panel>
+
+                  <Panel
+                    header={
+                      <Typography variant="h4">Collapsible Panel</Typography>
+                    }
+                    collapsible
+                    defaultCollapsed={false}
+                  >
+                    <Typography variant="body">
+                      This panel can be collapsed and expanded. Click the header
+                      to toggle.
+                    </Typography>
+                  </Panel>
+                </div>
+              </div>
+            </div>
+
             <div className="mt-12">
               <Typography variant="body" color="muted" className="mb-4">
                 Phase 2.1 Layout Components: ✅ Complete
               </Typography>
               <Typography variant="body" color="muted" className="mb-4">
-                Next up: Form & Input components (Button, Input, Select, etc.)
+                Phase 2.2 UI Primitives: ✅ Complete
+              </Typography>
+              <Typography variant="body" color="muted" className="mb-4">
+                Next up: Phase 3.1 Form Controls (Button, Input, Select, etc.)
               </Typography>
 
               <Typography variant="caption" color="muted">
