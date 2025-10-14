@@ -63,11 +63,11 @@ Create a complete design system that feels **organic, readable, and professional
 
 #### 2.1 Layout Primitives
 
-- [ ] **Grid/Stack/Flex** - Layout utilities
+- [x] **Grid/Stack/Flex** - Layout utilities
   - CSS Grid wrapper with paper theme gaps
   - Vertical stacking with consistent spacing
   - Flexbox utilities with paper aesthetic
-- [ ] **Card** - Content container
+- [x] **Card** - Content container
   - Header, body, footer sections
   - Action buttons integration
   - Elevation and shadow effects
