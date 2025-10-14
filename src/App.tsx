@@ -1,5 +1,15 @@
 import { useState } from "react"
-import { Moon, Sun, Palette } from "lucide-react"
+import {
+  Moon,
+  Sun,
+  Palette,
+  Search,
+  Mail,
+  Lock,
+  Settings,
+  Heart,
+  Download,
+} from "lucide-react"
 import {
   ThemeProvider,
   Paper,
@@ -22,6 +32,7 @@ import {
   Section,
   Panel,
 } from "./components/layout"
+import { Button, IconButton, Input, Textarea } from "./components/forms"
 import "./App.css"
 
 function App() {
@@ -494,6 +505,271 @@ function AppContent() {
               </div>
             </div>
 
+            {/* Phase 3.1 Form Controls Showcase */}
+            <div className="mt-16">
+              <Typography variant="h2" className="mb-8">
+                Form Controls
+              </Typography>
+
+              {/* Button Components */}
+              <div className="mb-12">
+                <Typography variant="h3" className="mb-4">
+                  Buttons
+                </Typography>
+                <div className="space-y-6">
+                  <div>
+                    <Typography variant="body" className="mb-3">
+                      Button Variants
+                    </Typography>
+                    <Flex gap="md" wrap="wrap">
+                      <Button variant="solid" color="primary">
+                        Solid Button
+                      </Button>
+                      <Button variant="outline" color="primary">
+                        Outline Button
+                      </Button>
+                      <Button variant="ghost" color="primary">
+                        Ghost Button
+                      </Button>
+                      <Button variant="link" color="primary">
+                        Link Button
+                      </Button>
+                    </Flex>
+                  </div>
+
+                  <div>
+                    <Typography variant="body" className="mb-3">
+                      Button Sizes
+                    </Typography>
+                    <Flex gap="md" align="center" wrap="wrap">
+                      <Button size="xs">Extra Small</Button>
+                      <Button size="sm">Small</Button>
+                      <Button size="md">Medium</Button>
+                      <Button size="lg">Large</Button>
+                      <Button size="xl">Extra Large</Button>
+                    </Flex>
+                  </div>
+
+                  <div>
+                    <Typography variant="body" className="mb-3">
+                      Button States
+                    </Typography>
+                    <Flex gap="md" wrap="wrap">
+                      <Button color="primary">Normal</Button>
+                      <Button color="primary" loading>
+                        Loading
+                      </Button>
+                      <Button color="primary" disabled>
+                        Disabled
+                      </Button>
+                      <Button color="primary" icon={Heart} iconPosition="left">
+                        With Icon
+                      </Button>
+                    </Flex>
+                  </div>
+
+                  <div>
+                    <Typography variant="body" className="mb-3">
+                      Icon Buttons
+                    </Typography>
+                    <Flex gap="md" align="center" wrap="wrap">
+                      <IconButton icon={Search} aria-label="Search" size="sm" />
+                      <IconButton
+                        icon={Settings}
+                        aria-label="Settings"
+                        size="md"
+                      />
+                      <IconButton
+                        icon={Heart}
+                        aria-label="Favorite"
+                        size="lg"
+                        variant="outline"
+                        color="danger"
+                      />
+                      <IconButton
+                        icon={Download}
+                        aria-label="Download"
+                        variant="ghost"
+                      />
+                      <IconButton icon={Mail} aria-label="Email" loading />
+                    </Flex>
+                  </div>
+                </div>
+              </div>
+
+              {/* Input Components */}
+              <div className="mb-12">
+                <Typography variant="h3" className="mb-4">
+                  Input Fields
+                </Typography>
+                <div className="space-y-6 max-w-md">
+                  <Input
+                    label="Basic Input"
+                    placeholder="Enter some text..."
+                    helperText="This is a basic input field"
+                  />
+
+                  <Input
+                    label="Email Input"
+                    type="email"
+                    placeholder="john@example.com"
+                    leftIcon={Mail}
+                    required
+                  />
+
+                  <Input
+                    label="Password Input"
+                    type="password"
+                    placeholder="Enter password"
+                    leftIcon={Lock}
+                    variant="filled"
+                  />
+
+                  <Input
+                    label="Search Input"
+                    type="search"
+                    placeholder="Search..."
+                    leftIcon={Search}
+                    variant="outlined"
+                    size="lg"
+                  />
+
+                  <Input
+                    label="Error State"
+                    placeholder="This field has an error"
+                    error
+                    errorMessage="This field is required"
+                  />
+
+                  <Input
+                    label="Disabled Input"
+                    placeholder="This input is disabled"
+                    disabled
+                    defaultValue="Cannot edit this"
+                  />
+
+                  <Input
+                    label="Readonly Input"
+                    placeholder="This input is readonly"
+                    readonly
+                    defaultValue="Read-only value"
+                    helperText="This field is readonly and cannot be edited"
+                  />
+                </div>
+              </div>
+
+              {/* Input Positioning Showcase */}
+              <div className="mb-12">
+                <Typography variant="h3" className="mb-4">
+                  Input Label & Message Positioning
+                </Typography>
+                <div className="space-y-8">
+                  <div>
+                    <Typography variant="body" className="mb-3">
+                      Label Positions
+                    </Typography>
+                    <div className="space-y-4 max-w-lg">
+                      <Input
+                        label="Top Label (Default)"
+                        placeholder="Standard top label"
+                        labelPosition="top"
+                        helperText="Label appears above input"
+                      />
+
+                      <Input
+                        label="Left Label"
+                        placeholder="Side-by-side layout"
+                        labelPosition="left"
+                        helperText="Label appears to the left"
+                      />
+
+                      <Input
+                        label="Inside Label"
+                        placeholder="Overlaid label"
+                        labelPosition="inside"
+                        helperText="Label appears inside the input"
+                      />
+
+                      <Input
+                        label="Floating Label"
+                        placeholder="Animated label"
+                        labelPosition="floating"
+                        helperText="Label floats above when focused"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <Typography variant="body" className="mb-3">
+                      Message Positions
+                    </Typography>
+                    <div className="space-y-4 max-w-lg">
+                      <Input
+                        label="Bottom Message (Default)"
+                        placeholder="Standard bottom message"
+                        messagePosition="bottom"
+                        helperText="Message appears below input"
+                      />
+
+                      <Input
+                        label="Right Message"
+                        placeholder="Side message"
+                        messagePosition="right"
+                        helperText="Message on the right"
+                      />
+
+                      <Input
+                        label="Inline Message"
+                        placeholder="Inline message"
+                        messagePosition="inline"
+                        helperText="Inline message"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Textarea Components */}
+              <div className="mb-12">
+                <Typography variant="h3" className="mb-4">
+                  Textarea Fields
+                </Typography>
+                <div className="space-y-6 max-w-md">
+                  <Textarea
+                    label="Basic Textarea"
+                    placeholder="Enter your message..."
+                    helperText="Share your thoughts here"
+                    rows={3}
+                  />
+
+                  <Textarea
+                    label="Character Limited"
+                    placeholder="Limited to 100 characters..."
+                    maxLength={100}
+                    showCharCount
+                    rows={2}
+                    variant="filled"
+                  />
+
+                  <Textarea
+                    label="Non-resizable"
+                    placeholder="This textarea cannot be resized"
+                    resize="none"
+                    rows={2}
+                    variant="outlined"
+                  />
+
+                  <Textarea
+                    label="Error State"
+                    placeholder="This textarea has an error"
+                    error
+                    errorMessage="Message is too short"
+                    rows={2}
+                  />
+                </div>
+              </div>
+            </div>
+
             <div className="mt-12">
               <Typography variant="body" color="muted" className="mb-4">
                 Phase 2.1 Layout Components: ✅ Complete
@@ -502,7 +778,11 @@ function AppContent() {
                 Phase 2.2 UI Primitives: ✅ Complete
               </Typography>
               <Typography variant="body" color="muted" className="mb-4">
-                Next up: Phase 3.1 Form Controls (Button, Input, Select, etc.)
+                Phase 3.1 Form Controls: ✅ Complete
+              </Typography>
+              <Typography variant="body" color="muted" className="mb-4">
+                Next up: Phase 3.2 Selection Controls (Select, Checkbox, Radio,
+                etc.)
               </Typography>
 
               <Typography variant="caption" color="muted">
