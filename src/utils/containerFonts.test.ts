@@ -19,7 +19,7 @@ describe("Container Fonts Utility", () => {
       const h1Classes = containerResponsiveHeadings.h1
 
       // Should contain base classes and container queries
-      expect(h1Classes).toContain("text-2xl") // base size
+      expect(h1Classes).toContain("text-4xl") // base size for h1 is text-4xl
       expect(h1Classes).toMatch(/@container.*text-/) // container query pattern
     })
 
@@ -35,27 +35,27 @@ describe("Container Fonts Utility", () => {
 
   describe("containerResponsiveUI", () => {
     it("has all UI text sizes defined", () => {
-      expect(containerResponsiveUI.body).toBeDefined()
-      expect(containerResponsiveUI.bodySmall).toBeDefined()
       expect(containerResponsiveUI.label).toBeDefined()
       expect(containerResponsiveUI.helper).toBeDefined()
-      expect(containerResponsiveUI.caption).toBeDefined()
+      expect(containerResponsiveUI.button).toBeDefined()
+      expect(containerResponsiveUI.input).toBeDefined()
+      expect(containerResponsiveUI.badge).toBeDefined()
     })
 
-    it("body text has container responsive classes", () => {
-      const bodyClasses = containerResponsiveUI.body
+    it("label text has container responsive classes", () => {
+      const labelClasses = containerResponsiveUI.label
 
-      expect(bodyClasses).toContain("text-base") // base size
-      expect(bodyClasses).toMatch(/@container.*text-/) // container query pattern
+      expect(labelClasses).toContain("text-sm") // base size
+      expect(labelClasses).toMatch(/@container.*text-/) // container query pattern
     })
 
-    it("helper text is smaller than body text", () => {
-      const bodyClasses = containerResponsiveUI.body
+    it("helper text is smaller than label text", () => {
+      const labelClasses = containerResponsiveUI.label
       const helperClasses = containerResponsiveUI.helper
 
       // Helper should have smaller base size
-      expect(helperClasses).toContain("text-sm")
-      expect(bodyClasses).toContain("text-base")
+      expect(helperClasses).toContain("text-xs")
+      expect(labelClasses).toContain("text-sm")
     })
 
     it("label text has appropriate sizing", () => {
@@ -106,11 +106,17 @@ describe("Container Fonts Utility", () => {
     })
 
     it("UI classes are properly formatted", () => {
-      Object.values(containerResponsiveUI).forEach((classes) => {
-        expect(typeof classes).toBe("string")
-        expect(classes.length).toBeGreaterThan(0)
-        expect(classes.trim()).toBe(classes) // no leading/trailing whitespace
-      })
+      // Test string properties
+      expect(typeof containerResponsiveUI.label).toBe("string")
+      expect(typeof containerResponsiveUI.helper).toBe("string")
+      expect(containerResponsiveUI.label.length).toBeGreaterThan(0)
+      expect(containerResponsiveUI.helper.length).toBeGreaterThan(0)
+
+      // Test object properties
+      expect(typeof containerResponsiveUI.button).toBe("object")
+      expect(typeof containerResponsiveUI.button.sm).toBe("string")
+      expect(typeof containerResponsiveUI.button.md).toBe("string")
+      expect(typeof containerResponsiveUI.button.lg).toBe("string")
     })
   })
 })

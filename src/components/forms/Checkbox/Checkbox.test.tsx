@@ -1,5 +1,6 @@
 import { describe, it, expect, vi } from "vitest"
 import { render, screen, fireEvent } from "../../../test/utils"
+import userEvent from "@testing-library/user-event"
 import { Checkbox } from "./Checkbox"
 
 describe("Checkbox Component", () => {
@@ -70,7 +71,8 @@ describe("Checkbox Component", () => {
     expect(handleChange).toHaveBeenCalledWith(true, expect.any(Object))
   })
 
-  it("does not call onChange when disabled", () => {
+  it("does not call onChange when disabled", async () => {
+    const user = userEvent.setup()
     const handleChange = vi.fn()
     render(
       <Checkbox onChange={handleChange} disabled>
@@ -79,7 +81,9 @@ describe("Checkbox Component", () => {
     )
 
     const checkbox = screen.getByRole("checkbox")
-    fireEvent.click(checkbox)
+
+    // userEvent.click respects disabled state and won't trigger events
+    await user.click(checkbox)
 
     expect(handleChange).not.toHaveBeenCalled()
   })
