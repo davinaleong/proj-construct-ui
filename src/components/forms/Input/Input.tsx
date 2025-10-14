@@ -15,6 +15,13 @@ const iconSizeClasses = {
   lg: "w-5 h-5",
 }
 
+const textAlignClasses = {
+  left: "text-left",
+  center: "text-center",
+  right: "text-right",
+  justify: "text-justify",
+}
+
 const iconPaddingClasses = {
   sm: {
     left: "pl-9",
@@ -99,6 +106,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       errorMessage,
       helperText,
       label,
+      labelAlign = "left",
+      messageAlign = "left",
       leftIcon: LeftIcon,
       rightIcon: RightIcon,
       onChange,
@@ -133,7 +142,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {label && (
           <label
             htmlFor={inputId}
-            className={`block ${containerResponsiveUI.label} text-stone-700`}
+            className={cn(
+              "block",
+              containerResponsiveUI.label,
+              "text-stone-700",
+              textAlignClasses[labelAlign]
+            )}
           >
             {label}
             {required && <span className="text-red-500 ml-1">*</span>}
@@ -176,7 +190,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           <p
             className={cn(
               containerResponsiveUI.helper,
-              hasError ? "text-red-600" : "text-stone-500"
+              hasError ? "text-red-600" : "text-stone-500",
+              textAlignClasses[messageAlign]
             )}
           >
             {helpText}

@@ -844,6 +844,165 @@ function AppContent() {
                 </div>
               </div>
 
+              {/* Text Alignment Showcase */}
+              <div className="mb-12">
+                <Typography variant="h3" className="mb-4">
+                  Label & Message Alignment
+                </Typography>
+                <Typography variant="body" className="mb-6 text-stone-600">
+                  Customize the text alignment of input labels and helper
+                  messages for different layouts.
+                </Typography>
+
+                <div className="space-y-8">
+                  {/* Label Alignment Examples */}
+                  <div>
+                    <Typography variant="h4" className="mb-4">
+                      Label Alignment Options
+                    </Typography>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-4">
+                        <Input
+                          label="Left Aligned Label (Default)"
+                          placeholder="Standard left alignment"
+                          labelAlign="left"
+                          helperText="Label aligned to the left"
+                        />
+
+                        <Input
+                          label="Center Aligned Label"
+                          placeholder="Centered label text"
+                          labelAlign="center"
+                          helperText="Label centered above input"
+                        />
+                      </div>
+
+                      <div className="space-y-4">
+                        <Input
+                          label="Right Aligned Label"
+                          placeholder="Right-aligned label"
+                          labelAlign="right"
+                          helperText="Label aligned to the right"
+                        />
+
+                        <Input
+                          label="Justified Label Text"
+                          placeholder="Justified alignment"
+                          labelAlign="justify"
+                          helperText="Label with justified alignment"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Message Alignment Examples */}
+                  <div>
+                    <Typography variant="h4" className="mb-4">
+                      Message Alignment Options
+                    </Typography>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-4">
+                        <Input
+                          label="Left Message Alignment"
+                          placeholder="Default message alignment"
+                          messageAlign="left"
+                          helperText="Helper text aligned to the left side"
+                        />
+
+                        <Input
+                          label="Center Message Alignment"
+                          placeholder="Centered messages"
+                          messageAlign="center"
+                          helperText="Helper text centered below input"
+                        />
+                      </div>
+
+                      <div className="space-y-4">
+                        <Input
+                          label="Right Message Alignment"
+                          placeholder="Right-aligned messages"
+                          messageAlign="right"
+                          helperText="Helper text aligned to the right side"
+                        />
+
+                        <Input
+                          label="Error with Right Alignment"
+                          placeholder="Error message alignment"
+                          messageAlign="right"
+                          error
+                          errorMessage="Error messages also respect alignment"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Combined Alignment Examples */}
+                  <div>
+                    <Typography variant="h4" className="mb-4">
+                      Combined Label & Message Alignment
+                    </Typography>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-4">
+                        <Input
+                          label="Center Label, Left Message"
+                          placeholder="Mixed alignment example"
+                          labelAlign="center"
+                          messageAlign="left"
+                          helperText="Different alignments for label and message"
+                        />
+
+                        <Textarea
+                          label="Right Label, Center Message"
+                          placeholder="Textarea alignment example..."
+                          labelAlign="right"
+                          messageAlign="center"
+                          helperText="Textarea also supports alignment options"
+                          rows={3}
+                        />
+                      </div>
+
+                      <div className="space-y-4">
+                        <Input
+                          label="Left Label, Right Message"
+                          placeholder="Professional form layout"
+                          labelAlign="left"
+                          messageAlign="right"
+                          helperText="Great for professional forms"
+                        />
+
+                        <Textarea
+                          label="Center Everything"
+                          placeholder="Fully centered layout..."
+                          labelAlign="center"
+                          messageAlign="center"
+                          helperText="Perfect for centered form designs"
+                          rows={3}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <Paper
+                  variant="elevated"
+                  padding="lg"
+                  background="primary"
+                  className="mt-8"
+                >
+                  <Typography variant="h4" className="mb-4" color="paper">
+                    🎯 Text Alignment Complete!
+                  </Typography>
+                  <Typography variant="body" color="paper" intensity="soft">
+                    ✅ Label alignment: left, center, right, justify
+                    <br />
+                    ✅ Message alignment: left, center, right, justify
+                    <br />
+                    ✅ Independent control for labels and messages
+                    <br />✅ Works with Input and Textarea components
+                  </Typography>
+                </Paper>
+              </div>
+
               {/* Textarea Components */}
               <div className="mb-12">
                 <Typography variant="h3" className="mb-4">

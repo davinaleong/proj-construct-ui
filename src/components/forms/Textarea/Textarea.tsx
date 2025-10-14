@@ -16,6 +16,13 @@ const resizeClasses = {
   both: "resize",
 }
 
+const textAlignClasses = {
+  left: "text-left",
+  center: "text-center",
+  right: "text-right",
+  justify: "text-justify",
+}
+
 const baseTextareaClasses = [
   "w-full",
   "rounded-sm", // Paper theme consistency
@@ -78,6 +85,8 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       errorMessage,
       helperText,
       label,
+      labelAlign = "left",
+      messageAlign = "left",
       maxLength,
       showCharCount = false,
       onChange,
@@ -109,7 +118,12 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         {label && (
           <label
             htmlFor={textareaId}
-            className={`block ${containerResponsiveUI.label} text-stone-700`}
+            className={cn(
+              "block",
+              containerResponsiveUI.label,
+              "text-stone-700",
+              textAlignClasses[labelAlign]
+            )}
           >
             {label}
             {required && <span className="text-red-500 ml-1">*</span>}
@@ -141,7 +155,8 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
             <p
               className={cn(
                 containerResponsiveUI.helper,
-                hasError ? "text-red-600" : "text-stone-500"
+                hasError ? "text-red-600" : "text-stone-500",
+                textAlignClasses[messageAlign]
               )}
             >
               {helpText}

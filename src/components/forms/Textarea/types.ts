@@ -4,6 +4,8 @@ export type TextareaVariant = "default" | "filled" | "outlined"
 
 export type TextareaResize = "none" | "vertical" | "horizontal" | "both"
 
+export type TextAlignment = "left" | "center" | "right" | "justify"
+
 export interface TextareaProps {
   /**
    * Textarea value
@@ -69,6 +71,16 @@ export interface TextareaProps {
    * Label text
    */
   label?: string
+
+  /**
+   * Label text alignment
+   */
+  labelAlign?: TextAlignment
+
+  /**
+   * Helper/error message text alignment
+   */
+  messageAlign?: TextAlignment
 
   /**
    * Maximum character length

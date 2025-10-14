@@ -4,6 +4,8 @@ export type InputSize = "sm" | "md" | "lg"
 
 export type InputVariant = "default" | "filled" | "outlined"
 
+export type TextAlignment = "left" | "center" | "right" | "justify"
+
 export interface InputProps {
   /**
    * Input value
@@ -69,6 +71,16 @@ export interface InputProps {
    * Label text
    */
   label?: string
+
+  /**
+   * Label text alignment
+   */
+  labelAlign?: TextAlignment
+
+  /**
+   * Helper/error message text alignment
+   */
+  messageAlign?: TextAlignment
 
   /**
    * Left icon
