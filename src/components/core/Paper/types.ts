@@ -1,5 +1,5 @@
 import type { ColorVariant } from "../../../utils/colors"
-import type { ThemeRadius, ThemeElevation } from "../ThemeProvider/types"
+import type { ThemeElevation } from "../ThemeProvider/types"
 import type { ElementType, ReactNode } from "react"
 
 export type PaperVariant = "flat" | "elevated" | "outlined"
@@ -16,11 +16,6 @@ export interface PaperProps {
    * Internal padding of the paper
    */
   padding?: PaperPadding
-
-  /**
-   * Border radius override (defaults to theme radius)
-   */
-  radius?: ThemeRadius
 
   /**
    * Elevation override (defaults to theme elevation for elevated variant)

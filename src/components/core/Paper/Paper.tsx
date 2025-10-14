@@ -1,5 +1,5 @@
 import { forwardRef } from "react"
-import clsx from "clsx"
+import { cn } from "../../../utils/cn.js"
 import { useThemeUtils } from "../ThemeProvider/useThemeUtils"
 import {
   getBackgroundColorClasses,
@@ -16,20 +16,13 @@ const PADDING_CLASSES = {
   xl: "p-8",
 } as const
 
-const RADIUS_CLASSES = {
-  none: "rounded-none",
-  sm: "rounded-sm",
-  md: "rounded-lg",
-  lg: "rounded-xl",
-  xl: "rounded-2xl",
-} as const
-
+// Paper theme elevation with tactile hover effects
 const ELEVATION_CLASSES = {
   none: "shadow-none",
-  sm: "shadow-sm",
-  md: "shadow-md",
-  lg: "shadow-lg",
-  xl: "shadow-xl",
+  sm: "shadow-sm hover:shadow-md active:shadow-inner hover:-translate-y-[1px] transition-all duration-200",
+  md: "shadow-md hover:shadow-lg active:shadow-inner hover:-translate-y-[1px] transition-all duration-200",
+  lg: "shadow-lg hover:shadow-xl active:shadow-md hover:-translate-y-[1px] transition-all duration-200",
+  xl: "shadow-xl hover:shadow-2xl active:shadow-lg hover:-translate-y-[1px] transition-all duration-200",
 } as const
 
 // Paper texture using CSS background pattern
@@ -46,7 +39,6 @@ export const Paper = forwardRef<HTMLElement, PaperProps>(
     {
       variant = "flat",
       padding = "md",
-      radius,
       elevation,
       background = "paper",
       borderColor = "default",
@@ -58,12 +50,9 @@ export const Paper = forwardRef<HTMLElement, PaperProps>(
     },
     ref
   ) => {
-    const { getRadiusClass, getElevationClass, isPaper } = useThemeUtils()
+    const { isPaper } = useThemeUtils()
 
-    // Determine radius class
-    const radiusClass = radius ? RADIUS_CLASSES[radius] : getRadiusClass()
-
-    // Determine elevation class based on variant
+    // Determine elevation class based on variant with paper theme hover effects
     const getVariantElevation = () => {
       if (elevation) {
         return ELEVATION_CLASSES[elevation]
@@ -71,11 +60,11 @@ export const Paper = forwardRef<HTMLElement, PaperProps>(
 
       switch (variant) {
         case "elevated":
-          return getElevationClass()
+          return ELEVATION_CLASSES.sm // Paper theme default elevation
         case "outlined":
         case "flat":
         default:
-          return "shadow-none"
+          return ELEVATION_CLASSES.none
       }
     }
 
@@ -86,25 +75,28 @@ export const Paper = forwardRef<HTMLElement, PaperProps>(
       }
 
       if (background === "paper" && isPaper) {
-        return "bg-[#faf9f6] dark:bg-gray-900"
+        return "bg-stone-50 dark:bg-gray-900"
       }
 
       return getBackgroundColorClasses(background, "subtle")
     }
 
-    // Get border classes
+    // Get border classes - using paper theme border
     const borderClasses = () => {
       if (variant === "outlined") {
-        return clsx("border", getBorderColorClasses(borderColor))
+        return cn("border-2", getBorderColorClasses(borderColor))
       }
-      return ""
+      // Default paper theme always has a subtle border
+      return cn("border", "border-stone-200/60")
     }
 
-    // Combine all classes
-    const paperClasses = clsx(
+    // Combine all classes using paper theme
+    const paperClasses = cn(
       // Base styles
       "relative",
-      "transition-all duration-200",
+
+      // Paper theme: always rounded-sm for consistency
+      "rounded-sm",
 
       // Variant-specific styles
       backgroundClasses(),
@@ -112,8 +104,12 @@ export const Paper = forwardRef<HTMLElement, PaperProps>(
 
       // Layout styles
       PADDING_CLASSES[padding],
-      radiusClass,
+
+      // Elevation with paper theme hover effects
       getVariantElevation(),
+
+      // Paper theme backdrop blur for depth
+      "backdrop-blur-sm",
 
       // Paper texture overlay
       withTexture &&
