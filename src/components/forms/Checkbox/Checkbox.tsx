@@ -128,7 +128,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
 
     const labelClasses = cn(
       labelSizeClasses[size],
-      "text-stone-700",
+      "w-full text-left text-stone-700",
       disabled && "text-stone-400"
     )
 
