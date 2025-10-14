@@ -38,6 +38,7 @@ import {
   Input,
   Textarea,
   Checkbox,
+  Select,
 } from "./components/forms"
 import "./App.css"
 
@@ -1415,6 +1416,285 @@ function AppContent() {
                   </div>
                 </div>
               </div>
+
+              {/* Select Showcase - Phase 3.2 */}
+              <div className="mb-12">
+                <Typography variant="h3" className="mb-4">
+                  Select Dropdown
+                </Typography>
+                <Typography variant="body" className="mb-6 text-stone-600">
+                  Dropdown selection controls with single and multiple selection
+                  support, search functionality, and custom rendering.
+                </Typography>
+
+                <div className="space-y-8">
+                  {/* Basic Select */}
+                  <div>
+                    <Typography variant="h4" className="mb-4">
+                      Basic Select
+                    </Typography>
+                    <div className="space-y-4 max-w-md">
+                      <Select
+                        label="Country"
+                        placeholder="Choose your country"
+                        options={[
+                          { value: "us", label: "United States" },
+                          { value: "ca", label: "Canada" },
+                          { value: "uk", label: "United Kingdom" },
+                          { value: "de", label: "Germany" },
+                          { value: "fr", label: "France" },
+                        ]}
+                        helperText="Select your country of residence"
+                      />
+
+                      <Select
+                        label="Priority Level"
+                        defaultValue="medium"
+                        options={[
+                          { value: "low", label: "Low Priority" },
+                          { value: "medium", label: "Medium Priority" },
+                          { value: "high", label: "High Priority" },
+                          { value: "urgent", label: "Urgent" },
+                        ]}
+                        variant="filled"
+                      />
+
+                      <Select
+                        label="Status"
+                        options={[
+                          { value: "draft", label: "Draft" },
+                          { value: "review", label: "In Review" },
+                          { value: "approved", label: "Approved" },
+                          { value: "published", label: "Published" },
+                        ]}
+                        variant="outlined"
+                        disabled
+                      />
+                    </div>
+                  </div>
+
+                  {/* Sizes */}
+                  <div>
+                    <Typography variant="h4" className="mb-4">
+                      Sizes
+                    </Typography>
+                    <div className="space-y-4 max-w-md">
+                      <Select
+                        size="sm"
+                        placeholder="Small select"
+                        options={[
+                          { value: "1", label: "Option 1" },
+                          { value: "2", label: "Option 2" },
+                        ]}
+                      />
+                      <Select
+                        size="md"
+                        placeholder="Medium select (default)"
+                        options={[
+                          { value: "1", label: "Option 1" },
+                          { value: "2", label: "Option 2" },
+                        ]}
+                      />
+                      <Select
+                        size="lg"
+                        placeholder="Large select"
+                        options={[
+                          { value: "1", label: "Option 1" },
+                          { value: "2", label: "Option 2" },
+                        ]}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Multiple Selection */}
+                  <div>
+                    <Typography variant="h4" className="mb-4">
+                      Multiple Selection
+                    </Typography>
+                    <div className="space-y-4 max-w-md">
+                      <Select
+                        label="Skills"
+                        placeholder="Select your skills"
+                        multiple
+                        options={[
+                          { value: "js", label: "JavaScript" },
+                          { value: "ts", label: "TypeScript" },
+                          { value: "react", label: "React" },
+                          { value: "vue", label: "Vue.js" },
+                          { value: "angular", label: "Angular" },
+                          { value: "node", label: "Node.js" },
+                          { value: "python", label: "Python" },
+                        ]}
+                        helperText="You can select multiple skills"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Searchable Select */}
+                  <div>
+                    <Typography variant="h4" className="mb-4">
+                      Searchable Select
+                    </Typography>
+                    <div className="space-y-4 max-w-md">
+                      <Select
+                        label="City"
+                        placeholder="Search for a city"
+                        searchable
+                        options={[
+                          { value: "nyc", label: "New York City" },
+                          { value: "la", label: "Los Angeles" },
+                          { value: "chicago", label: "Chicago" },
+                          { value: "houston", label: "Houston" },
+                          { value: "phoenix", label: "Phoenix" },
+                          { value: "philadelphia", label: "Philadelphia" },
+                          { value: "san-antonio", label: "San Antonio" },
+                          { value: "san-diego", label: "San Diego" },
+                          { value: "dallas", label: "Dallas" },
+                          { value: "san-jose", label: "San Jose" },
+                        ]}
+                        helperText="Type to search for cities"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Error State */}
+                  <div>
+                    <Typography variant="h4" className="mb-4">
+                      Error State
+                    </Typography>
+                    <div className="space-y-4 max-w-md">
+                      <Select
+                        label="Required Field"
+                        placeholder="Please select an option"
+                        options={[
+                          { value: "1", label: "Option 1" },
+                          { value: "2", label: "Option 2" },
+                        ]}
+                        required
+                        error
+                        errorMessage="This field is required"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Custom Options */}
+                  <div>
+                    <Typography variant="h4" className="mb-4">
+                      With Disabled Options
+                    </Typography>
+                    <div className="space-y-4 max-w-md">
+                      <Select
+                        label="Plan Selection"
+                        placeholder="Choose your plan"
+                        options={[
+                          { value: "free", label: "Free Plan" },
+                          { value: "basic", label: "Basic Plan - $9/month" },
+                          {
+                            value: "pro",
+                            label: "Pro Plan - $29/month",
+                            disabled: true,
+                          },
+                          {
+                            value: "enterprise",
+                            label: "Enterprise Plan - Contact us",
+                            disabled: true,
+                          },
+                        ]}
+                        helperText="Some plans may not be available"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Optgroups */}
+                  <div>
+                    <Typography variant="h4" className="mb-4">
+                      Option Groups
+                    </Typography>
+                    <div className="space-y-4 max-w-md">
+                      <Select
+                        label="Technology Stack"
+                        placeholder="Choose technologies"
+                        multiple
+                        searchable
+                        options={[
+                          {
+                            label: "Frontend",
+                            options: [
+                              { value: "react", label: "React" },
+                              { value: "vue", label: "Vue.js" },
+                              { value: "angular", label: "Angular" },
+                              { value: "svelte", label: "Svelte" },
+                            ],
+                          },
+                          {
+                            label: "Backend",
+                            options: [
+                              { value: "node", label: "Node.js" },
+                              { value: "python", label: "Python" },
+                              { value: "java", label: "Java" },
+                              { value: "go", label: "Go" },
+                            ],
+                          },
+                          {
+                            label: "Database",
+                            options: [
+                              { value: "postgresql", label: "PostgreSQL" },
+                              { value: "mysql", label: "MySQL" },
+                              { value: "mongodb", label: "MongoDB" },
+                              { value: "redis", label: "Redis" },
+                            ],
+                          },
+                          {
+                            label: "Cloud Services",
+                            disabled: true,
+                            options: [
+                              { value: "aws", label: "AWS" },
+                              { value: "azure", label: "Azure" },
+                              { value: "gcp", label: "Google Cloud" },
+                            ],
+                          },
+                        ]}
+                        helperText="Select from organized technology categories"
+                      />
+
+                      <Select
+                        label="Country & Region"
+                        placeholder="Select location"
+                        options={[
+                          {
+                            label: "North America",
+                            options: [
+                              { value: "us", label: "United States" },
+                              { value: "ca", label: "Canada" },
+                              { value: "mx", label: "Mexico" },
+                            ],
+                          },
+                          {
+                            label: "Europe",
+                            options: [
+                              { value: "uk", label: "United Kingdom" },
+                              { value: "de", label: "Germany" },
+                              { value: "fr", label: "France" },
+                              { value: "es", label: "Spain" },
+                              { value: "it", label: "Italy" },
+                            ],
+                          },
+                          {
+                            label: "Asia Pacific",
+                            options: [
+                              { value: "jp", label: "Japan" },
+                              { value: "kr", label: "South Korea" },
+                              { value: "au", label: "Australia" },
+                              { value: "sg", label: "Singapore" },
+                            ],
+                          },
+                        ]}
+                        variant="filled"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <footer className="mt-12">
@@ -1428,10 +1708,11 @@ function AppContent() {
                 Phase 3.1 Form Controls: ✅ Complete
               </Typography>
               <Typography variant="body" color="muted" className="mb-4">
-                Phase 3.2 Selection Controls: 🔄 In Progress (Checkbox ✅)
+                Phase 3.2 Selection Controls: 🔄 In Progress (Checkbox ✅,
+                Select ✅)
               </Typography>
               <Typography variant="body" color="muted" className="mb-4">
-                Next up: Select, Radio, Switch, Slider components
+                Next up: Radio, Switch, Slider components
               </Typography>
 
               <Typography variant="caption" color="muted">

@@ -99,7 +99,7 @@ Create a complete design system that feels **organic, readable, and professional
 #### 3.2 Selection Controls
 
 - [ ] **Select/Dropdown** - Choice selection
-- [ ] **Checkbox** - Binary selection
+- [x] **Checkbox** - Binary selection
 - [ ] **Radio/RadioGroup** - Single choice
 - [ ] **Switch** - Toggle control
 - [ ] **Slider** - Range selection
