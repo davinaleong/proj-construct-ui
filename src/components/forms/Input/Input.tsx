@@ -1,11 +1,12 @@
 import { forwardRef } from "react"
 import type { InputProps } from "./types"
 import { cn } from "../../../utils/cn.js"
+import { containerResponsiveUI } from "../../../utils/containerFonts"
 
 const sizeClasses = {
-  sm: "px-3 py-1.5 text-sm",
-  md: "px-3 py-2 text-sm",
-  lg: "px-4 py-2.5 text-base",
+  sm: `px-3 py-1.5 ${containerResponsiveUI.input.sm}`,
+  md: `px-3 py-2 ${containerResponsiveUI.input.md}`,
+  lg: `px-4 py-2.5 ${containerResponsiveUI.input.lg}`,
 }
 
 const iconSizeClasses = {
@@ -98,8 +99,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       errorMessage,
       helperText,
       label,
-      labelPosition = "top",
-      messagePosition = "bottom",
       leftIcon: LeftIcon,
       rightIcon: RightIcon,
       onChange,
@@ -129,152 +128,60 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
     const iconClasses = iconSizeClasses[size]
 
-    // Helper function to render label
-    const renderLabel = () => {
-      if (!label) return null
-
-      const labelClasses = cn(
-        "text-sm font-medium text-stone-700",
-        labelPosition === "left" && "flex items-center",
-        labelPosition === "inside" &&
-          "absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none bg-white px-1 text-xs text-stone-500",
-        labelPosition === "floating" &&
-          "absolute left-3 transition-all duration-200 pointer-events-none",
-        labelPosition === "top" && "block"
-      )
-
-      return (
-        <label htmlFor={inputId} className={labelClasses}>
-          {label}
-          {required && <span className="text-red-500 ml-1">*</span>}
-        </label>
-      )
-    }
-
-    // Helper function to render messages
-    const renderMessages = () => {
-      if (!helpText) return null
-
-      return (
-        <p
-          className={cn(
-            "text-xs",
-            hasError ? "text-red-600" : "text-stone-500",
-            messagePosition === "right" && "absolute right-0 top-0",
-            messagePosition === "inline" && "inline ml-2"
-          )}
-        >
-          {helpText}
-        </p>
-      )
-    }
-
-    // Main container classes based on label position
-    const containerClasses = cn(
-      labelPosition === "top" && "space-y-1",
-      labelPosition === "left" && "flex items-center gap-3",
-      (labelPosition === "inside" || labelPosition === "floating") && "relative"
-    )
-
-    // Input wrapper classes for message positioning
-    const inputWrapperClasses = cn(
-      "relative",
-      messagePosition === "right" && "relative",
-      labelPosition === "left" && "flex-1"
-    )
-
     return (
-      <div className={containerClasses}>
-        {labelPosition === "top" && renderLabel()}
+      <div className="space-y-1">
+        {label && (
+          <label
+            htmlFor={inputId}
+            className={`block ${containerResponsiveUI.label} text-stone-700`}
+          >
+            {label}
+            {required && <span className="text-red-500 ml-1">*</span>}
+          </label>
+        )}
 
-        {labelPosition === "left" && (
-          <>
-            {renderLabel()}
-            <div className="flex-1">
-              <div className={inputWrapperClasses}>
-                {LeftIcon && (
-                  <div className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-400">
-                    <LeftIcon className={iconClasses} />
-                  </div>
-                )}
-
-                <input
-                  ref={ref}
-                  id={inputId}
-                  name={name}
-                  type={type}
-                  value={value}
-                  defaultValue={defaultValue}
-                  placeholder={placeholder}
-                  disabled={disabled}
-                  readOnly={readonly}
-                  required={required}
-                  onChange={onChange}
-                  onFocus={onFocus}
-                  onBlur={onBlur}
-                  className={inputClasses}
-                  {...props}
-                />
-
-                {RightIcon && (
-                  <div className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400">
-                    <RightIcon className={iconClasses} />
-                  </div>
-                )}
-
-                {messagePosition === "right" && renderMessages()}
-              </div>
-              {messagePosition === "bottom" && renderMessages()}
+        <div className="relative">
+          {LeftIcon && (
+            <div className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-400">
+              <LeftIcon className={iconClasses} />
             </div>
-            {messagePosition === "inline" && renderMessages()}
-          </>
-        )}
+          )}
 
-        {labelPosition !== "left" && (
-          <div className={inputWrapperClasses}>
-            {(labelPosition === "inside" || labelPosition === "floating") &&
-              renderLabel()}
+          <input
+            ref={ref}
+            id={inputId}
+            name={name}
+            type={type}
+            value={value}
+            defaultValue={defaultValue}
+            placeholder={placeholder}
+            disabled={disabled}
+            readOnly={readonly}
+            required={required}
+            onChange={onChange}
+            onFocus={onFocus}
+            onBlur={onBlur}
+            className={inputClasses}
+            {...props}
+          />
 
-            {LeftIcon && (
-              <div className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-400">
-                <LeftIcon className={iconClasses} />
-              </div>
+          {RightIcon && (
+            <div className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400">
+              <RightIcon className={iconClasses} />
+            </div>
+          )}
+        </div>
+
+        {helpText && (
+          <p
+            className={cn(
+              containerResponsiveUI.helper,
+              hasError ? "text-red-600" : "text-stone-500"
             )}
-
-            <input
-              ref={ref}
-              id={inputId}
-              name={name}
-              type={type}
-              value={value}
-              defaultValue={defaultValue}
-              placeholder={placeholder}
-              disabled={disabled}
-              readOnly={readonly}
-              required={required}
-              onChange={onChange}
-              onFocus={onFocus}
-              onBlur={onBlur}
-              className={inputClasses}
-              {...props}
-            />
-
-            {RightIcon && (
-              <div className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400">
-                <RightIcon className={iconClasses} />
-              </div>
-            )}
-
-            {messagePosition === "right" && renderMessages()}
-          </div>
+          >
+            {helpText}
+          </p>
         )}
-
-        {messagePosition === "bottom" &&
-          labelPosition !== "left" &&
-          renderMessages()}
-        {messagePosition === "inline" &&
-          labelPosition !== "left" &&
-          renderMessages()}
       </div>
     )
   }

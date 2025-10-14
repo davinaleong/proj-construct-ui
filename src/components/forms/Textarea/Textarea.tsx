@@ -1,11 +1,12 @@
 import { forwardRef } from "react"
 import type { TextareaProps } from "./types"
 import { cn } from "../../../utils/cn.js"
+import { containerResponsiveUI } from "../../../utils/containerFonts"
 
 const sizeClasses = {
-  sm: "px-3 py-1.5 text-sm",
-  md: "px-3 py-2 text-sm",
-  lg: "px-4 py-2.5 text-base",
+  sm: `px-3 py-1.5 ${containerResponsiveUI.input.sm}`,
+  md: `px-3 py-2 ${containerResponsiveUI.input.md}`,
+  lg: `px-4 py-2.5 ${containerResponsiveUI.input.lg}`,
 }
 
 const resizeClasses = {
@@ -108,7 +109,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         {label && (
           <label
             htmlFor={textareaId}
-            className="block text-sm font-medium text-stone-700"
+            className={`block ${containerResponsiveUI.label} text-stone-700`}
           >
             {label}
             {required && <span className="text-red-500 ml-1">*</span>}
@@ -139,7 +140,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           {helpText && (
             <p
               className={cn(
-                "text-xs",
+                containerResponsiveUI.helper,
                 hasError ? "text-red-600" : "text-stone-500"
               )}
             >
@@ -150,7 +151,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           {showCharCount && maxLength && (
             <p
               className={cn(
-                "text-xs ml-auto",
+                `${containerResponsiveUI.helper} ml-auto`,
                 currentLength > maxLength * 0.9
                   ? "text-orange-600"
                   : "text-stone-500",

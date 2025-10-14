@@ -2,13 +2,14 @@ import { Loader2 } from "lucide-react"
 import type { ButtonProps } from "./types"
 import { cn } from "../../../utils/cn.js"
 import { getColorClasses } from "../../../utils/colors"
+import { containerResponsiveUI } from "../../../utils/containerFonts"
 
 const sizeClasses = {
-  xs: "px-2 py-1 text-xs gap-1",
-  sm: "px-3 py-1.5 text-sm gap-1.5",
-  md: "px-4 py-2 text-sm gap-2",
-  lg: "px-6 py-2.5 text-base gap-2",
-  xl: "px-8 py-3 text-lg gap-2.5",
+  xs: `px-2 py-1 ${containerResponsiveUI.button.sm} gap-1`,
+  sm: `px-3 py-1.5 ${containerResponsiveUI.button.sm} gap-1.5`,
+  md: `px-4 py-2 ${containerResponsiveUI.button.md} gap-2`,
+  lg: `px-6 py-2.5 ${containerResponsiveUI.button.lg} gap-2`,
+  xl: `px-8 py-3 ${containerResponsiveUI.button.lg} gap-2.5`,
 }
 
 const baseClasses = [

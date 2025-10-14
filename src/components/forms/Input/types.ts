@@ -4,10 +4,6 @@ export type InputSize = "sm" | "md" | "lg"
 
 export type InputVariant = "default" | "filled" | "outlined"
 
-export type LabelPosition = "top" | "left" | "inside" | "floating"
-
-export type MessagePosition = "bottom" | "right" | "inline"
-
 export interface InputProps {
   /**
    * Input value
@@ -73,16 +69,6 @@ export interface InputProps {
    * Label text
    */
   label?: string
-
-  /**
-   * Label position
-   */
-  labelPosition?: LabelPosition
-
-  /**
-   * Error/helper message position
-   */
-  messagePosition?: MessagePosition
 
   /**
    * Left icon

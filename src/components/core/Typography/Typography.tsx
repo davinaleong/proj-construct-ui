@@ -1,6 +1,11 @@
 import { forwardRef } from "react"
 import clsx from "clsx"
 import { getTextColorClasses } from "../../../utils/colors"
+import {
+  containerResponsiveHeadings,
+  containerResponsiveBody,
+  containerResponsiveFonts,
+} from "../../../utils/containerFonts"
 import type { TypographyProps, TypographyVariant } from "./types"
 
 // Map variants to default HTML elements
@@ -23,36 +28,32 @@ const VARIANT_ELEMENTS: Record<TypographyVariant, keyof HTMLElementTagNameMap> =
     pre: "pre",
   }
 
-// Typography scale with paper theme fonts
+// Typography scale with paper theme fonts and container-based responsive sizing
 const VARIANT_CLASSES: Record<TypographyVariant, string> = {
-  // Headings (Playfair Display)
-  h1: "font-playfair text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight",
-  h2: "font-playfair text-3xl md:text-4xl font-bold leading-tight tracking-tight",
-  h3: "font-playfair text-2xl md:text-3xl font-semibold leading-snug tracking-tight",
-  h4: "font-playfair text-xl md:text-2xl font-semibold leading-snug",
-  h5: "font-playfair text-lg md:text-xl font-medium leading-snug",
-  h6: "font-playfair text-base md:text-lg font-medium leading-normal",
+  // Headings (Playfair Display) - now container-responsive
+  h1: `font-playfair ${containerResponsiveHeadings.h1} font-bold tracking-tight`,
+  h2: `font-playfair ${containerResponsiveHeadings.h2} font-bold tracking-tight`,
+  h3: `font-playfair ${containerResponsiveHeadings.h3} font-semibold tracking-tight`,
+  h4: `font-playfair ${containerResponsiveHeadings.h4} font-semibold`,
+  h5: `font-playfair ${containerResponsiveHeadings.h5} font-medium`,
+  h6: `font-playfair ${containerResponsiveHeadings.h6} font-medium`,
 
-  // Semantic variants (Montserrat)
-  title:
-    "font-montserrat text-2xl md:text-3xl font-bold leading-tight tracking-tight",
-  subtitle:
-    "font-montserrat text-lg md:text-xl font-semibold leading-normal text-gray-600 dark:text-gray-400",
+  // Semantic variants (Montserrat) - now container-responsive
+  title: `font-montserrat ${containerResponsiveHeadings.h2} font-bold tracking-tight`,
+  subtitle: `font-montserrat ${containerResponsiveHeadings.h4} font-semibold text-gray-600 dark:text-gray-400`,
 
-  // Body text (Montserrat)
-  body: "font-montserrat text-base leading-relaxed",
-  bodyLarge: "font-montserrat text-lg leading-relaxed",
-  bodySmall: "font-montserrat text-sm leading-normal",
+  // Body text (Montserrat) - now container-responsive
+  body: `font-montserrat ${containerResponsiveBody.regular}`,
+  bodyLarge: `font-montserrat ${containerResponsiveBody.large}`,
+  bodySmall: `font-montserrat ${containerResponsiveBody.small}`,
 
-  // Utility text (Montserrat)
-  caption:
-    "font-montserrat text-xs leading-normal text-gray-500 dark:text-gray-400",
-  overline:
-    "font-montserrat text-xs font-medium uppercase tracking-wider leading-normal text-gray-500 dark:text-gray-400",
+  // Utility text (Montserrat) - now container-responsive
+  caption: `font-montserrat ${containerResponsiveBody.caption} text-gray-500 dark:text-gray-400`,
+  overline: `font-montserrat ${containerResponsiveFonts.xs} font-medium uppercase tracking-wider leading-normal text-gray-500 dark:text-gray-400`,
 
-  // Code text (Source Code Pro)
-  code: "font-source-code-pro text-sm bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded-md",
-  pre: "font-source-code-pro text-sm bg-gray-100 dark:bg-gray-800 p-4 rounded-lg overflow-x-auto",
+  // Code text (Source Code Pro) - container-responsive
+  code: `font-source-code-pro ${containerResponsiveFonts.sm} bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded-md`,
+  pre: `font-source-code-pro ${containerResponsiveFonts.sm} bg-gray-100 dark:bg-gray-800 p-4 rounded-lg overflow-x-auto`,
 }
 
 const WEIGHT_CLASSES = {
