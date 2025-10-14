@@ -4,5 +4,4 @@ export type {
   TextareaSize,
   TextareaVariant,
   TextareaResize,
-  TextAlignment,
 } from "./types"

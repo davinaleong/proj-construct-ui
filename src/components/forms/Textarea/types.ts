@@ -1,10 +1,10 @@
+import type { TextAlignment } from "../shared"
+
 export type TextareaSize = "sm" | "md" | "lg"
 
 export type TextareaVariant = "default" | "filled" | "outlined"
 
 export type TextareaResize = "none" | "vertical" | "horizontal" | "both"
-
-export type TextAlignment = "left" | "center" | "right" | "justify"
 
 export interface TextareaProps {
   /**

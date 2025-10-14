@@ -150,7 +150,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           />
         </div>
 
-        <div className="flex justify-between items-start">
+        <div className="flex justify-between items-start mt-1">
           {helpText && (
             <p
               className={cn(
@@ -166,7 +166,8 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           {showCharCount && maxLength && (
             <p
               className={cn(
-                `${containerResponsiveUI.helper} ml-auto`,
+                containerResponsiveUI.helper,
+                helpText ? "ml-auto" : "",
                 currentLength > maxLength * 0.9
                   ? "text-orange-600"
                   : "text-stone-500",

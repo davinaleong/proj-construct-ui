@@ -32,7 +32,13 @@ import {
   Section,
   Panel,
 } from "./components/layout"
-import { Button, IconButton, Input, Textarea } from "./components/forms"
+import {
+  Button,
+  IconButton,
+  Input,
+  Textarea,
+  Checkbox,
+} from "./components/forms"
 import "./App.css"
 
 function App() {
@@ -1298,6 +1304,117 @@ function AppContent() {
                   />
                 </div>
               </div>
+
+              {/* Checkbox Showcase - Phase 3.2 */}
+              <div className="mb-12">
+                <Typography variant="h3" className="mb-4">
+                  Checkbox Selection
+                </Typography>
+                <Typography variant="body" className="mb-6 text-stone-600">
+                  Checkbox controls for single or multiple selections with
+                  indeterminate state support.
+                </Typography>
+
+                <div className="space-y-8">
+                  {/* Basic Checkboxes */}
+                  <div>
+                    <Typography variant="h4" className="mb-4">
+                      Basic Checkboxes
+                    </Typography>
+                    <div className="space-y-4">
+                      <div className="space-y-2">
+                        <Checkbox defaultChecked>
+                          I agree to the terms and conditions
+                        </Checkbox>
+                        <Checkbox>Subscribe to newsletter</Checkbox>
+                        <Checkbox disabled>
+                          This option is currently unavailable
+                        </Checkbox>
+                        <Checkbox defaultChecked disabled>
+                          Pre-selected and disabled
+                        </Checkbox>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Sizes */}
+                  <div>
+                    <Typography variant="h4" className="mb-4">
+                      Sizes
+                    </Typography>
+                    <div className="space-y-3">
+                      <Checkbox size="sm" defaultChecked>
+                        Small checkbox
+                      </Checkbox>
+                      <Checkbox size="md" defaultChecked>
+                        Medium checkbox (default)
+                      </Checkbox>
+                      <Checkbox size="lg" defaultChecked>
+                        Large checkbox
+                      </Checkbox>
+                    </div>
+                  </div>
+
+                  {/* States */}
+                  <div>
+                    <Typography variant="h4" className="mb-4">
+                      States
+                    </Typography>
+                    <div className="space-y-3">
+                      <Checkbox>Unchecked</Checkbox>
+                      <Checkbox defaultChecked>Checked</Checkbox>
+                      <Checkbox indeterminate>
+                        Indeterminate (partial selection)
+                      </Checkbox>
+                      <Checkbox
+                        error
+                        errorMessage="Please accept the terms to continue"
+                      >
+                        Required field with error
+                      </Checkbox>
+                    </div>
+                  </div>
+
+                  {/* Form Examples */}
+                  <div>
+                    <Typography variant="h4" className="mb-4">
+                      Form Examples
+                    </Typography>
+                    <div className="space-y-4">
+                      <div>
+                        <Typography
+                          variant="bodySmall"
+                          className="mb-3 text-stone-600"
+                        >
+                          User Preferences
+                        </Typography>
+                        <div className="space-y-2">
+                          <Checkbox defaultChecked>
+                            Email notifications
+                          </Checkbox>
+                          <Checkbox>Push notifications</Checkbox>
+                          <Checkbox defaultChecked>Marketing updates</Checkbox>
+                        </div>
+                      </div>
+
+                      <div>
+                        <Typography
+                          variant="bodySmall"
+                          className="mb-3 text-stone-600"
+                        >
+                          Required Agreement
+                        </Typography>
+                        <Checkbox
+                          required
+                          helperText="You must agree to continue"
+                        >
+                          I have read and agree to the Privacy Policy
+                        </Checkbox>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <footer className="mt-12">
@@ -1311,8 +1428,10 @@ function AppContent() {
                 Phase 3.1 Form Controls: ✅ Complete
               </Typography>
               <Typography variant="body" color="muted" className="mb-4">
-                Next up: Phase 3.2 Selection Controls (Select, Checkbox, Radio,
-                etc.)
+                Phase 3.2 Selection Controls: 🔄 In Progress (Checkbox ✅)
+              </Typography>
+              <Typography variant="body" color="muted" className="mb-4">
+                Next up: Select, Radio, Switch, Slider components
               </Typography>
 
               <Typography variant="caption" color="muted">

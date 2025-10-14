@@ -1,10 +1,9 @@
 import type { LucideIcon } from "lucide-react"
+import type { TextAlignment } from "../shared"
 
 export type InputSize = "sm" | "md" | "lg"
 
 export type InputVariant = "default" | "filled" | "outlined"
-
-export type TextAlignment = "left" | "center" | "right" | "justify"
 
 export interface InputProps {
   /**
