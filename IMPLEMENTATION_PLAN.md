@@ -106,8 +106,8 @@ Create a complete design system that feels **organic, readable, and professional
 - [x] **Select/Dropdown** - Choice selection
 - [x] **Checkbox** - Binary selection
 - [x] **Radio/RadioGroup** - Single choice
-- [ ] **Switch** - Toggle control
-- [ ] **Slider** - Range selection
+- [x] **Switch** - Toggle control
+- [x] **Slider** - Range selection
 
 #### 3.3 Advanced Form Controls
 
