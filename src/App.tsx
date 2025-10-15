@@ -45,6 +45,7 @@ import {
   Switch,
   Slider,
 } from "./components/forms"
+import { FloatingNavbar } from "./components/navigation"
 import "./App.css"
 
 function App() {
@@ -60,8 +61,19 @@ function AppContent() {
     "paper"
   )
 
+  const navItems = [
+    { id: "overview", label: "Overview", href: "#overview" },
+    { id: "typography", label: "Typography", href: "#typography" },
+    { id: "layout", label: "Layout", href: "#layout" },
+    { id: "ui-primitives", label: "UI Primitives", href: "#ui-primitives" },
+    { id: "form-controls", label: "Form Controls", href: "#form-controls" },
+    { id: "navigation", label: "Navigation", href: "#navigation" },
+  ]
+
   return (
     <div className="min-h-screen bg-[#faf9f6] dark:bg-gray-900">
+      {/* Floating Navbar */}
+      <FloatingNavbar items={navItems} position="top-right" offset={120} />
       {/* Header */}
       <Paper
         variant="elevated"
@@ -115,7 +127,7 @@ function AppContent() {
       {/* Main Content */}
       <main className="py-12">
         <Container maxWidth="xl">
-          <div className="text-center max-w-4xl mx-auto">
+          <div className="text-center max-w-4xl mx-auto" id="overview">
             <Typography variant="h1" className="mb-6">
               Welcome to Paper Design
             </Typography>
@@ -186,7 +198,7 @@ function AppContent() {
             </div>
 
             {/* Container-Based Typography Showcase */}
-            <div className="mt-16">
+            <div className="mt-16" id="typography">
               <Typography variant="h2" className="mb-8">
                 Container-Based Typography
               </Typography>
@@ -372,7 +384,7 @@ function AppContent() {
             </div>
 
             {/* Layout Components Showcase */}
-            <div className="mt-16">
+            <div className="mt-16" id="layout">
               <Typography variant="h2" className="mb-8">
                 Layout Components
               </Typography>
@@ -505,7 +517,7 @@ function AppContent() {
             </div>
 
             {/* Phase 2.2 UI Primitives Showcase */}
-            <div className="mt-16">
+            <div className="mt-16" id="ui-primitives">
               <Typography variant="h2" className="mb-8">
                 UI Primitives
               </Typography>
@@ -699,7 +711,7 @@ function AppContent() {
             </div>
 
             {/* Phase 3.1 Form Controls Showcase */}
-            <div className="mt-16">
+            <div className="mt-16" id="form-controls">
               <Typography variant="h2" className="mb-8">
                 Form Controls
               </Typography>
@@ -2428,6 +2440,65 @@ function AppContent() {
               </div>
             </div>
 
+            {/* Navigation Components Showcase */}
+            <div className="mt-16" id="navigation">
+              <Typography variant="h2" className="mb-8">
+                Navigation Components
+              </Typography>
+              <Typography variant="body" className="mb-8 text-stone-600">
+                Navigation components help users move through your application.
+                The floating navbar provides quick access to page sections.
+              </Typography>
+
+              {/* Floating Navbar Info */}
+              <div className="mb-12">
+                <Typography variant="h3" className="mb-4">
+                  Floating Navbar
+                </Typography>
+                <Typography variant="body" className="mb-6 text-stone-600">
+                  The floating navbar you see in the top-right corner
+                  demonstrates our navigation component. It automatically
+                  highlights the current section as you scroll and provides
+                  smooth scrolling navigation.
+                </Typography>
+
+                <div className="space-y-6">
+                  <Paper variant="outlined" padding="lg">
+                    <Typography variant="h4" className="mb-4">
+                      Features
+                    </Typography>
+                    <ul className="space-y-2 text-stone-700">
+                      <li>
+                        • Automatic section highlighting based on scroll
+                        position
+                      </li>
+                      <li>• Smooth scrolling to sections when clicked</li>
+                      <li>• Configurable positioning (corners of screen)</li>
+                      <li>• Responsive design with backdrop blur</li>
+                      <li>• Customizable offset and styling</li>
+                    </ul>
+                  </Paper>
+
+                  <Paper variant="outlined" padding="lg">
+                    <Typography variant="h4" className="mb-4">
+                      Usage Example
+                    </Typography>
+                    <pre className="bg-stone-100 p-4 rounded text-sm overflow-x-auto">
+                      {`<FloatingNavbar 
+  items={[
+    { id: "overview", label: "Overview", href: "#overview" },
+    { id: "features", label: "Features", href: "#features" },
+    { id: "examples", label: "Examples", href: "#examples" }
+  ]}
+  position="top-right"
+  offset={20}
+/>`}
+                    </pre>
+                  </Paper>
+                </div>
+              </div>
+            </div>
+
             <footer className="mt-12">
               <Typography variant="body" color="muted" className="mb-4">
                 Phase 2.1 Layout Components: ✅ Complete
@@ -2441,6 +2512,9 @@ function AppContent() {
               <Typography variant="body" color="muted" className="mb-4">
                 Phase 3.2 Selection Controls: ✅ Complete (Checkbox ✅, Radio
                 ✅, Select ✅, Switch ✅, Slider ✅)
+              </Typography>
+              <Typography variant="body" color="muted" className="mb-4">
+                Navigation Components: ✅ FloatingNavbar Complete
               </Typography>
               <Typography variant="body" color="muted" className="mb-4">
                 Next up: Advanced form validation and composite components

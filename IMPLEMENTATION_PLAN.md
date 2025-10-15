@@ -145,6 +145,11 @@ Create a complete design system that feels **organic, readable, and professional
 - [ ] **Navbar/Topbar** - App header
 - [ ] **Sidebar/Drawer** - Side navigation
 - [ ] **Breadcrumbs** - Navigation trail
+- [x] **FloatingNavbar** - Fixed position section navigation
+  - Automatic scroll-based highlighting
+  - Smooth scrolling to sections
+  - Configurable positioning (corners)
+  - Responsive design with backdrop blur
 
 #### 5.2 Secondary Navigation
 
