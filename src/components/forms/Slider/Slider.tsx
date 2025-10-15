@@ -134,7 +134,7 @@ export const Slider = forwardRef<HTMLInputElement, SliderProps>(
 
     // Determine slider state
     const isDisabled = disabled
-    const hasError = error && !isDisabled
+    const hasError = (error || !!errorMessage) && !isDisabled
 
     // Get variant classes
     const variantClasses = hasError

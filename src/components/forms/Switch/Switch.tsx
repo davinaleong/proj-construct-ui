@@ -134,7 +134,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
 
     // Determine switch state
     const isDisabled = disabled
-    const hasError = error && !isDisabled
+    const hasError = (error || !!errorMessage) && !isDisabled
     const isChecked = checkedValue
 
     // Get variant classes

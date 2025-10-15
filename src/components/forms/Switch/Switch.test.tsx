@@ -27,15 +27,17 @@ describe("Switch Component", () => {
     it("applies custom className", () => {
       render(<Switch className="custom-class">Test</Switch>)
 
-      const container = screen.getByRole("checkbox").closest("div")
-      expect(container).toHaveClass("custom-class")
+      // className should be on the outermost container, not the immediate parent of the checkbox
+      const container = screen.getByRole("checkbox").closest(".custom-class")
+      expect(container).toBeInTheDocument()
     })
 
     it("generates unique id when not provided", () => {
-      const { rerender } = render(<Switch>First</Switch>)
+      const { unmount } = render(<Switch>First</Switch>)
       const firstId = screen.getByRole("checkbox").id
+      unmount()
 
-      rerender(<Switch>Second</Switch>)
+      render(<Switch>Second</Switch>)
       const secondId = screen.getByRole("checkbox").id
 
       expect(firstId).toBeDefined()

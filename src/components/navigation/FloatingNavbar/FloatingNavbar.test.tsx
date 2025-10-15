@@ -25,7 +25,8 @@ describe("FloatingNavbar Component", () => {
 
   beforeEach(() => {
     vi.clearAllMocks()
-    // Mock getBoundingClientRect
+
+    // Mock getBoundingClientRect for elements
     Element.prototype.getBoundingClientRect = vi.fn(() => ({
       top: 100,
       bottom: 200,
@@ -37,6 +38,35 @@ describe("FloatingNavbar Component", () => {
       y: 100,
       toJSON: () => {},
     }))
+
+    // Mock querySelector to return elements with getBoundingClientRect
+    document.querySelector = vi.fn(() => {
+      const mockElement = {
+        getBoundingClientRect: () => ({
+          top: 100,
+          bottom: 200,
+          left: 0,
+          right: 100,
+          width: 100,
+          height: 100,
+          x: 0,
+          y: 100,
+          toJSON: () => {},
+        }),
+        scrollIntoView: vi.fn(),
+      }
+      return mockElement as unknown as Element
+    })
+
+    // Mock window properties
+    Object.defineProperty(window, "scrollY", {
+      value: 0,
+      writable: true,
+    })
+    Object.defineProperty(window, "innerHeight", {
+      value: 800,
+      writable: true,
+    })
   })
 
   afterEach(() => {

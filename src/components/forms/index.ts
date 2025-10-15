@@ -14,3 +14,6 @@ export * from "./RadioGroup"
 export * from "./Select"
 export * from "./Switch"
 export * from "./Slider"
+
+// Form Components - Phase 3.3 Advanced Form Controls
+export * from "./FileUpload"

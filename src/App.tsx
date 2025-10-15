@@ -44,6 +44,7 @@ import {
   Select,
   Switch,
   Slider,
+  FileUpload,
 } from "./components/forms"
 import { FloatingNavbar } from "./components/navigation"
 import "./App.css"
@@ -2438,6 +2439,178 @@ function AppContent() {
                   </div>
                 </div>
               </div>
+
+              {/* FileUpload Showcase - Phase 3.3 */}
+              <div className="mb-12">
+                <Typography variant="h3" className="mb-4">
+                  File Upload
+                </Typography>
+                <Typography variant="body" className="mb-6 text-stone-600">
+                  File upload components with validation, progress tracking, and
+                  multiple variants for different use cases.
+                </Typography>
+
+                <div className="space-y-8">
+                  {/* Simple File Upload */}
+                  <div>
+                    <Typography variant="h4" className="mb-4">
+                      Simple File Upload
+                    </Typography>
+                    <div className="space-y-4">
+                      <FileUpload
+                        label="Upload Documents"
+                        helperText="Select files to upload"
+                      />
+
+                      <FileUpload
+                        label="Profile Picture"
+                        validation={{
+                          allowedTypes: ["image/*"],
+                          maxSize: 2097152, // 2MB
+                        }}
+                        helperText="Upload your profile picture"
+                      />
+
+                      <FileUpload
+                        multiple
+                        label="Project Files"
+                        validation={{
+                          allowedTypes: [".pdf", ".docx", ".txt"],
+                          maxFiles: 3,
+                          maxSize: 5242880, // 5MB
+                        }}
+                        helperText="Upload up to 3 project files"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Popup File Upload */}
+                  <div>
+                    <Typography variant="h4" className="mb-4">
+                      Popup File Upload
+                    </Typography>
+                    <div className="space-y-4">
+                      <FileUpload
+                        variant="popup"
+                        label="Bulk Upload"
+                        multiple
+                        validation={{
+                          maxFiles: 10,
+                        }}
+                        helperText="Upload multiple files in a separate dialog"
+                      />
+
+                      <FileUpload
+                        variant="popup"
+                        label="Media Upload"
+                        multiple
+                        validation={{
+                          allowedTypes: ["image/*", "video/*"],
+                          maxSize: 10485760, // 10MB
+                        }}
+                        helperText="Upload images and videos"
+                      />
+                    </div>
+                  </div>
+
+                  {/* File Upload with Progress */}
+                  <div>
+                    <Typography variant="h4" className="mb-4">
+                      Upload with Progress
+                    </Typography>
+                    <div className="space-y-4">
+                      <FileUpload
+                        label="Documents with Progress"
+                        multiple
+                        validation={{
+                          allowedTypes: [".pdf", ".doc", ".docx"],
+                          maxSize: 5242880, // 5MB
+                        }}
+                        onUpload={async () => {
+                          // Simulate upload delay
+                          await new Promise((resolve) =>
+                            setTimeout(resolve, 2000)
+                          )
+                        }}
+                        helperText="Files will show upload progress"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Error States */}
+                  <div>
+                    <Typography variant="h4" className="mb-4">
+                      Error States
+                    </Typography>
+                    <div className="space-y-4">
+                      <FileUpload
+                        label="Upload Required"
+                        error
+                        errorMessage="Please select at least one file"
+                      />
+
+                      <FileUpload
+                        disabled
+                        label="Disabled Upload"
+                        helperText="Upload is currently disabled"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Validation Examples */}
+                  <div>
+                    <Typography variant="h4" className="mb-4">
+                      Validation Examples
+                    </Typography>
+                    <div className="space-y-6">
+                      <div className="space-y-4">
+                        <Typography variant="body" className="font-medium">
+                          Image Files Only
+                        </Typography>
+                        <FileUpload
+                          validation={{
+                            allowedTypes: [
+                              "image/jpeg",
+                              "image/png",
+                              "image/gif",
+                            ],
+                            maxSize: 2097152, // 2MB
+                          }}
+                          helperText="JPEG, PNG, or GIF under 2MB"
+                        />
+                      </div>
+
+                      <div className="space-y-4">
+                        <Typography variant="body" className="font-medium">
+                          Document Files with Size Limits
+                        </Typography>
+                        <FileUpload
+                          validation={{
+                            allowedTypes: [".pdf", ".doc", ".docx", ".txt"],
+                            minSize: 1024, // 1KB
+                            maxSize: 10485760, // 10MB
+                          }}
+                          helperText="Documents between 1KB and 10MB"
+                        />
+                      </div>
+
+                      <div className="space-y-4">
+                        <Typography variant="body" className="font-medium">
+                          Multiple Files with Count Limit
+                        </Typography>
+                        <FileUpload
+                          multiple
+                          validation={{
+                            maxFiles: 5,
+                            maxSize: 1048576, // 1MB per file
+                          }}
+                          helperText="Up to 5 files, 1MB each"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Navigation Components Showcase */}
@@ -2514,10 +2687,13 @@ function AppContent() {
                 ✅, Select ✅, Switch ✅, Slider ✅)
               </Typography>
               <Typography variant="body" color="muted" className="mb-4">
+                Phase 3.3 Advanced Form Controls: ✅ FileUpload Complete
+              </Typography>
+              <Typography variant="body" color="muted" className="mb-4">
                 Navigation Components: ✅ FloatingNavbar Complete
               </Typography>
               <Typography variant="body" color="muted" className="mb-4">
-                Next up: Advanced form validation and composite components
+                Next up: Data display components and advanced validation
               </Typography>
 
               <Typography variant="caption" color="muted">

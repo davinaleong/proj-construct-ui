@@ -36,7 +36,11 @@ export const FloatingNavbar = ({
       const scrollPosition = window.scrollY + window.innerHeight / 3
 
       for (const section of sections) {
-        if (section && section.element) {
+        if (
+          section &&
+          section.element &&
+          typeof section.element.getBoundingClientRect === "function"
+        ) {
           const rect = section.element.getBoundingClientRect()
           const elementTop = rect.top + window.scrollY
 
