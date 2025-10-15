@@ -42,6 +42,8 @@ import {
   Radio,
   RadioGroup,
   Select,
+  Switch,
+  Slider,
 } from "./components/forms"
 import "./App.css"
 
@@ -2085,6 +2087,345 @@ function AppContent() {
                   </div>
                 </div>
               </div>
+
+              {/* Switch Showcase - Phase 3.2 */}
+              <div className="mb-12">
+                <Typography variant="h3" className="mb-4">
+                  Switch Toggle
+                </Typography>
+                <Typography variant="body" className="mb-6 text-stone-600">
+                  Toggle switches for on/off states with smooth animations,
+                  different sizes, and alignment options.
+                </Typography>
+
+                <div className="space-y-8">
+                  {/* Basic Switches */}
+                  <div>
+                    <Typography variant="h4" className="mb-4">
+                      Basic Switches
+                    </Typography>
+                    <div className="space-y-4 max-w-md">
+                      <Switch defaultChecked>Enable notifications</Switch>
+                      <Switch>Dark mode</Switch>
+                      <Switch disabled>Disabled option</Switch>
+                      <Switch defaultChecked disabled>
+                        Pre-enabled disabled
+                      </Switch>
+                    </div>
+                  </div>
+
+                  {/* Sizes */}
+                  <div>
+                    <Typography variant="h4" className="mb-4">
+                      Sizes
+                    </Typography>
+                    <div className="space-y-4 max-w-md">
+                      <Switch size="sm" defaultChecked>
+                        Small switch
+                      </Switch>
+                      <Switch size="md" defaultChecked>
+                        Medium switch (default)
+                      </Switch>
+                      <Switch size="lg" defaultChecked>
+                        Large switch
+                      </Switch>
+                    </div>
+                  </div>
+
+                  {/* Switch States */}
+                  <div>
+                    <Typography variant="h4" className="mb-4">
+                      States & Helper Text
+                    </Typography>
+                    <div className="space-y-4 max-w-md">
+                      <Switch
+                        helperText="Receive email notifications for important updates"
+                        defaultChecked
+                      >
+                        Email notifications
+                      </Switch>
+                      <Switch
+                        required
+                        helperText="Required for account security"
+                      >
+                        Two-factor authentication
+                      </Switch>
+                      <Switch
+                        error
+                        errorMessage="This setting conflicts with your privacy preferences"
+                      >
+                        Data sharing
+                      </Switch>
+                    </div>
+                  </div>
+
+                  {/* Text Alignment */}
+                  <div>
+                    <Typography variant="h4" className="mb-4">
+                      Text Alignment
+                    </Typography>
+                    <div className="space-y-6">
+                      <div className="space-y-4 max-w-md">
+                        <Typography variant="body" className="font-medium">
+                          Label Alignment
+                        </Typography>
+                        <Switch labelAlign="left" defaultChecked>
+                          Left aligned label
+                        </Switch>
+                        <Switch labelAlign="center" defaultChecked>
+                          Center aligned label
+                        </Switch>
+                        <Switch labelAlign="right" defaultChecked>
+                          Right aligned label
+                        </Switch>
+                      </div>
+
+                      <div className="space-y-4 max-w-md">
+                        <Typography variant="body" className="font-medium">
+                          Helper Text Alignment
+                        </Typography>
+                        <Switch
+                          helperAlign="left"
+                          helperText="Left aligned helper text"
+                          defaultChecked
+                        >
+                          Setting with helper
+                        </Switch>
+                        <Switch
+                          helperAlign="center"
+                          helperText="Center aligned helper text"
+                          defaultChecked
+                        >
+                          Setting with helper
+                        </Switch>
+                        <Switch
+                          helperAlign="right"
+                          helperText="Right aligned helper text"
+                          defaultChecked
+                        >
+                          Setting with helper
+                        </Switch>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Slider Showcase - Phase 3.2 */}
+              <div className="mb-12">
+                <Typography variant="h3" className="mb-4">
+                  Slider Controls
+                </Typography>
+                <Typography variant="body" className="mb-6 text-stone-600">
+                  Range sliders for numeric input with value display, different
+                  orientations, and custom formatting.
+                </Typography>
+
+                <div className="space-y-8">
+                  {/* Basic Sliders */}
+                  <div>
+                    <Typography variant="h4" className="mb-4">
+                      Basic Sliders
+                    </Typography>
+                    <div className="space-y-4 max-w-md">
+                      <Slider defaultValue={25}>Volume</Slider>
+                      <Slider min={0} max={100} step={10} defaultValue={50}>
+                        Brightness (10% steps)
+                      </Slider>
+                      <Slider disabled defaultValue={75}>
+                        Disabled slider
+                      </Slider>
+                    </div>
+                  </div>
+
+                  {/* Sizes */}
+                  <div>
+                    <Typography variant="h4" className="mb-4">
+                      Sizes
+                    </Typography>
+                    <div className="space-y-4 max-w-md">
+                      <Slider size="sm" defaultValue={30}>
+                        Small slider
+                      </Slider>
+                      <Slider size="md" defaultValue={50}>
+                        Medium slider (default)
+                      </Slider>
+                      <Slider size="lg" defaultValue={70}>
+                        Large slider
+                      </Slider>
+                    </div>
+                  </div>
+
+                  {/* Value Display */}
+                  <div>
+                    <Typography variant="h4" className="mb-4">
+                      Value Display & Formatting
+                    </Typography>
+                    <div className="space-y-4 max-w-md">
+                      <Slider showValue defaultValue={42}>
+                        Progress
+                      </Slider>
+                      <Slider
+                        showValue
+                        defaultValue={75}
+                        valueFormatter={(value) => `${value}%`}
+                      >
+                        Percentage
+                      </Slider>
+                      <Slider
+                        showValue
+                        min={0}
+                        max={1000}
+                        step={50}
+                        defaultValue={250}
+                        valueFormatter={(value) => `$${value}`}
+                      >
+                        Budget
+                      </Slider>
+                    </div>
+                  </div>
+
+                  {/* Orientation */}
+                  <div>
+                    <Typography variant="h4" className="mb-4">
+                      Orientation
+                    </Typography>
+                    <div className="space-y-6">
+                      <div className="max-w-md">
+                        <Typography variant="body" className="mb-4 font-medium">
+                          Horizontal (Default)
+                        </Typography>
+                        <Slider showValue defaultValue={60}>
+                          Horizontal slider
+                        </Slider>
+                      </div>
+
+                      <div className="flex items-start gap-8">
+                        <div>
+                          <Typography
+                            variant="body"
+                            className="mb-4 font-medium"
+                          >
+                            Vertical
+                          </Typography>
+                          <Slider
+                            orientation="vertical"
+                            showValue
+                            defaultValue={40}
+                          >
+                            Vertical slider
+                          </Slider>
+                        </div>
+                        <div>
+                          <Typography
+                            variant="body"
+                            className="mb-4 font-medium"
+                          >
+                            Vertical with formatting
+                          </Typography>
+                          <Slider
+                            orientation="vertical"
+                            showValue
+                            min={-20}
+                            max={40}
+                            defaultValue={22}
+                            valueFormatter={(value) => `${value}°C`}
+                          >
+                            Temperature
+                          </Slider>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Slider States */}
+                  <div>
+                    <Typography variant="h4" className="mb-4">
+                      States & Helper Text
+                    </Typography>
+                    <div className="space-y-4 max-w-md">
+                      <Slider
+                        helperText="Adjust the audio volume level"
+                        showValue
+                        defaultValue={65}
+                      >
+                        Master volume
+                      </Slider>
+                      <Slider
+                        required
+                        helperText="Quality setting affects file size"
+                        min={1}
+                        max={10}
+                        defaultValue={7}
+                        showValue
+                      >
+                        Image quality
+                      </Slider>
+                      <Slider
+                        error
+                        errorMessage="Value must be between 10 and 90"
+                        defaultValue={5}
+                        showValue
+                      >
+                        Invalid range
+                      </Slider>
+                    </div>
+                  </div>
+
+                  {/* Text Alignment */}
+                  <div>
+                    <Typography variant="h4" className="mb-4">
+                      Text Alignment
+                    </Typography>
+                    <div className="space-y-6">
+                      <div className="space-y-4 max-w-md">
+                        <Typography variant="body" className="font-medium">
+                          Label Alignment
+                        </Typography>
+                        <Slider labelAlign="left" showValue defaultValue={25}>
+                          Left aligned
+                        </Slider>
+                        <Slider labelAlign="center" showValue defaultValue={50}>
+                          Center aligned
+                        </Slider>
+                        <Slider labelAlign="right" showValue defaultValue={75}>
+                          Right aligned
+                        </Slider>
+                      </div>
+
+                      <div className="space-y-4 max-w-md">
+                        <Typography variant="body" className="font-medium">
+                          Helper Text Alignment
+                        </Typography>
+                        <Slider
+                          helperAlign="left"
+                          helperText="Left aligned helper"
+                          showValue
+                          defaultValue={30}
+                        >
+                          Setting
+                        </Slider>
+                        <Slider
+                          helperAlign="center"
+                          helperText="Center aligned helper"
+                          showValue
+                          defaultValue={60}
+                        >
+                          Setting
+                        </Slider>
+                        <Slider
+                          helperAlign="right"
+                          helperText="Right aligned helper"
+                          showValue
+                          defaultValue={90}
+                        >
+                          Setting
+                        </Slider>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <footer className="mt-12">
@@ -2098,11 +2439,11 @@ function AppContent() {
                 Phase 3.1 Form Controls: ✅ Complete
               </Typography>
               <Typography variant="body" color="muted" className="mb-4">
-                Phase 3.2 Selection Controls: 🔄 In Progress (Checkbox ✅,
-                Select ✅)
+                Phase 3.2 Selection Controls: ✅ Complete (Checkbox ✅, Radio
+                ✅, Select ✅, Switch ✅, Slider ✅)
               </Typography>
               <Typography variant="body" color="muted" className="mb-4">
-                Next up: Radio, Switch, Slider components
+                Next up: Advanced form validation and composite components
               </Typography>
 
               <Typography variant="caption" color="muted">
