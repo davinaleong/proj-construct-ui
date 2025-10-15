@@ -39,6 +39,8 @@ import {
   Input,
   Textarea,
   Checkbox,
+  Radio,
+  RadioGroup,
   Select,
 } from "./components/forms"
 import "./App.css"
@@ -1407,6 +1409,398 @@ function AppContent() {
                         >
                           I have read and agree to the Privacy Policy
                         </Checkbox>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Text Alignment */}
+                  <div>
+                    <Typography variant="h4" className="mb-4">
+                      Text Alignment
+                    </Typography>
+                    <div className="space-y-4">
+                      <div>
+                        <Typography
+                          variant="bodySmall"
+                          className="mb-3 text-stone-600"
+                        >
+                          Label Alignment Options
+                        </Typography>
+                        <div className="space-y-3">
+                          <Checkbox
+                            labelAlign="left"
+                            helperText="Left aligned label and helper text"
+                          >
+                            Left aligned label (default)
+                          </Checkbox>
+                          <Checkbox
+                            labelAlign="center"
+                            helperAlign="center"
+                            helperText="Center aligned label and helper text"
+                          >
+                            Center aligned label
+                          </Checkbox>
+                          <Checkbox
+                            labelAlign="right"
+                            helperAlign="right"
+                            helperText="Right aligned label and helper text"
+                          >
+                            Right aligned label
+                          </Checkbox>
+                        </div>
+                      </div>
+
+                      <div>
+                        <Typography
+                          variant="bodySmall"
+                          className="mb-3 text-stone-600"
+                        >
+                          Mixed Alignment (Label vs Helper)
+                        </Typography>
+                        <div className="space-y-3">
+                          <Checkbox
+                            labelAlign="left"
+                            helperAlign="center"
+                            helperText="Left label, center helper text"
+                          >
+                            Left aligned label
+                          </Checkbox>
+                          <Checkbox
+                            labelAlign="center"
+                            helperAlign="right"
+                            helperText="Center label, right helper text"
+                          >
+                            Center aligned label
+                          </Checkbox>
+                          <Checkbox
+                            labelAlign="right"
+                            helperAlign="left"
+                            errorMessage="Right label, left error message"
+                            error
+                          >
+                            Right aligned label with error
+                          </Checkbox>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Radio Showcase - Phase 3.2 */}
+              <div className="mb-12">
+                <Typography variant="h3" className="mb-4">
+                  Radio Selection
+                </Typography>
+                <Typography variant="body" className="mb-6 text-stone-600">
+                  Radio buttons for single selection from a group of options
+                  with support for form validation and accessibility.
+                </Typography>
+
+                <div className="space-y-8">
+                  {/* Basic Radios */}
+                  <div>
+                    <Typography variant="h4" className="mb-4">
+                      Individual Radio Buttons
+                    </Typography>
+                    <div className="space-y-3">
+                      <Radio name="basic-demo" value="option1" defaultChecked>
+                        First option (pre-selected)
+                      </Radio>
+                      <Radio name="basic-demo" value="option2">
+                        Second option
+                      </Radio>
+                      <Radio name="basic-demo" value="option3">
+                        Third option
+                      </Radio>
+                      <Radio name="basic-demo" value="option4" disabled>
+                        Disabled option
+                      </Radio>
+                    </div>
+                  </div>
+
+                  {/* Radio Sizes */}
+                  <div>
+                    <Typography variant="h4" className="mb-4">
+                      Radio Sizes
+                    </Typography>
+                    <div className="space-y-3">
+                      <Radio
+                        name="size-demo-sm"
+                        value="small"
+                        size="sm"
+                        defaultChecked
+                      >
+                        Small radio button
+                      </Radio>
+                      <Radio
+                        name="size-demo-md"
+                        value="medium"
+                        size="md"
+                        defaultChecked
+                      >
+                        Medium radio button (default)
+                      </Radio>
+                      <Radio
+                        name="size-demo-lg"
+                        value="large"
+                        size="lg"
+                        defaultChecked
+                      >
+                        Large radio button
+                      </Radio>
+                    </div>
+                  </div>
+
+                  {/* Radio Groups */}
+                  <div>
+                    <Typography variant="h4" className="mb-4">
+                      Radio Groups
+                    </Typography>
+                    <div className="space-y-6 max-w-md">
+                      <RadioGroup
+                        name="subscription-plan"
+                        label="Choose your subscription plan"
+                        defaultValue="pro"
+                        options={[
+                          {
+                            value: "basic",
+                            label: "Basic Plan",
+                            helperText: "For individual use - $9/month",
+                          },
+                          {
+                            value: "pro",
+                            label: "Pro Plan",
+                            helperText: "For small teams - $29/month",
+                          },
+                          {
+                            value: "enterprise",
+                            label: "Enterprise Plan",
+                            helperText: "For large organizations - $99/month",
+                          },
+                        ]}
+                        helperText="Select the plan that best fits your needs"
+                      />
+
+                      <RadioGroup
+                        name="notification-frequency"
+                        label="Email notification frequency"
+                        defaultValue="weekly"
+                        options={[
+                          { value: "daily", label: "Daily" },
+                          { value: "weekly", label: "Weekly" },
+                          { value: "monthly", label: "Monthly" },
+                          { value: "never", label: "Never" },
+                        ]}
+                        size="sm"
+                        orientation="horizontal"
+                      />
+
+                      <RadioGroup
+                        name="payment-method"
+                        label="Payment method"
+                        required
+                        options={[
+                          { value: "credit-card", label: "Credit Card" },
+                          { value: "paypal", label: "PayPal" },
+                          {
+                            value: "bank-transfer",
+                            label: "Bank Transfer",
+                            disabled: true,
+                          },
+                        ]}
+                        helperText="Choose your preferred payment method"
+                      />
+
+                      <RadioGroup
+                        name="error-demo"
+                        label="Required selection"
+                        error
+                        errorMessage="Please select an option to continue"
+                        options={[
+                          { value: "yes", label: "Yes, I agree" },
+                          { value: "no", label: "No, I decline" },
+                        ]}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Form Examples */}
+                  <div>
+                    <Typography variant="h4" className="mb-4">
+                      Form Integration Examples
+                    </Typography>
+                    <div className="space-y-6 max-w-lg">
+                      <div>
+                        <Typography
+                          variant="bodySmall"
+                          className="mb-3 text-stone-600"
+                        >
+                          User Profile Settings
+                        </Typography>
+                        <RadioGroup
+                          name="profile-visibility"
+                          label="Profile visibility"
+                          defaultValue="friends"
+                          options={[
+                            {
+                              value: "public",
+                              label: "Public",
+                              helperText: "Anyone can see your profile",
+                            },
+                            {
+                              value: "friends",
+                              label: "Friends only",
+                              helperText:
+                                "Only your friends can see your profile",
+                            },
+                            {
+                              value: "private",
+                              label: "Private",
+                              helperText: "Only you can see your profile",
+                            },
+                          ]}
+                        />
+                      </div>
+
+                      <div>
+                        <Typography
+                          variant="bodySmall"
+                          className="mb-3 text-stone-600"
+                        >
+                          Delivery Options
+                        </Typography>
+                        <RadioGroup
+                          name="delivery-speed"
+                          label="Delivery speed"
+                          defaultValue="standard"
+                          options={[
+                            {
+                              value: "express",
+                              label: "Express Delivery",
+                              helperText: "1-2 business days - $15.99",
+                            },
+                            {
+                              value: "standard",
+                              label: "Standard Delivery",
+                              helperText: "3-5 business days - $5.99",
+                            },
+                            {
+                              value: "economy",
+                              label: "Economy Delivery",
+                              helperText: "7-10 business days - Free",
+                            },
+                          ]}
+                          orientation="horizontal"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Radio Text Alignment */}
+                  <div>
+                    <Typography variant="h4" className="mb-4">
+                      Text Alignment
+                    </Typography>
+                    <div className="space-y-6">
+                      <div>
+                        <Typography
+                          variant="bodySmall"
+                          className="mb-3 text-stone-600"
+                        >
+                          Individual Radio Alignment
+                        </Typography>
+                        <div className="space-y-3">
+                          <Radio
+                            name="radio-align-demo"
+                            value="left"
+                            labelAlign="left"
+                            helperText="Left aligned label and helper text"
+                          >
+                            Left aligned label (default)
+                          </Radio>
+                          <Radio
+                            name="radio-align-demo"
+                            value="center"
+                            labelAlign="center"
+                            helperAlign="center"
+                            helperText="Center aligned label and helper text"
+                          >
+                            Center aligned label
+                          </Radio>
+                          <Radio
+                            name="radio-align-demo"
+                            value="right"
+                            labelAlign="right"
+                            helperAlign="right"
+                            helperText="Right aligned label and helper text"
+                          >
+                            Right aligned label
+                          </Radio>
+                        </div>
+                      </div>
+
+                      <div>
+                        <Typography
+                          variant="bodySmall"
+                          className="mb-3 text-stone-600"
+                        >
+                          RadioGroup with Alignment
+                        </Typography>
+                        <RadioGroup
+                          name="group-align-demo"
+                          label="Text Alignment Options"
+                          labelAlign="center"
+                          helperAlign="right"
+                          helperText="Group helper text aligned right"
+                          defaultValue="center"
+                          options={[
+                            {
+                              value: "left",
+                              label: "Left aligned content",
+                              helperText: "This helper text is right-aligned",
+                            },
+                            {
+                              value: "center",
+                              label: "Center aligned content",
+                              helperText: "This helper text is right-aligned",
+                            },
+                            {
+                              value: "right",
+                              label: "Right aligned content",
+                              helperText: "This helper text is right-aligned",
+                            },
+                          ]}
+                        />
+                      </div>
+
+                      <div>
+                        <Typography
+                          variant="bodySmall"
+                          className="mb-3 text-stone-600"
+                        >
+                          Mixed Alignment Example
+                        </Typography>
+                        <RadioGroup
+                          name="mixed-align-demo"
+                          label="Mixed Alignment Demo"
+                          labelAlign="right"
+                          helperAlign="left"
+                          errorMessage="Left-aligned error message with right-aligned labels"
+                          error
+                          options={[
+                            {
+                              value: "option1",
+                              label: "Right-aligned label",
+                              helperText: "Left-aligned helper",
+                            },
+                            {
+                              value: "option2",
+                              label: "Another right-aligned label",
+                              helperText: "Another left-aligned helper",
+                            },
+                          ]}
+                        />
                       </div>
                     </div>
                   </div>

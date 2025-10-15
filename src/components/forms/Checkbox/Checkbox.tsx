@@ -22,6 +22,12 @@ const labelSizeClasses = {
   lg: containerResponsiveUI.label,
 }
 
+const alignmentClasses = {
+  left: "text-left",
+  center: "text-center",
+  right: "text-right",
+}
+
 const baseCheckboxClasses = [
   "relative",
   "flex",
@@ -81,6 +87,8 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       indeterminate = false,
       children,
       helperText,
+      labelAlign = "left",
+      helperAlign = "left",
       error = false,
       errorMessage,
       onChange,
@@ -128,7 +136,8 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
 
     const labelClasses = cn(
       labelSizeClasses[size],
-      "w-full text-left text-stone-700",
+      "w-full text-stone-700",
+      alignmentClasses[labelAlign],
       disabled && "text-stone-400"
     )
 
@@ -186,6 +195,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             className={cn(
               containerResponsiveUI.helper,
               hasError ? "text-red-600" : "text-stone-500",
+              alignmentClasses[helperAlign],
               "ml-8" // Align with checkbox content
             )}
           >

@@ -1,23 +1,23 @@
 import type { ReactNode } from "react"
 
-export type CheckboxSize = "sm" | "md" | "lg"
-export type CheckboxAlignment = "left" | "center" | "right"
+export type RadioSize = "sm" | "md" | "lg"
+export type RadioAlignment = "left" | "center" | "right"
 
-export interface CheckboxProps {
+export interface RadioProps {
   /**
-   * Checkbox checked state
+   * Radio checked state
    */
   checked?: boolean
 
   /**
-   * Default checked state for uncontrolled checkbox
+   * Default checked state for uncontrolled radio
    */
   defaultChecked?: boolean
 
   /**
-   * Checkbox size
+   * Radio size
    */
-  size?: CheckboxSize
+  size?: RadioSize
 
   /**
    * Disabled state
@@ -28,11 +28,6 @@ export interface CheckboxProps {
    * Required field
    */
   required?: boolean
-
-  /**
-   * Indeterminate state (for parent checkboxes)
-   */
-  indeterminate?: boolean
 
   /**
    * Label text or content
@@ -47,12 +42,12 @@ export interface CheckboxProps {
   /**
    * Label text alignment
    */
-  labelAlign?: CheckboxAlignment
+  labelAlign?: RadioAlignment
 
   /**
    * Helper text alignment
    */
-  helperAlign?: CheckboxAlignment
+  helperAlign?: RadioAlignment
 
   /**
    * Error state
@@ -88,17 +83,17 @@ export interface CheckboxProps {
   className?: string
 
   /**
-   * Checkbox name attribute
+   * Radio name attribute (important for radio groups)
    */
   name?: string
 
   /**
-   * Checkbox id attribute
+   * Radio id attribute
    */
   id?: string
 
   /**
-   * Checkbox value attribute
+   * Radio value attribute
    */
   value?: string
 }

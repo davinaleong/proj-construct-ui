@@ -36,7 +36,7 @@
 | **Textarea**              | Multiline text input                 | `rows`, `label`, `error`, `resize`                                          |
 | **Select / Dropdown**     | Choose from list                     | `label`, `options`, `value`, `onChange`, `searchable`                       |
 | **Checkbox**              | Binary toggle with label             | `checked`, `label`, `disabled`                                              |
-| **Radio / RadioGroup**    | Select one option                    | `options`, `value`, `onChange`                                              |
+| **Radio / RadioGroup**    | Select one option from a group       | `name`, `value`, `options`, `orientation`, `size`, `error`, `onChange`      |
 | **Switch / Toggle**       | On/off switch                        | `checked`, `size`, `color`                                                  |
 | **Slider**                | Range selector                       | `min`, `max`, `step`, `value`, `onChange`                                   |
 | **FileUpload**            | Styled upload dropzone               | `multiple`, `accept`, `onUpload`, `preview`                                 |
