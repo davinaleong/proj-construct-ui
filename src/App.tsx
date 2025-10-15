@@ -64,7 +64,7 @@ function AppContent() {
         padding="md"
         className="sticky top-0 z-50 backdrop-blur-md"
       >
-        <Container>
+        <Container maxWidth="xl">
           <header className="flex items-center justify-between">
             <div className="flex-1">
               <Brand />
@@ -110,7 +110,7 @@ function AppContent() {
 
       {/* Main Content */}
       <main className="py-12">
-        <Container>
+        <Container maxWidth="xl">
           <div className="text-center max-w-4xl mx-auto">
             <Typography variant="h1" className="mb-6">
               Welcome to Paper Design
