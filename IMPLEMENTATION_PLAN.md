@@ -105,7 +105,7 @@ Create a complete design system that feels **organic, readable, and professional
 
 - [x] **Select/Dropdown** - Choice selection
 - [x] **Checkbox** - Binary selection
-- [ ] **Radio/RadioGroup** - Single choice
+- [x] **Radio/RadioGroup** - Single choice
 - [ ] **Switch** - Toggle control
 - [ ] **Slider** - Range selection
 
