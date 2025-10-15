@@ -16,6 +16,7 @@ import {
   Typography,
   Icon,
   Container,
+  Brand,
 } from "./components/core"
 import {
   Grid,
@@ -65,13 +66,8 @@ function AppContent() {
       >
         <Container>
           <header className="flex items-center justify-between">
-            <div className="w-full">
-              <Typography variant="title" className="font-playfair">
-                Paper Design System
-              </Typography>
-              <Typography variant="bodySmall" color="muted" className="mt-1">
-                A warm, tactile component library
-              </Typography>
+            <div className="flex-1">
+              <Brand />
             </div>
 
             <div className="flex items-center gap-3">

@@ -9,6 +9,7 @@
 | **Typography**    | Handles consistent text hierarchy                               | `variant` ("h1", "h2", "body", "caption"), `weight`, `color`    |
 | **Icon**          | Wrapper around Lucide or Material icons                         | `name`, `size`, `color`                                         |
 | **Container**     | Constrains width of sections or pages                           | `maxWidth`, `padding`, `center`                                 |
+| **Brand**         | Logo and brand text component for headers                       | `size`, `showLogo`, `showText`, `title`, `subtitle`, `onClick`  |
 
 ---
 
