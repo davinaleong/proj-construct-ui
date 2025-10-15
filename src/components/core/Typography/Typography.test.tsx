@@ -49,7 +49,7 @@ describe("Typography Component", () => {
 
     rerender(<Typography color="muted">Muted</Typography>)
     element = screen.getByText("Muted")
-    expect(element).toHaveClass("text-stone-500")
+    expect(element).toHaveClass("text-gray-600")
 
     rerender(<Typography color="danger">Danger</Typography>)
     element = screen.getByText("Danger")
