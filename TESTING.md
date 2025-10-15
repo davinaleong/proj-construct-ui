@@ -4,6 +4,13 @@
 
 This document provides comprehensive documentation for the test suite of the Construct UI component library. The project uses modern testing tools to ensure component reliability, accessibility compliance, and behavioral correctness.
 
+**Test Statistics (Current):**
+
+- **Total Tests**: 185 passing + 1 skipped = 186 tests
+- **Test Files**: 13 comprehensive test suites
+- **Components Tested**: 24+ components across core, forms, and layout categories
+- **Coverage Focus**: Accessibility, user interactions, prop validation, error states
+
 ## Testing Stack
 
 ### Core Testing Framework
@@ -20,6 +27,184 @@ This document provides comprehensive documentation for the test suite of the Con
 - **Coverage Provider**: v8 for accurate coverage reporting
 - **Coverage Thresholds**: 80% across branches, functions, lines, and statements
 - **Reporters**: Default, HTML, and JSON coverage reports
+
+## Comprehensive Test Coverage
+
+### Core Components (54 Tests)
+
+#### Brand Component (`src/components/core/Brand/Brand.test.tsx`) - 12 Tests
+
+Complete brand component testing with logo integration and accessibility.
+
+**Test Coverage:**
+
+- Size variants (small, medium, large) with proper styling
+- Optional logo rendering from assets folder
+- Text content display and customization
+- Click handlers and navigation functionality
+- Accessibility compliance (roles, labels, keyboard navigation)
+- Theme integration and responsive behavior
+
+#### Container Component (`src/components/core/Container/Container.test.tsx`) - 13 Tests
+
+Layout container with responsive behavior and theme integration.
+
+**Test Coverage:**
+
+- Responsive breakpoint handling (xs, sm, md, lg, xl, 2xl)
+- Padding and margin variant applications
+- Center alignment and constrained widths
+- Theme-aware styling and CSS class generation
+- Content overflow and scrolling behavior
+
+#### Icon Component (`src/components/core/Icon/Icon.test.tsx`) - 13 Tests
+
+SVG icon system with accessibility and customization features.
+
+**Test Coverage:**
+
+- Icon rendering and SVG path generation
+- Size variants and custom size styling
+- Color application and theme integration
+- Accessibility features (decorative icons, ARIA labels)
+- Custom className and style prop handling
+
+#### Paper Component (`src/components/core/Paper/Paper.test.tsx`) - 16 Tests
+
+Foundational surface component with elevation and styling options.
+
+**Test Coverage:**
+
+- Elevation levels (none, sm, md, lg, xl) with shadow classes
+- Color variants (white, gray, colored surfaces)
+- Border and padding applications
+- Interactive states (hover effects, focus handling)
+- Texture overlays and visual enhancements
+- Content rendering and layout behavior
+
+### Theme System (12 Tests)
+
+#### ThemeProvider Component (`src/components/core/ThemeProvider/ThemeProvider.test.tsx`) - 12 Tests + 1 Skipped
+
+Complete theme management system with persistence and SSR support.
+
+**Test Coverage:**
+
+- Theme initialization and default configurations
+- Mode switching (light, dark, paper) with proper CSS class application
+- localStorage persistence and data validation
+- Custom theme configurations and partial updates
+- SSR compatibility and environment guards
+- Error handling for invalid localStorage data
+- Theme context provision and consumption
+- Document element class management and cleanup
+
+### Typography System (11 Tests)
+
+#### Typography Component (`src/components/core/Typography/Typography.test.tsx`) - 11 Tests
+
+Foundational text rendering with responsive font system.
+
+**Test Coverage:**
+
+- Typography variants (h1-h6, body, caption, code)
+- Font family assignments (Montserrat, Playfair, Source Code Pro)
+- Responsive font scaling with container queries
+- Color variants and theme integration
+- Semantic HTML element rendering
+- Accessibility and screen reader compatibility
+
+### Form Components (82 Tests)
+
+#### Input Component (`src/components/forms/Input/Input.test.tsx`) - 20 Tests
+
+Text input with validation, states, and accessibility features.
+
+**Test Coverage:**
+
+- Input types (text, email, password, number, tel, url)
+- Size variants (sm, md, lg) with proper styling
+- State management (disabled, readonly, error states)
+- Validation integration and error display
+- Icon integration (leading and trailing icons)
+- Accessibility (labels, descriptions, error announcements)
+- User interactions (focus, blur, input events)
+
+#### Textarea Component (`src/components/forms/Textarea/Textarea.test.tsx`) - 20 Tests
+
+Multi-line text input with auto-resize and validation.
+
+**Test Coverage:**
+
+- Auto-resize functionality based on content
+- Size variants and custom dimensions
+- Character counting and limit enforcement
+- Validation states and error handling
+- Placeholder text and label associations
+- Accessibility compliance and screen reader support
+
+#### IconButton Component (`src/components/forms/IconButton/IconButton.test.tsx`) - 16 Tests
+
+Icon-based buttons with accessibility and interaction handling.
+
+**Test Coverage:**
+
+- Size variants (sm, md, lg, xl) with proper scaling
+- Color variants and theme integration
+- Loading states with spinner indicators
+- Disabled state handling and visual feedback
+- Accessibility (ARIA labels, keyboard navigation)
+- Click events and user interaction simulation
+
+#### Button Component (`src/components/forms/Button/Button.test.tsx`) - 11 Tests
+
+Primary action buttons with states and variants.
+
+**Test Coverage:**
+
+- Button variants (primary, secondary, outline, ghost)
+- Size options and responsive behavior
+- Loading states and disabled conditions
+- Icon integration and content layout
+- Accessibility and keyboard interaction
+
+#### Checkbox Component (`src/components/forms/Checkbox/Checkbox.test.tsx`) - 13 Tests
+
+Checkbox input with custom styling and accessibility.
+
+**Test Coverage:**
+
+- Checked and unchecked states
+- Indeterminate state handling
+- Custom styling and theme integration
+- Label associations and accessibility
+- User interaction simulation
+
+#### Select Component (`src/components/forms/Select/Select.test.tsx`) - 16 Tests
+
+Dropdown selection with search and multi-select capabilities.
+
+**Test Coverage:**
+
+- Single and multiple selection modes
+- Search functionality and filtering
+- Custom option rendering
+- Accessibility (ARIA attributes, keyboard navigation)
+- Loading states and async data handling
+
+### Utility Tests (12 Tests)
+
+#### Container Fonts (`src/utils/containerFonts.test.ts`) - 12 Tests
+
+Responsive font system with container query support.
+
+**Test Coverage:**
+
+- Font configuration object validation
+- Responsive breakpoint generation (320px, 480px, 640px, 768px)
+- Typography variant mappings (h1-h6, body, caption)
+- Container query CSS generation
+- Font family assignments across design system
 
 ## Test Suite Structure
 

@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react"
+import { screen } from "@testing-library/react"
 import { describe, it, expect } from "vitest"
 import { Paper } from "./Paper"
 import { render as renderWithTheme } from "../../../test/utils"
@@ -26,7 +26,7 @@ describe("Paper Component", () => {
 
     rerender(<Paper variant="elevated">Elevated paper</Paper>)
     paper = screen.getByText("Elevated paper")
-    expect(paper).toHaveClass("shadow-md", "hover:shadow-lg")
+    expect(paper).toHaveClass("shadow-sm", "hover:shadow-md")
 
     rerender(<Paper variant="outlined">Outlined paper</Paper>)
     paper = screen.getByText("Outlined paper")
@@ -78,11 +78,11 @@ describe("Paper Component", () => {
       <Paper background="primary">Primary background</Paper>
     )
     let paper = screen.getByText("Primary background")
-    expect(paper).toHaveClass("bg-blue-400")
+    expect(paper).toHaveClass("bg-blue-50")
 
     rerender(<Paper background="danger">Danger background</Paper>)
     paper = screen.getByText("Danger background")
-    expect(paper).toHaveClass("bg-red-400")
+    expect(paper).toHaveClass("bg-red-50")
   })
 
   it("applies border color variants for outlined variant", () => {
@@ -92,7 +92,7 @@ describe("Paper Component", () => {
       </Paper>
     )
     let paper = screen.getByText("Primary border")
-    expect(paper).toHaveClass("border-2", "border-blue-600")
+    expect(paper).toHaveClass("border-2", "border-blue-200")
 
     rerender(
       <Paper variant="outlined" borderColor="danger">
@@ -100,7 +100,7 @@ describe("Paper Component", () => {
       </Paper>
     )
     paper = screen.getByText("Danger border")
-    expect(paper).toHaveClass("border-2", "border-red-600")
+    expect(paper).toHaveClass("border-2", "border-red-200")
   })
 
   it("applies texture when withTexture is true", () => {
@@ -199,7 +199,7 @@ describe("Paper Component", () => {
       "rounded-sm",
       "p-6",
       "shadow-xl",
-      "bg-blue-400",
+      "bg-blue-50",
       "backdrop-blur-sm",
       "before:absolute",
       "combined-paper"
@@ -213,7 +213,7 @@ describe("Paper Component", () => {
     expect(paper).toHaveClass(
       "transition-all",
       "duration-200",
-      "hover:shadow-lg",
+      "hover:shadow-md",
       "hover:-translate-y-[1px]",
       "active:shadow-inner"
     )

@@ -39,7 +39,7 @@ export function ThemeProvider({
 }: ThemeProviderProps) {
   // Initialize theme from localStorage or defaults
   const [theme, setTheme] = useState<ThemeConfig>(() => {
-    if (typeof window !== "undefined" && persistKey) {
+    if (typeof window !== "undefined" && persistKey && persistKey !== null) {
       try {
         const stored = localStorage.getItem(persistKey)
         if (stored) {
@@ -55,7 +55,7 @@ export function ThemeProvider({
 
   // Persist theme changes to localStorage
   useEffect(() => {
-    if (typeof window !== "undefined" && persistKey) {
+    if (typeof window !== "undefined" && persistKey && persistKey !== null) {
       try {
         localStorage.setItem(persistKey, JSON.stringify(theme))
       } catch (error) {

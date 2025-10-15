@@ -24,5 +24,5 @@ export interface ThemeContextValue extends ThemeConfig {
 export interface ThemeProviderProps {
   children: React.ReactNode
   defaultTheme?: Partial<ThemeConfig>
-  persistKey?: string // localStorage key for persistence
+  persistKey?: string | null // localStorage key for persistence, null to disable
 }
