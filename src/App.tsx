@@ -1557,7 +1557,7 @@ function AppContent() {
                     <Typography variant="h4" className="mb-4">
                       Radio Groups
                     </Typography>
-                    <div className="space-y-6 max-w-md">
+                    <div className="space-y-6">
                       <RadioGroup
                         name="subscription-plan"
                         label="Choose your subscription plan"

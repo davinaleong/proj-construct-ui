@@ -115,7 +115,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
       variantClasses = radioVariantClasses.default.unchecked
     }
 
-    const groupClasses = cn("space-y-1", className)
+    const groupClasses = cn("space-y-1 min-w-0", className)
 
     const radioClasses = cn(baseRadioClasses, variantClasses, sizeClasses[size])
 
@@ -137,7 +137,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
 
     return (
       <div className={groupClasses}>
-        <label className="flex items-start gap-2 cursor-pointer group">
+        <label className="flex items-start gap-2 cursor-pointer group min-w-0">
           <div className={radioClasses}>
             <input
               ref={ref}

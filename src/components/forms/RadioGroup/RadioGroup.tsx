@@ -70,7 +70,7 @@ export const RadioGroup = forwardRef<HTMLFieldSetElement, RadioGroupProps>(
 
     const labelClasses = cn(
       containerResponsiveUI.label,
-      "font-medium",
+      "w-full mx-auto text-center font-medium",
       disabled && "opacity-50",
       isError && "text-red-700"
     )
@@ -124,6 +124,9 @@ export const RadioGroup = forwardRef<HTMLFieldSetElement, RadioGroupProps>(
               onChange={handleChange}
               onFocus={onFocus}
               onBlur={onBlur}
+              className={
+                orientation === "horizontal" ? "min-w-[10ch] w-auto" : undefined
+              }
             >
               {option.label}
             </Radio>
