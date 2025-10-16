@@ -3064,8 +3064,6 @@ function AppContent() {
                         title="Quick Settings"
                         description="Adjust your preferences"
                         orientation="horizontal"
-                        spacing="lg"
-                        className="[&>div:first-child]:mb-2 [&>p]:mb-4"
                       >
                         <FormField label="Theme" size="sm">
                           <Select

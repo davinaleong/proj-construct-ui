@@ -62,7 +62,7 @@ export const FormGroup = ({
         <TitleComponent
           className={cn(
             titleClasses[size],
-            "font-semibold text-stone-900 mb-2",
+            "w-full font-semibold text-stone-900 mb-2",
             fieldset && "px-0",
             disabled && "text-stone-500"
           )}
@@ -75,7 +75,7 @@ export const FormGroup = ({
         <p
           className={cn(
             containerResponsiveBody.regular,
-            "text-stone-600 mb-4",
+            "w-full text-stone-600 mb-4",
             disabled && "text-stone-400"
           )}
         >
