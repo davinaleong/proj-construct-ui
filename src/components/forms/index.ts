@@ -17,3 +17,7 @@ export * from "./Slider"
 
 // Form Components - Phase 3.3 Advanced Form Controls
 export * from "./FileUpload"
+
+// Form Components - Field Organization
+export * from "./FormField"
+export * from "./FormGroup"

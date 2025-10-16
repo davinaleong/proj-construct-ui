@@ -45,6 +45,8 @@ import {
   Switch,
   Slider,
   FileUpload,
+  FormField,
+  FormGroup,
 } from "./components/forms"
 import { FloatingNavbar } from "./components/navigation"
 import "./App.css"
@@ -340,18 +342,24 @@ function AppContent() {
                       placeholder="Small size"
                       size="sm"
                       helperText="Small input text"
+                      labelAlign="left"
+                      messageAlign="left"
                     />
                     <Input
                       label="Medium Input"
                       placeholder="Medium size"
                       size="md"
                       helperText="Medium input text"
+                      labelAlign="left"
+                      messageAlign="left"
                     />
                     <Input
                       label="Large Input"
                       placeholder="Large size"
                       size="lg"
                       helperText="Large input text"
+                      labelAlign="left"
+                      messageAlign="left"
                     />
                   </div>
 
@@ -1068,11 +1076,13 @@ function AppContent() {
                 <Typography variant="h3" className="mb-4">
                   Input Fields
                 </Typography>
-                <div className="space-y-6 max-w-md">
+                <div className="space-y-6">
                   <Input
                     label="Basic Input"
                     placeholder="Enter some text..."
                     helperText="This is a basic input field"
+                    labelAlign="left"
+                    messageAlign="left"
                   />
 
                   <Input
@@ -1081,6 +1091,8 @@ function AppContent() {
                     placeholder="john@example.com"
                     leftIcon={Mail}
                     required
+                    labelAlign="left"
+                    messageAlign="left"
                   />
 
                   <Input
@@ -1089,6 +1101,8 @@ function AppContent() {
                     placeholder="Enter password"
                     leftIcon={Lock}
                     variant="filled"
+                    labelAlign="left"
+                    messageAlign="left"
                   />
 
                   <Input
@@ -1098,6 +1112,8 @@ function AppContent() {
                     leftIcon={Search}
                     variant="outlined"
                     size="lg"
+                    labelAlign="left"
+                    messageAlign="left"
                   />
 
                   <Input
@@ -1105,6 +1121,8 @@ function AppContent() {
                     placeholder="This field has an error"
                     error
                     errorMessage="This field is required"
+                    labelAlign="left"
+                    messageAlign="left"
                   />
 
                   <Input
@@ -1112,6 +1130,8 @@ function AppContent() {
                     placeholder="This input is disabled"
                     disabled
                     defaultValue="Cannot edit this"
+                    labelAlign="left"
+                    messageAlign="left"
                   />
 
                   <Input
@@ -1120,6 +1140,8 @@ function AppContent() {
                     readonly
                     defaultValue="Read-only value"
                     helperText="This field is readonly and cannot be edited"
+                    labelAlign="left"
+                    messageAlign="left"
                   />
                 </div>
               </div>
@@ -1288,7 +1310,7 @@ function AppContent() {
                 <Typography variant="h3" className="mb-4">
                   Textarea Fields
                 </Typography>
-                <div className="space-y-6 max-w-md">
+                <div className="space-y-6">
                   <Textarea
                     label="Basic Textarea"
                     placeholder="Enter your message..."
@@ -1842,7 +1864,7 @@ function AppContent() {
                     <Typography variant="h4" className="mb-4">
                       Basic Select
                     </Typography>
-                    <div className="space-y-4 max-w-md">
+                    <div className="space-y-4">
                       <Select
                         label="Country"
                         placeholder="Choose your country"
@@ -1887,7 +1909,7 @@ function AppContent() {
                     <Typography variant="h4" className="mb-4">
                       Sizes
                     </Typography>
-                    <div className="space-y-4 max-w-md">
+                    <div className="space-y-4">
                       <Select
                         size="sm"
                         placeholder="Small select"
@@ -1920,7 +1942,7 @@ function AppContent() {
                     <Typography variant="h4" className="mb-4">
                       Multiple Selection
                     </Typography>
-                    <div className="space-y-4 max-w-md">
+                    <div className="space-y-4">
                       <Select
                         label="Skills"
                         placeholder="Select your skills"
@@ -1944,7 +1966,7 @@ function AppContent() {
                     <Typography variant="h4" className="mb-4">
                       Searchable Select
                     </Typography>
-                    <div className="space-y-4 max-w-md">
+                    <div className="space-y-4">
                       <Select
                         label="City"
                         placeholder="Search for a city"
@@ -1971,7 +1993,7 @@ function AppContent() {
                     <Typography variant="h4" className="mb-4">
                       Error State
                     </Typography>
-                    <div className="space-y-4 max-w-md">
+                    <div className="space-y-4">
                       <Select
                         label="Required Field"
                         placeholder="Please select an option"
@@ -1991,7 +2013,7 @@ function AppContent() {
                     <Typography variant="h4" className="mb-4">
                       With Disabled Options
                     </Typography>
-                    <div className="space-y-4 max-w-md">
+                    <div className="space-y-4">
                       <Select
                         label="Plan Selection"
                         placeholder="Choose your plan"
@@ -2019,7 +2041,7 @@ function AppContent() {
                     <Typography variant="h4" className="mb-4">
                       Option Groups
                     </Typography>
-                    <div className="space-y-4 max-w-md">
+                    <div className="space-y-4">
                       <Select
                         label="Technology Stack"
                         placeholder="Choose technologies"
@@ -2121,7 +2143,7 @@ function AppContent() {
                     <Typography variant="h4" className="mb-4">
                       Basic Switches
                     </Typography>
-                    <div className="space-y-4 max-w-md">
+                    <div className="space-y-4">
                       <Switch defaultChecked>Enable notifications</Switch>
                       <Switch>Dark mode</Switch>
                       <Switch disabled>Disabled option</Switch>
@@ -2136,7 +2158,7 @@ function AppContent() {
                     <Typography variant="h4" className="mb-4">
                       Sizes
                     </Typography>
-                    <div className="space-y-4 max-w-md">
+                    <div className="space-y-4">
                       <Switch size="sm" defaultChecked>
                         Small switch
                       </Switch>
@@ -2154,7 +2176,7 @@ function AppContent() {
                     <Typography variant="h4" className="mb-4">
                       States & Helper Text
                     </Typography>
-                    <div className="space-y-4 max-w-md">
+                    <div className="space-y-4">
                       <Switch
                         helperText="Receive email notifications for important updates"
                         defaultChecked
@@ -2182,7 +2204,7 @@ function AppContent() {
                       Text Alignment
                     </Typography>
                     <div className="space-y-6">
-                      <div className="space-y-4 max-w-md">
+                      <div className="space-y-4">
                         <Typography variant="body" className="font-medium">
                           Label Alignment
                         </Typography>
@@ -2197,7 +2219,7 @@ function AppContent() {
                         </Switch>
                       </div>
 
-                      <div className="space-y-4 max-w-md">
+                      <div className="space-y-4">
                         <Typography variant="body" className="font-medium">
                           Helper Text Alignment
                         </Typography>
@@ -2244,7 +2266,7 @@ function AppContent() {
                     <Typography variant="h4" className="mb-4">
                       Basic Sliders
                     </Typography>
-                    <div className="space-y-4 max-w-md">
+                    <div className="space-y-4">
                       <Slider defaultValue={25}>Volume</Slider>
                       <Slider min={0} max={100} step={10} defaultValue={50}>
                         Brightness (10% steps)
@@ -2260,7 +2282,7 @@ function AppContent() {
                     <Typography variant="h4" className="mb-4">
                       Sizes
                     </Typography>
-                    <div className="space-y-4 max-w-md">
+                    <div className="space-y-4">
                       <Slider size="sm" defaultValue={30}>
                         Small slider
                       </Slider>
@@ -2278,7 +2300,7 @@ function AppContent() {
                     <Typography variant="h4" className="mb-4">
                       Value Display & Formatting
                     </Typography>
-                    <div className="space-y-4 max-w-md">
+                    <div className="space-y-4">
                       <Slider showValue defaultValue={42}>
                         Progress
                       </Slider>
@@ -2360,7 +2382,7 @@ function AppContent() {
                     <Typography variant="h4" className="mb-4">
                       States & Helper Text
                     </Typography>
-                    <div className="space-y-4 max-w-md">
+                    <div className="space-y-4">
                       <Slider
                         helperText="Adjust the audio volume level"
                         showValue
@@ -2395,7 +2417,7 @@ function AppContent() {
                       Text Alignment
                     </Typography>
                     <div className="space-y-6">
-                      <div className="space-y-4 max-w-md">
+                      <div className="space-y-4">
                         <Typography variant="body" className="font-medium">
                           Label Alignment
                         </Typography>
@@ -2410,7 +2432,7 @@ function AppContent() {
                         </Slider>
                       </div>
 
-                      <div className="space-y-4 max-w-md">
+                      <div className="space-y-4">
                         <Typography variant="body" className="font-medium">
                           Helper Text Alignment
                         </Typography>
@@ -2615,6 +2637,676 @@ function AppContent() {
                   </div>
                 </div>
               </div>
+
+              {/* FormField and FormGroup Showcase - Phase 3.4 */}
+              <div className="mb-12">
+                <Typography variant="h3" className="mb-4">
+                  Form Organization
+                </Typography>
+                <Typography variant="body" className="mb-6 text-stone-600">
+                  FormField and FormGroup components provide structured form
+                  layouts with proper labeling, descriptions, error handling,
+                  and accessibility support.
+                </Typography>
+
+                {/* FormField Examples */}
+                <div className="mb-12">
+                  <Typography variant="h4" className="mb-6">
+                    FormField Component
+                  </Typography>
+                  <Typography variant="body" className="mb-6 text-stone-600">
+                    FormField wraps form inputs with consistent labeling, error
+                    handling, and layout options.
+                  </Typography>
+
+                  <div className="space-y-8">
+                    {/* Basic FormField Examples */}
+                    <div>
+                      <Typography variant="h5" className="mb-4">
+                        Basic Usage
+                      </Typography>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="space-y-4">
+                          <FormField
+                            label="Full Name"
+                            description="Enter your complete legal name"
+                            required
+                            className="text-left"
+                          >
+                            <Input
+                              placeholder="John Doe"
+                              labelAlign="left"
+                              messageAlign="left"
+                            />
+                          </FormField>
+
+                          <FormField
+                            label="Email Address"
+                            description="We'll use this to send you updates"
+                            required
+                            className="text-left"
+                          >
+                            <Input
+                              type="email"
+                              placeholder="john@example.com"
+                              leftIcon={Mail}
+                              labelAlign="left"
+                              messageAlign="left"
+                            />
+                          </FormField>
+                        </div>
+
+                        <div className="space-y-4">
+                          <FormField
+                            label="Password"
+                            description="At least 8 characters"
+                            required
+                            className="text-left"
+                          >
+                            <Input
+                              type="password"
+                              placeholder="Enter password"
+                              leftIcon={Lock}
+                              labelAlign="left"
+                              messageAlign="left"
+                            />
+                          </FormField>
+
+                          <FormField
+                            label="Bio"
+                            description="Tell us a bit about yourself"
+                            className="text-left"
+                          >
+                            <Textarea
+                              placeholder="Write your bio here..."
+                              rows={3}
+                              labelAlign="left"
+                              messageAlign="left"
+                            />
+                          </FormField>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Layout Orientations */}
+                    <div>
+                      <Typography variant="h5" className="mb-4">
+                        Layout Orientations
+                      </Typography>
+                      <div className="space-y-6">
+                        <div>
+                          <Typography
+                            variant="bodySmall"
+                            className="mb-3 text-stone-500"
+                          >
+                            Vertical Layout (Default)
+                          </Typography>
+                          <div className="max-w-md">
+                            <FormField
+                              label="Vertical Layout"
+                              description="Label and description appear above the input"
+                              orientation="vertical"
+                              className="text-left"
+                            >
+                              <Input
+                                placeholder="This uses vertical layout"
+                                labelAlign="left"
+                                messageAlign="left"
+                              />
+                            </FormField>
+                          </div>
+                        </div>
+
+                        <div>
+                          <Typography
+                            variant="bodySmall"
+                            className="mb-3 text-stone-500"
+                          >
+                            Horizontal Layout
+                          </Typography>
+                          <FormField
+                            label="Horizontal Layout"
+                            description="Label appears beside the input"
+                            orientation="horizontal"
+                            className="text-left"
+                          >
+                            <Input
+                              placeholder="This uses horizontal layout"
+                              labelAlign="left"
+                              messageAlign="left"
+                            />
+                          </FormField>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Size Variants */}
+                    <div>
+                      <Typography variant="h5" className="mb-4">
+                        Size Variants
+                      </Typography>
+                      <div className="space-y-4">
+                        {(["sm", "md", "lg"] as const).map((size) => (
+                          <div key={size}>
+                            <Typography
+                              variant="bodySmall"
+                              className="mb-2 text-stone-500"
+                            >
+                              Size: {size}
+                            </Typography>
+                            <div className="max-w-md">
+                              <FormField
+                                label={`${size.toUpperCase()} Field`}
+                                description={`This field uses ${size} sizing`}
+                                size={size}
+                              >
+                                <Input
+                                  placeholder={`${size} sized input`}
+                                  labelAlign="left"
+                                  messageAlign="left"
+                                />
+                              </FormField>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Error States */}
+                    <div>
+                      <Typography variant="h5" className="mb-4">
+                        Error Handling
+                      </Typography>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="space-y-4">
+                          <FormField
+                            label="Field with Error"
+                            description="This field has a validation error"
+                            error="This field is required"
+                            className="text-left"
+                          >
+                            <Input
+                              placeholder="Required field"
+                              labelAlign="left"
+                              messageAlign="left"
+                            />
+                          </FormField>
+
+                          <FormField
+                            label="Custom Error Styling"
+                            description="Custom error message styling"
+                            error="Please enter a valid email address"
+                            className="text-left"
+                          >
+                            <Input
+                              type="email"
+                              placeholder="invalid-email"
+                              leftIcon={Mail}
+                              labelAlign="left"
+                              messageAlign="left"
+                            />
+                          </FormField>
+                        </div>
+
+                        <div className="space-y-4">
+                          <FormField
+                            label="Multiple Validation"
+                            description="Multiple error conditions"
+                            error="Password must be at least 8 characters and contain special characters"
+                            className="text-left"
+                          >
+                            <Input
+                              type="password"
+                              placeholder="weak"
+                              leftIcon={Lock}
+                              labelAlign="left"
+                              messageAlign="left"
+                            />
+                          </FormField>
+
+                          <FormField
+                            label="Success State"
+                            description="This field is valid"
+                            className="text-left"
+                          >
+                            <Input
+                              placeholder="Valid input"
+                              defaultValue="john@example.com"
+                              leftIcon={Mail}
+                              labelAlign="left"
+                              messageAlign="left"
+                            />
+                          </FormField>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Different Form Elements */}
+                    <div>
+                      <Typography variant="h5" className="mb-4">
+                        Various Form Elements
+                      </Typography>
+                      <div className="space-y-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          <div className="space-y-4">
+                            <FormField
+                              label="Newsletter Subscription"
+                              description="Get updates about new features"
+                              className="text-left"
+                            >
+                              <Checkbox labelAlign="left" helperAlign="left">
+                                Subscribe to newsletter
+                              </Checkbox>
+                            </FormField>
+
+                            <FormField
+                              label="Account Type"
+                              description="Choose your account type"
+                              className="text-left"
+                            >
+                              <RadioGroup
+                                name="account-type"
+                                options={[
+                                  { value: "personal", label: "Personal" },
+                                  { value: "business", label: "Business" },
+                                  { value: "enterprise", label: "Enterprise" },
+                                ]}
+                              />
+                            </FormField>
+                          </div>
+
+                          <div className="space-y-4">
+                            <FormField
+                              label="Country"
+                              description="Select your country"
+                              className="text-left"
+                            >
+                              <Select
+                                placeholder="Choose country"
+                                labelAlign="left"
+                                messageAlign="left"
+                                options={[
+                                  { value: "us", label: "United States" },
+                                  { value: "uk", label: "United Kingdom" },
+                                  { value: "ca", label: "Canada" },
+                                  { value: "au", label: "Australia" },
+                                ]}
+                              />
+                            </FormField>
+
+                            <FormField
+                              label="Notifications"
+                              description="Enable push notifications"
+                              className="text-left"
+                            >
+                              <Switch />
+                            </FormField>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* FormGroup Examples */}
+                <div className="mb-12">
+                  <Typography variant="h4" className="mb-6">
+                    FormGroup Component
+                  </Typography>
+                  <Typography variant="body" className="mb-6 text-stone-600">
+                    FormGroup organizes related form fields with consistent
+                    spacing and optional grouping semantics.
+                  </Typography>
+
+                  <div className="space-y-8">
+                    {/* Basic FormGroup */}
+                    <div>
+                      <Typography variant="h5" className="mb-4">
+                        Basic Form Group
+                      </Typography>
+                      <FormGroup
+                        title="Personal Information"
+                        description="Please provide your basic details"
+                        className="text-left"
+                      >
+                        <FormField
+                          label="First Name"
+                          description="Your given name"
+                          required
+                          className="text-left"
+                        >
+                          <Input
+                            placeholder="John"
+                            labelAlign="left"
+                            messageAlign="left"
+                          />
+                        </FormField>
+
+                        <FormField
+                          label="Last Name"
+                          description="Your family name"
+                          required
+                          className="text-left"
+                        >
+                          <Input
+                            placeholder="Doe"
+                            labelAlign="left"
+                            messageAlign="left"
+                          />
+                        </FormField>
+
+                        <FormField
+                          label="Date of Birth"
+                          description="When were you born?"
+                          className="text-left"
+                        >
+                          <Input
+                            placeholder="YYYY-MM-DD"
+                            labelAlign="left"
+                            messageAlign="left"
+                          />
+                        </FormField>
+                      </FormGroup>
+                    </div>
+
+                    {/* Fieldset Semantic */}
+                    <div>
+                      <Typography variant="h5" className="mb-4">
+                        Semantic Fieldset Group
+                      </Typography>
+                      <Typography
+                        variant="body"
+                        className="mb-4 text-stone-600"
+                      >
+                        Uses fieldset/legend for better accessibility when
+                        fields are related.
+                      </Typography>
+                      <FormGroup
+                        title="Contact Preferences"
+                        description="How would you like us to contact you?"
+                        fieldset={true}
+                      >
+                        <FormField
+                          label="Email Notifications"
+                          description="Receive updates via email"
+                        >
+                          <Checkbox labelAlign="left" helperAlign="left">
+                            Send me email updates
+                          </Checkbox>
+                        </FormField>
+
+                        <FormField
+                          label="SMS Notifications"
+                          description="Receive updates via SMS"
+                        >
+                          <Checkbox labelAlign="left" helperAlign="left">
+                            Send me SMS updates
+                          </Checkbox>
+                        </FormField>
+
+                        <FormField
+                          label="Phone Notifications"
+                          description="Receive updates via phone"
+                        >
+                          <Checkbox labelAlign="left" helperAlign="left">
+                            Call me with updates
+                          </Checkbox>
+                        </FormField>
+                      </FormGroup>
+                    </div>
+
+                    {/* Horizontal Layout */}
+                    <div>
+                      <Typography variant="h5" className="mb-4">
+                        Horizontal Layout
+                      </Typography>
+                      <FormGroup
+                        title="Quick Settings"
+                        description="Adjust your preferences"
+                        orientation="horizontal"
+                        spacing="lg"
+                        className="[&>div:first-child]:mb-2 [&>p]:mb-4"
+                      >
+                        <FormField label="Theme" size="sm">
+                          <Select
+                            placeholder="Choose theme"
+                            labelAlign="left"
+                            messageAlign="left"
+                            options={[
+                              { value: "light", label: "Light" },
+                              { value: "dark", label: "Dark" },
+                              { value: "auto", label: "Auto" },
+                            ]}
+                          />
+                        </FormField>
+
+                        <FormField label="Language" size="sm">
+                          <Select
+                            placeholder="Choose language"
+                            labelAlign="left"
+                            messageAlign="left"
+                            options={[
+                              { value: "en", label: "English" },
+                              { value: "es", label: "Spanish" },
+                              { value: "fr", label: "French" },
+                            ]}
+                          />
+                        </FormField>
+
+                        <FormField label="Timezone" size="sm">
+                          <Select
+                            placeholder="Choose timezone"
+                            labelAlign="left"
+                            messageAlign="left"
+                            options={[
+                              { value: "pst", label: "PST" },
+                              { value: "est", label: "EST" },
+                              { value: "utc", label: "UTC" },
+                            ]}
+                          />
+                        </FormField>
+                      </FormGroup>
+                    </div>
+
+                    {/* Different Sizes */}
+                    <div>
+                      <Typography variant="h5" className="mb-4">
+                        Size Variants
+                      </Typography>
+                      <div className="space-y-6">
+                        {(["sm", "md", "lg"] as const).map((size) => (
+                          <FormGroup
+                            key={size}
+                            title={`${size.toUpperCase()} Size Group`}
+                            description={`Form group using ${size} sizing`}
+                            size={size}
+                          >
+                            <FormField label="Field 1" size={size}>
+                              <Input
+                                placeholder={`${size} input`}
+                                labelAlign="left"
+                                messageAlign="left"
+                              />
+                            </FormField>
+                            <FormField label="Field 2" size={size}>
+                              <Input
+                                placeholder={`Another ${size} input`}
+                                labelAlign="left"
+                                messageAlign="left"
+                              />
+                            </FormField>
+                          </FormGroup>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Complex Form Example */}
+                    <div>
+                      <Typography variant="h5" className="mb-4">
+                        Complex Form Example
+                      </Typography>
+                      <Typography
+                        variant="body"
+                        className="mb-6 text-stone-600"
+                      >
+                        A complete form using multiple FormGroups to organize
+                        different sections.
+                      </Typography>
+
+                      <div className="space-y-8">
+                        <FormGroup
+                          title="Account Information"
+                          description="Basic account details"
+                          fieldset={true}
+                        >
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <FormField label="Username" required>
+                              <Input
+                                placeholder="Choose a username"
+                                labelAlign="left"
+                                messageAlign="left"
+                              />
+                            </FormField>
+
+                            <FormField label="Email" required>
+                              <Input
+                                type="email"
+                                placeholder="your.email@example.com"
+                                leftIcon={Mail}
+                                labelAlign="left"
+                                messageAlign="left"
+                              />
+                            </FormField>
+                          </div>
+
+                          <FormField label="Password" required>
+                            <Input
+                              type="password"
+                              placeholder="Create a strong password"
+                              leftIcon={Lock}
+                              labelAlign="left"
+                              messageAlign="left"
+                            />
+                          </FormField>
+                        </FormGroup>
+
+                        <FormGroup
+                          title="Profile Details"
+                          description="Tell us more about yourself"
+                        >
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <FormField label="First Name" required>
+                              <Input
+                                placeholder="John"
+                                labelAlign="left"
+                                messageAlign="left"
+                              />
+                            </FormField>
+
+                            <FormField label="Last Name" required>
+                              <Input
+                                placeholder="Doe"
+                                labelAlign="left"
+                                messageAlign="left"
+                              />
+                            </FormField>
+                          </div>
+
+                          <FormField label="Bio">
+                            <Textarea
+                              placeholder="Tell us about yourself..."
+                              rows={4}
+                              labelAlign="left"
+                              messageAlign="left"
+                            />
+                          </FormField>
+
+                          <FormField label="Website">
+                            <Input
+                              type="url"
+                              placeholder="https://yourwebsite.com"
+                              labelAlign="left"
+                              messageAlign="left"
+                            />
+                          </FormField>
+                        </FormGroup>
+
+                        <FormGroup
+                          title="Preferences"
+                          description="Customize your experience"
+                          semantic={true}
+                        >
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <FormField label="Preferred Language">
+                              <Select placeholder="Choose language">
+                                <option value="en">English</option>
+                                <option value="es">Español</option>
+                                <option value="fr">Français</option>
+                                <option value="de">Deutsch</option>
+                              </Select>
+                            </FormField>
+
+                            <FormField label="Time Zone">
+                              <Select placeholder="Select timezone">
+                                <option value="pst">Pacific Time</option>
+                                <option value="mst">Mountain Time</option>
+                                <option value="cst">Central Time</option>
+                                <option value="est">Eastern Time</option>
+                              </Select>
+                            </FormField>
+                          </div>
+
+                          <FormField label="Newsletter Subscription">
+                            <Checkbox>
+                              I want to receive updates about new features and
+                              improvements
+                            </Checkbox>
+                          </FormField>
+
+                          <FormField label="Marketing Communications">
+                            <Checkbox>
+                              I want to receive promotional emails and special
+                              offers
+                            </Checkbox>
+                          </FormField>
+                        </FormGroup>
+
+                        <div className="flex gap-4">
+                          <Button variant="solid" color="primary">
+                            Create Account
+                          </Button>
+                          <Button variant="outline">Cancel</Button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <Paper
+                  variant="elevated"
+                  padding="lg"
+                  background="success"
+                  className="mt-8"
+                >
+                  <Typography variant="h4" className="mb-4" color="paper">
+                    🎯 Form Organization Complete!
+                  </Typography>
+                  <Typography variant="body" color="paper" intensity="soft">
+                    ✅ FormField provides consistent input labeling and error
+                    handling
+                    <br />
+                    ✅ FormGroup organizes related fields with proper spacing
+                    <br />
+                    ✅ Support for horizontal and vertical layouts
+                    <br />
+                    ✅ Multiple size variants for different contexts
+                    <br />
+                    ✅ Full accessibility with ARIA attributes and semantic HTML
+                    <br />✅ Intelligent error message handling prevents
+                    duplication
+                  </Typography>
+                </Paper>
+              </div>
             </div>
 
             {/* Navigation Components Showcase */}
@@ -2707,6 +3399,9 @@ function AppContent() {
               </Typography>
               <Typography variant="body" color="muted" className="mb-4">
                 Phase 3.3 Advanced Form Controls: ✅ FileUpload Complete
+              </Typography>
+              <Typography variant="body" color="muted" className="mb-4">
+                Phase 3.4 Form Organization: ✅ FormField & FormGroup Complete
               </Typography>
               <Typography variant="body" color="muted" className="mb-4">
                 Navigation Components: ✅ FloatingNavbar Complete
