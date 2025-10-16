@@ -117,7 +117,7 @@ export const FloatingNavbar = ({
             <button
               onClick={() => handleItemClick(item)}
               className={cn(
-                "w-full text-left px-3 py-2 text-sm rounded-md transition-all duration-200",
+                "cursor-pointer w-full text-left px-3 py-2 text-sm rounded-md transition-all duration-200",
                 "hover:bg-stone-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1",
                 activeId === item.id
                   ? "bg-blue-100 text-blue-900 font-medium border-l-2 border-blue-500 pl-2"
