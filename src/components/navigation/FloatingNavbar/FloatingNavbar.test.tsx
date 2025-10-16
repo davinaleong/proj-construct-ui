@@ -134,9 +134,14 @@ describe("FloatingNavbar Component", () => {
       render(<FloatingNavbar items={defaultItems} />)
 
       const nav = screen.getByRole("navigation")
+      // Default position is top-right, so should have margin-top and margin-right
       expect(nav).toHaveAttribute(
         "style",
-        expect.stringContaining("margin: 20px")
+        expect.stringContaining("margin-top: 20px")
+      )
+      expect(nav).toHaveAttribute(
+        "style",
+        expect.stringContaining("margin-right: 20px")
       )
     })
 
@@ -144,9 +149,50 @@ describe("FloatingNavbar Component", () => {
       render(<FloatingNavbar items={defaultItems} offset={40} />)
 
       const nav = screen.getByRole("navigation")
+      // Default position is top-right, so should have margin-top and margin-right
       expect(nav).toHaveAttribute(
         "style",
-        expect.stringContaining("margin: 40px")
+        expect.stringContaining("margin-top: 40px")
+      )
+      expect(nav).toHaveAttribute(
+        "style",
+        expect.stringContaining("margin-right: 40px")
+      )
+    })
+
+    it("applies individual x and y offsets", () => {
+      render(<FloatingNavbar items={defaultItems} offset={{ x: 30, y: 50 }} />)
+
+      const nav = screen.getByRole("navigation")
+      // Default position is top-right, so x=right margin, y=top margin
+      expect(nav).toHaveAttribute(
+        "style",
+        expect.stringContaining("margin-top: 50px")
+      )
+      expect(nav).toHaveAttribute(
+        "style",
+        expect.stringContaining("margin-right: 30px")
+      )
+    })
+
+    it("applies individual offsets for different positions", () => {
+      render(
+        <FloatingNavbar
+          items={defaultItems}
+          position="bottom-left"
+          offset={{ x: 25, y: 35 }}
+        />
+      )
+
+      const nav = screen.getByRole("navigation")
+      // Bottom-left position: x=left margin, y=bottom margin
+      expect(nav).toHaveAttribute(
+        "style",
+        expect.stringContaining("margin-bottom: 35px")
+      )
+      expect(nav).toHaveAttribute(
+        "style",
+        expect.stringContaining("margin-left: 25px")
       )
     })
   })

@@ -73,8 +73,12 @@ function AppContent() {
 
   return (
     <div className="min-h-screen bg-[#faf9f6] dark:bg-gray-900">
-      {/* Floating Navbar */}
-      <FloatingNavbar items={navItems} position="top-right" offset={120} />
+      {/* Floating Navbar Examples - Individual X/Y Offsets */}
+      <FloatingNavbar
+        items={navItems}
+        position="top-right"
+        offset={{ x: 20, y: 120 }}
+      />
       {/* Header */}
       <Paper
         variant="elevated"
@@ -2654,19 +2658,34 @@ function AppContent() {
 
                   <Paper variant="outlined" padding="lg">
                     <Typography variant="h4" className="mb-4">
-                      Usage Example
+                      Usage Examples
                     </Typography>
-                    <pre className="bg-stone-100 p-4 rounded text-sm overflow-x-auto">
-                      {`<FloatingNavbar 
-  items={[
-    { id: "overview", label: "Overview", href: "#overview" },
-    { id: "features", label: "Features", href: "#features" },
-    { id: "examples", label: "Examples", href: "#examples" }
-  ]}
+                    <div className="space-y-4">
+                      <div>
+                        <Typography variant="body" className="mb-2 font-medium">
+                          Basic Usage (uniform offset):
+                        </Typography>
+                        <pre className="bg-stone-100 p-4 rounded text-sm overflow-x-auto">
+                          {`<FloatingNavbar 
+  items={navItems}
   position="top-right"
   offset={20}
 />`}
-                    </pre>
+                        </pre>
+                      </div>
+                      <div>
+                        <Typography variant="body" className="mb-2 font-medium">
+                          Individual X/Y Offsets:
+                        </Typography>
+                        <pre className="bg-stone-100 p-4 rounded text-sm overflow-x-auto">
+                          {`<FloatingNavbar 
+  items={navItems}
+  position="bottom-left"
+  offset={{ x: 40, y: 60 }}
+/>`}
+                        </pre>
+                      </div>
+                    </div>
                   </Paper>
                 </div>
               </div>

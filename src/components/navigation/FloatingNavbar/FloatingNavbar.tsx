@@ -2,11 +2,17 @@ import { useEffect, useState } from "react"
 import type { FloatingNavbarProps } from "./types"
 import { cn } from "../../../utils/cn.js"
 
-const positionClasses = {
-  "top-left": "top-0 left-0",
-  "top-right": "top-0 right-0",
-  "bottom-left": "bottom-0 left-0",
-  "bottom-right": "bottom-0 right-0",
+const getPositionClasses = (position: string) => {
+  const baseClasses = {
+    "top-left": "top-0 left-0",
+    "top-right": "top-0 right-0",
+    "bottom-left": "bottom-0 left-0",
+    "bottom-right": "bottom-0 right-0",
+  }
+  return (
+    baseClasses[position as keyof typeof baseClasses] ||
+    baseClasses["top-right"]
+  )
 }
 
 export const FloatingNavbar = ({
@@ -18,6 +24,26 @@ export const FloatingNavbar = ({
   onItemClick,
 }: FloatingNavbarProps) => {
   const [activeId, setActiveId] = useState<string>("")
+
+  // Parse offset into x and y values
+  const offsetX = typeof offset === "number" ? offset : offset.x ?? 20
+  const offsetY = typeof offset === "number" ? offset : offset.y ?? 20
+
+  // Generate position-specific margins
+  const getMarginStyle = () => {
+    switch (position) {
+      case "top-left":
+        return { marginTop: `${offsetY}px`, marginLeft: `${offsetX}px` }
+      case "top-right":
+        return { marginTop: `${offsetY}px`, marginRight: `${offsetX}px` }
+      case "bottom-left":
+        return { marginBottom: `${offsetY}px`, marginLeft: `${offsetX}px` }
+      case "bottom-right":
+        return { marginBottom: `${offsetY}px`, marginRight: `${offsetX}px` }
+      default:
+        return { marginTop: `${offsetY}px`, marginRight: `${offsetX}px` }
+    }
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -80,12 +106,10 @@ export const FloatingNavbar = ({
       className={cn(
         "fixed z-50 p-4 bg-white/90 backdrop-blur-sm border border-stone-200 rounded-lg shadow-lg",
         "transition-all duration-200 ease-in-out",
-        positionClasses[position],
+        getPositionClasses(position),
         className
       )}
-      style={{
-        margin: `${offset}px`,
-      }}
+      style={getMarginStyle()}
     >
       <ul className="space-y-1">
         {items.map((item) => (

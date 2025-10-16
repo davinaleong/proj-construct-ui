@@ -24,9 +24,10 @@ export interface FloatingNavbarProps {
 
   /**
    * Offset from the edge of the screen in pixels
+   * Can be a number for uniform offset or an object for individual x/y control
    * @default 20
    */
-  offset?: number
+  offset?: number | { x?: number; y?: number }
 
   /**
    * Whether to show the navbar initially
