@@ -15,14 +15,14 @@
 
 ## 🧭 2. Layout & Structure
 
-| Component                | Description                                         | Key Props                                 |
-| ------------------------ | --------------------------------------------------- | ----------------------------------------- |
-| **Grid / Stack / Flex**  | Utility layout wrappers (direction, gap, alignment) | `direction`, `gap`, `align`, `justify`    |
-| **Card**                 | Used for sections, summaries, or dashboard widgets  | `title`, `subtitle`, `actions`, `variant` |
-| **Section / Panel**      | Reusable content section with header/footer         | `title`, `footer`, `padding`              |
-| **Divider / Separator**  | Subtle line for grouping content                    | `orientation`, `thickness`, `variant`     |
-| **Avatar / AvatarGroup** | Rounded profile pictures                            | `src`, `alt`, `size`, `status`            |
-| **Badge**                | Small status indicator                              | `color`, `variant`, `icon`, `text`        |
+| Component                | Description                                             | Key Props                                                                           |
+| ------------------------ | ------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| **Grid / Stack / Flex**  | Utility layout wrappers (direction, gap, alignment)     | `direction`, `gap`, `align`, `justify`                                              |
+| **Card**                 | Used for sections, summaries, or dashboard widgets      | `title`, `subtitle`, `actions`, `variant`                                           |
+| **Section / Panel**      | Reusable content section with header/footer             | `title`, `footer`, `padding`                                                        |
+| **Divider / Separator**  | Content divider with labels, icons, and styling options | `orientation`, `variant`, `size`, `color`, `spacing`, `label`, `icon`, `decorative` |
+| **Avatar / AvatarGroup** | Rounded profile pictures                                | `src`, `alt`, `size`, `status`                                                      |
+| **Badge**                | Small status indicator                                  | `color`, `variant`, `icon`, `text`                                                  |
 
 ---
 

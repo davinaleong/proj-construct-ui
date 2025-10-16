@@ -2,98 +2,187 @@ import type { DividerProps } from "./types"
 import { cn } from "../../../utils/cn.js"
 
 const orientationClasses = {
-  horizontal: "w-full h-px",
-  vertical: "h-full w-px",
+  horizontal: "w-full",
+  vertical: "h-full min-h-4",
+}
+
+const sizeClasses = {
+  horizontal: {
+    sm: "h-px",
+    md: "h-0.5",
+    lg: "h-1",
+  },
+  vertical: {
+    sm: "w-px",
+    md: "w-0.5",
+    lg: "w-1",
+  },
 }
 
 const variantClasses = {
   solid: "border-solid",
   dashed: "border-dashed",
   dotted: "border-dotted",
+  gradient: "",
+  fade: "",
 }
 
-const baseLineClasses = [
-  "border-stone-200/60", // Paper theme border color
-  "bg-stone-200/60",
-]
+const colorClasses = {
+  default: "border-stone-200/60 bg-stone-200/60",
+  primary: "border-blue-200/60 bg-blue-200/60",
+  secondary: "border-stone-300/60 bg-stone-300/60",
+  muted: "border-stone-100/60 bg-stone-100/60",
+  accent: "border-amber-200/60 bg-amber-200/60",
+}
+
+const spacingClasses = {
+  horizontal: {
+    none: "my-0",
+    sm: "my-2",
+    md: "my-4",
+    lg: "my-6",
+    xl: "my-8",
+  },
+  vertical: {
+    none: "mx-0",
+    sm: "mx-2",
+    md: "mx-4",
+    lg: "mx-6",
+    xl: "mx-8",
+  },
+}
 
 export function Divider({
-  label,
   orientation = "horizontal",
   variant = "solid",
+  size = "sm",
+  color = "default",
+  spacing = "md",
+  decorative = false,
+  label,
+  icon,
   className,
+  ...props
 }: DividerProps) {
   const isHorizontal = orientation === "horizontal"
-  const hasLabel = !!label
+  const sizeClass = sizeClasses[orientation][size]
+  const colorClass = colorClasses[color]
+  const spacingClass = spacingClasses[orientation][spacing]
 
-  if (hasLabel && isHorizontal) {
-    // Horizontal divider with label
+  // Handle special variants
+  const gradientClass =
+    variant === "gradient"
+      ? isHorizontal
+        ? "bg-gradient-to-r from-transparent via-current to-transparent"
+        : "bg-gradient-to-b from-transparent via-current to-transparent"
+      : ""
+
+  const fadeClass =
+    variant === "fade"
+      ? isHorizontal
+        ? "bg-gradient-to-r from-stone-200/60 via-stone-200/20 to-stone-200/60"
+        : "bg-gradient-to-b from-stone-200/60 via-stone-200/20 to-stone-200/60"
+      : ""
+
+  if (label || icon) {
     return (
-      <div className={cn("flex items-center gap-4", className)}>
+      <div
+        className={cn(
+          "flex items-center gap-4 text-sm text-stone-500/80",
+          isHorizontal ? "w-full" : "flex-col h-full",
+          spacingClass,
+          className
+        )}
+        role={decorative ? "presentation" : "separator"}
+        aria-label={typeof label === "string" ? label : undefined}
+        {...props}
+      >
         <div
           className={cn(
-            "flex-1",
             orientationClasses[orientation],
-            variantClasses[variant],
-            baseLineClasses,
-            isHorizontal ? "border-t" : "border-l"
+            sizeClass,
+            variant === "gradient" || variant === "fade"
+              ? ""
+              : variantClasses[variant],
+            variant === "gradient"
+              ? gradientClass
+              : variant === "fade"
+              ? fadeClass
+              : colorClass,
+            isHorizontal
+              ? variant === "solid"
+                ? "border-t"
+                : ""
+              : variant === "solid"
+              ? "border-l"
+              : "",
+            "flex-1"
           )}
         />
-        <span className="text-sm text-stone-500 font-medium px-2">{label}</span>
+
         <div
           className={cn(
-            "flex-1",
+            "flex items-center gap-2 px-2 bg-white whitespace-nowrap",
+            !isHorizontal &&
+              "writing-mode-vertical-rl text-orientation-mixed py-2 px-0"
+          )}
+        >
+          {icon && <span className="text-stone-400">{icon}</span>}
+          {label && <span className="font-medium">{label}</span>}
+        </div>
+
+        <div
+          className={cn(
             orientationClasses[orientation],
-            variantClasses[variant],
-            baseLineClasses,
-            isHorizontal ? "border-t" : "border-l"
+            sizeClass,
+            variant === "gradient" || variant === "fade"
+              ? ""
+              : variantClasses[variant],
+            variant === "gradient"
+              ? gradientClass
+              : variant === "fade"
+              ? fadeClass
+              : colorClass,
+            isHorizontal
+              ? variant === "solid"
+                ? "border-t"
+                : ""
+              : variant === "solid"
+              ? "border-l"
+              : "",
+            "flex-1"
           )}
         />
       </div>
     )
   }
 
-  if (hasLabel && !isHorizontal) {
-    // Vertical divider with label (rotated text)
-    return (
-      <div className={cn("flex flex-col items-center gap-4", className)}>
-        <div
-          className={cn(
-            "flex-1",
-            orientationClasses[orientation],
-            variantClasses[variant],
-            baseLineClasses,
-            "border-l"
-          )}
-        />
-        <span className="text-sm text-stone-500 font-medium py-2 writing-mode-vertical-rl text-orientation-mixed">
-          {label}
-        </span>
-        <div
-          className={cn(
-            "flex-1",
-            orientationClasses[orientation],
-            variantClasses[variant],
-            baseLineClasses,
-            "border-l"
-          )}
-        />
-      </div>
-    )
-  }
-
-  // Simple divider without label
   return (
     <div
       className={cn(
         orientationClasses[orientation],
-        variantClasses[variant],
-        baseLineClasses,
-        isHorizontal ? "border-t" : "border-l",
+        sizeClass,
+        variant === "gradient" || variant === "fade"
+          ? ""
+          : variantClasses[variant],
+        variant === "gradient"
+          ? gradientClass
+          : variant === "fade"
+          ? fadeClass
+          : colorClass,
+        isHorizontal
+          ? variant === "solid"
+            ? "border-t"
+            : ""
+          : variant === "solid"
+          ? "border-l"
+          : "",
+        spacingClass,
         className
       )}
-      role="separator"
+      role={decorative ? "presentation" : "separator"}
       aria-orientation={orientation}
+      {...props}
     />
   )
 }
