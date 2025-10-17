@@ -137,6 +137,14 @@ Create a complete design system that feels **organic, readable, and professional
 
 #### 4.1 Data Presentation
 
+- [ ] **Static Table** - Simple data presentation table
+  - Clean rows and columns for displaying structured data
+  - Paper theme styling with subtle borders
+  - Responsive design with horizontal scroll on mobile
+  - Header row with proper semantic markup
+  - Striped rows option for better readability
+  - Compact and comfortable spacing variants
+  - Support for basic cell alignment
 - [ ] **Table** - Data grid (Priority: High for data-heavy apps)
   - Sortable columns
   - Responsive design
