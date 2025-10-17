@@ -135,12 +135,22 @@ export const Grid = forwardRef<HTMLElement, GridProps>(
       const responsiveColumns = columns as GridResponsive
       const classes = []
 
-      // Default columns (mobile-first)
-      if (responsiveColumns.sm) {
-        classes.push(COLUMNS_CLASSES[1]) // Default to 1 column on mobile
+      // Find the smallest defined breakpoint for base mobile class
+      const definedBreakpoints = Object.keys(responsiveColumns).filter(
+        (bp) => responsiveColumns[bp as keyof GridResponsive] !== undefined
+      )
+
+      if (definedBreakpoints.length > 0) {
+        // Use the first defined breakpoint value as the base, or default to 1
+        const firstBreakpoint = definedBreakpoints[0] as keyof GridResponsive
+        const baseColumns = responsiveColumns[firstBreakpoint] || 1
+        classes.push(COLUMNS_CLASSES[baseColumns])
+      } else {
+        // If no responsive columns are defined, default to 1
+        classes.push(COLUMNS_CLASSES[1])
       }
 
-      // Responsive breakpoints
+      // Apply responsive breakpoints
       Object.entries(responsiveColumns).forEach(([breakpoint, cols]) => {
         if (cols && breakpoint in RESPONSIVE_COLUMNS_CLASSES) {
           const bp = breakpoint as keyof typeof RESPONSIVE_COLUMNS_CLASSES

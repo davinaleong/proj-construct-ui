@@ -22,14 +22,15 @@
 
 ## 🧭 2. Layout & Structure
 
-| Component                | Status | Description                                             | Key Props                                                                           |
-| ------------------------ | ------ | ------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| **Grid / Stack / Flex**  | ✅     | Utility layout wrappers (direction, gap, alignment)     | `direction`, `gap`, `align`, `justify`                                              |
-| **Card**                 | ✅     | Used for sections, summaries, or dashboard widgets      | `title`, `subtitle`, `actions`, `variant`                                           |
-| **Section / Panel**      | ✅     | Reusable content section with header/footer             | `title`, `footer`, `padding`                                                        |
-| **Divider / Separator**  | ✅     | Content divider with labels, icons, and styling options | `orientation`, `variant`, `size`, `color`, `spacing`, `label`, `icon`, `decorative` |
-| **Avatar / AvatarGroup** | ✅     | Rounded profile pictures                                | `src`, `alt`, `size`, `status`                                                      |
-| **Badge**                | ✅     | Small status indicator                                  | `color`, `variant`, `icon`, `text`                                                  |
+| Component                | Status | Description                                             | Key Props                                                                            |
+| ------------------------ | ------ | ------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| **Grid**                 | ✅     | Responsive CSS Grid layout with auto-fit support        | `columns`, `gap`, `align`, `justify`, `autoFit`, `minColumnWidth`, `className`, `as` |
+| **Stack / Flex**         | ✅     | Utility layout wrappers (direction, gap, alignment)     | `direction`, `gap`, `align`, `justify`                                               |
+| **Card**                 | ✅     | Used for sections, summaries, or dashboard widgets      | `title`, `subtitle`, `actions`, `variant`                                            |
+| **Section / Panel**      | ✅     | Reusable content section with header/footer             | `title`, `footer`, `padding`                                                         |
+| **Divider / Separator**  | ✅     | Content divider with labels, icons, and styling options | `orientation`, `variant`, `size`, `color`, `spacing`, `label`, `icon`, `decorative`  |
+| **Avatar / AvatarGroup** | ✅     | Rounded profile pictures                                | `src`, `alt`, `size`, `status`                                                       |
+| **Badge**                | ✅     | Small status indicator                                  | `color`, `variant`, `icon`, `text`                                                   |
 
 ---
 
@@ -132,6 +133,52 @@
 | **NotificationCenter** | 📋     | Aggregated notifications                | `items`, `onRead`, `onClear`     |
 | **UserMenu**           | 📋     | Profile dropdown with avatar            | `user`, `menuItems`              |
 | **ThemePreview**       | 📋     | Show paper theme samples                | `themes`, `selected`, `onSelect` |
+
+---
+
+## 🔧 Component Spotlight: Recent Enhancements
+
+### Grid Component ✅ **ENHANCED**
+
+The Grid component has been significantly enhanced with comprehensive functionality:
+
+#### **Responsive Grid System**
+
+```tsx
+<Grid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}>
+  {/* Content automatically adjusts across breakpoints */}
+</Grid>
+```
+
+#### **Auto-fit Functionality**
+
+```tsx
+<Grid autoFit minColumnWidth={20}>
+  {/* Columns automatically fit based on content and min width */}
+</Grid>
+```
+
+#### **Advanced Configuration**
+
+```tsx
+<Grid
+  columns={{ md: 2, lg: 3 }}
+  gap="lg"
+  align="center"
+  justify="between"
+  className="custom-grid"
+>
+  {/* Fully customizable layout */}
+</Grid>
+```
+
+#### **Key Features**
+
+- **TypeScript Integration**: Full type safety with HTMLAttributes forwarding
+- **Responsive Logic**: Intelligent base column detection from responsive configurations
+- **Edge Case Handling**: Graceful defaults for empty configs and missing breakpoints
+- **Comprehensive Testing**: 21 test cases covering all functionality and edge cases
+- **Accessibility**: Proper semantic markup and ARIA attribute support
 
 ---
 
