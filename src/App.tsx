@@ -35,6 +35,7 @@ import {
   FormGroup,
 } from "./components/forms"
 import { FloatingNavbar } from "./components/navigation"
+import { StaticTable } from "./components/data-display/StaticTable"
 import {
   CoreComponentsDemo,
   TypographyShowcase,
@@ -62,6 +63,7 @@ function AppContent() {
     { id: "layout", label: "Layout", href: "#layout" },
     { id: "ui-primitives", label: "UI Primitives", href: "#ui-primitives" },
     { id: "form-controls", label: "Form Controls", href: "#form-controls" },
+    { id: "data-display", label: "Data Display", href: "#data-display" },
     { id: "navigation", label: "Navigation", href: "#navigation" },
   ]
 
@@ -2734,6 +2736,323 @@ function AppContent() {
               </div>
             </div>
 
+            {/* Data Display Components Showcase */}
+            <div className="mt-16" id="data-display">
+              <Typography variant="h2" className="mb-8">
+                Data Display Components
+              </Typography>
+              <Typography variant="body" className="mb-8 text-stone-600">
+                Data display components present information in structured,
+                readable formats. Tables, lists, and other display elements help
+                users consume data effectively.
+              </Typography>
+
+              {/* StaticTable Component */}
+              <div className="mb-12">
+                <Paper variant="elevated" padding="lg" className="bg-white">
+                  <Typography variant="h3" className="mb-6">
+                    Static Table
+                  </Typography>
+                  <Typography variant="body" className="mb-6 text-stone-600">
+                    A comprehensive data presentation table with color variants,
+                    custom rendering, and responsive design. Perfect for
+                    displaying structured data with enhanced visual hierarchy.
+                  </Typography>
+
+                  {/* Basic Table Example */}
+                  <div className="mb-8">
+                    <Typography variant="h4" className="mb-4">
+                      Basic Table
+                    </Typography>
+                    <StaticTable
+                      columns={[
+                        {
+                          key: "id",
+                          label: "ID",
+                          align: "center",
+                          width: "80px",
+                        },
+                        { key: "name", label: "Name", align: "left" },
+                        { key: "email", label: "Email", align: "left" },
+                        { key: "role", label: "Role", align: "center" },
+                        { key: "status", label: "Status", align: "center" },
+                      ]}
+                      rows={[
+                        {
+                          id: 1,
+                          name: "John Doe",
+                          email: "john@example.com",
+                          role: "Admin",
+                          status: "Active",
+                        },
+                        {
+                          id: 2,
+                          name: "Jane Smith",
+                          email: "jane@example.com",
+                          role: "Editor",
+                          status: "Active",
+                        },
+                        {
+                          id: 3,
+                          name: "Bob Johnson",
+                          email: "bob@example.com",
+                          role: "User",
+                          status: "Inactive",
+                        },
+                        {
+                          id: 4,
+                          name: "Alice Brown",
+                          email: "alice@example.com",
+                          role: "Moderator",
+                          status: "Pending",
+                        },
+                      ]}
+                    />
+                  </div>
+
+                  {/* Color Variants Example */}
+                  <div className="mb-8">
+                    <Typography variant="h4" className="mb-4">
+                      Color Variants
+                    </Typography>
+                    <Typography variant="body" className="mb-4 text-stone-600">
+                      Columns and rows can have independent color variants with
+                      priority hierarchy.
+                    </Typography>
+                    <StaticTable
+                      columns={[
+                        {
+                          key: "id",
+                          label: "ID",
+                          align: "center",
+                          width: "80px",
+                        },
+                        {
+                          key: "name",
+                          label: "Name",
+                          align: "left",
+                          colorVariant: "primary",
+                        },
+                        {
+                          key: "department",
+                          label: "Department",
+                          align: "left",
+                          colorVariant: "secondary",
+                        },
+                        {
+                          key: "salary",
+                          label: "Salary",
+                          align: "right",
+                          colorVariant: "success",
+                        },
+                        {
+                          key: "status",
+                          label: "Status",
+                          align: "center",
+                          colorVariant: "info",
+                        },
+                      ]}
+                      rows={[
+                        {
+                          id: 1,
+                          name: "John Doe",
+                          department: "Engineering",
+                          salary: "$75,000",
+                          status: "Active",
+                          colorVariant: "success",
+                        },
+                        {
+                          id: 2,
+                          name: "Jane Smith",
+                          department: "Marketing",
+                          salary: "$65,000",
+                          status: "Active",
+                        },
+                        {
+                          id: 3,
+                          name: "Bob Johnson",
+                          department: "Sales",
+                          salary: "$55,000",
+                          status: "Warning",
+                          colorVariant: "warning",
+                        },
+                        {
+                          id: 4,
+                          name: "Alice Brown",
+                          department: "HR",
+                          salary: "$60,000",
+                          status: "Inactive",
+                          colorVariant: "error",
+                        },
+                      ]}
+                    />
+                  </div>
+
+                  {/* Table Variants */}
+                  <div className="mb-8">
+                    <Typography variant="h4" className="mb-4">
+                      Table Variants
+                    </Typography>
+                    <div className="space-y-6">
+                      <div>
+                        <Typography variant="h5" className="mb-2">
+                          Striped Table
+                        </Typography>
+                        <StaticTable
+                          columns={[
+                            {
+                              key: "id",
+                              label: "ID",
+                              align: "center",
+                              width: "80px",
+                            },
+                            { key: "name", label: "Name", align: "left" },
+                            { key: "status", label: "Status", align: "center" },
+                          ]}
+                          rows={[
+                            { id: 1, name: "John Doe", status: "Active" },
+                            { id: 2, name: "Jane Smith", status: "Active" },
+                            { id: 3, name: "Bob Johnson", status: "Inactive" },
+                          ]}
+                          striped
+                        />
+                      </div>
+
+                      <div>
+                        <Typography variant="h5" className="mb-2">
+                          Compact Table
+                        </Typography>
+                        <StaticTable
+                          columns={[
+                            {
+                              key: "id",
+                              label: "ID",
+                              align: "center",
+                              width: "80px",
+                            },
+                            { key: "name", label: "Name", align: "left" },
+                            { key: "status", label: "Status", align: "center" },
+                          ]}
+                          rows={[
+                            { id: 1, name: "John Doe", status: "Active" },
+                            { id: 2, name: "Jane Smith", status: "Active" },
+                            { id: 3, name: "Bob Johnson", status: "Inactive" },
+                          ]}
+                          variant="compact"
+                          size="sm"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Custom Render Functions */}
+                  <div className="mb-8">
+                    <Typography variant="h4" className="mb-4">
+                      Custom Render Functions
+                    </Typography>
+                    <Typography variant="body" className="mb-4 text-stone-600">
+                      Create complex cell content with custom render functions.
+                    </Typography>
+                    <StaticTable
+                      columns={[
+                        {
+                          key: "id",
+                          label: "ID",
+                          align: "center",
+                          width: "80px",
+                        },
+                        {
+                          key: "name",
+                          label: "User",
+                          align: "left",
+                          render: (value) => (
+                            <div className="flex items-center gap-2">
+                              <div className="w-8 h-8 bg-pp-blue-100 rounded-full flex items-center justify-center text-pp-blue-800 font-medium text-sm">
+                                {String(value).charAt(0)}
+                              </div>
+                              <span className="font-medium">
+                                {String(value)}
+                              </span>
+                            </div>
+                          ),
+                        },
+                        {
+                          key: "progress",
+                          label: "Progress",
+                          align: "center",
+                          render: (value) => {
+                            const progress = Number(value) || 0
+                            return (
+                              <div className="flex items-center gap-2">
+                                <div className="w-16 bg-pp-gray-200 rounded-full h-2">
+                                  <div
+                                    className="bg-pp-blue-600 h-2 rounded-full transition-all duration-300"
+                                    style={{ width: `${progress}%` }}
+                                  ></div>
+                                </div>
+                                <span className="text-sm text-pp-gray-600">
+                                  {progress}%
+                                </span>
+                              </div>
+                            )
+                          },
+                        },
+                        {
+                          key: "actions",
+                          label: "Actions",
+                          align: "center",
+                          render: () => (
+                            <div className="flex gap-1">
+                              <button className="px-2 py-1 text-xs bg-pp-blue-100 text-pp-blue-800 rounded hover:bg-pp-blue-200">
+                                Edit
+                              </button>
+                              <button className="px-2 py-1 text-xs bg-pp-red-100 text-pp-red-800 rounded hover:bg-pp-red-200">
+                                Delete
+                              </button>
+                            </div>
+                          ),
+                        },
+                      ]}
+                      rows={[
+                        { id: 1, name: "John Doe", progress: 85, actions: "" },
+                        {
+                          id: 2,
+                          name: "Jane Smith",
+                          progress: 92,
+                          actions: "",
+                        },
+                        {
+                          id: 3,
+                          name: "Bob Johnson",
+                          progress: 67,
+                          actions: "",
+                        },
+                      ]}
+                    />
+                  </div>
+
+                  {/* Features Summary */}
+                  <Typography variant="body" className="text-stone-600">
+                    ✅ Color variants for rows and columns with priority
+                    hierarchy
+                    <br />
+                    ✅ Table variants: striped, bordered, compact
+                    <br />
+                    ✅ Size options: small, medium, large
+                    <br />
+                    ✅ Custom render functions for complex content
+                    <br />
+                    ✅ Loading states and customizable empty states
+                    <br />
+                    ✅ Full accessibility with proper table semantics
+                    <br />
+                    ✅ Responsive design with horizontal scroll on mobile
+                    <br />✅ Paper theme integration with consistent styling
+                  </Typography>
+                </Paper>
+              </div>
+            </div>
+
             {/* Navigation Components Showcase */}
             <div className="mt-16" id="navigation">
               <Typography variant="h2" className="mb-8">
@@ -2829,10 +3148,13 @@ function AppContent() {
                 Phase 3.4 Form Organization: ✅ FormField & FormGroup Complete
               </Typography>
               <Typography variant="body" color="muted" className="mb-4">
+                Phase 4.1 Data Display: ✅ StaticTable Complete
+              </Typography>
+              <Typography variant="body" color="muted" className="mb-4">
                 Navigation Components: ✅ FloatingNavbar Complete
               </Typography>
               <Typography variant="body" color="muted" className="mb-4">
-                Next up: Data display components and advanced validation
+                Next up: Advanced data display components and feedback systems
               </Typography>
 
               <Typography variant="caption" color="muted">

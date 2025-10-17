@@ -54,17 +54,17 @@
 
 ## 📊 4. Data Display
 
-| Component                        | Status | Description                          | Key Props                                             |
-| -------------------------------- | ------ | ------------------------------------ | ----------------------------------------------------- |
-| **Static Table**                 | 📋     | Simple data presentation table       | `columns`, `rows`, `striped`, `compact`, `align`      |
-| **Table**                        | 📋     | Sortable, responsive data grid       | `columns`, `rows`, `sortable`, `onSort`, `pagination` |
-| **DataList / DescriptionList**   | 📋     | Key-value pairs (e.g., details page) | `items`, `dense`                                      |
-| **Tag / Chip**                   | 📋     | Compact labels                       | `text`, `color`, `removable`, `icon`                  |
-| **Tooltip**                      | 📋     | Hover info box                       | `content`, `placement`                                |
-| **ProgressBar / ProgressCircle** | 📋     | Visual progress indicators           | `value`, `max`, `color`, `label`                      |
-| **EmptyState**                   | 📋     | Placeholder for empty views          | `icon`, `title`, `description`, `action`              |
-| **Statistic / KPI**              | 📋     | Large numeric display                | `label`, `value`, `trend`                             |
-| **Timeline**                     | 📋     | Sequential events                    | `items`, `orientation`                                |
+| Component                        | Status | Description                                 | Key Props                                                                                |
+| -------------------------------- | ------ | ------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| **Static Table**                 | ✅     | Data presentation table with color variants | `columns`, `rows`, `variant`, `size`, `striped`, `colorVariant`, `loading`, `emptyState` |
+| **Table**                        | 📋     | Sortable, responsive data grid              | `columns`, `rows`, `sortable`, `onSort`, `pagination`                                    |
+| **DataList / DescriptionList**   | 📋     | Key-value pairs (e.g., details page)        | `items`, `dense`                                                                         |
+| **Tag / Chip**                   | 📋     | Compact labels                              | `text`, `color`, `removable`, `icon`                                                     |
+| **Tooltip**                      | 📋     | Hover info box                              | `content`, `placement`                                                                   |
+| **ProgressBar / ProgressCircle** | 📋     | Visual progress indicators                  | `value`, `max`, `color`, `label`                                                         |
+| **EmptyState**                   | 📋     | Placeholder for empty views                 | `icon`, `title`, `description`, `action`                                                 |
+| **Statistic / KPI**              | 📋     | Large numeric display                       | `label`, `value`, `trend`                                                                |
+| **Timeline**                     | 📋     | Sequential events                           | `items`, `orientation`                                                                   |
 
 ---
 
@@ -179,6 +179,77 @@ The Grid component has been significantly enhanced with comprehensive functional
 - **Edge Case Handling**: Graceful defaults for empty configs and missing breakpoints
 - **Comprehensive Testing**: 21 test cases covering all functionality and edge cases
 - **Accessibility**: Proper semantic markup and ARIA attribute support
+
+### StaticTable Component ✅ **NEW**
+
+The StaticTable component provides a comprehensive data presentation solution with color variants and flexible customization:
+
+#### **Basic Data Table**
+
+```tsx
+<StaticTable
+  columns={[
+    { key: "id", label: "ID", align: "center" },
+    { key: "name", label: "Name", align: "left" },
+    { key: "status", label: "Status", align: "center" },
+  ]}
+  rows={[
+    { id: 1, name: "John Doe", status: "Active" },
+    { id: 2, name: "Jane Smith", status: "Inactive" },
+  ]}
+/>
+```
+
+#### **Color Variants for Rows and Columns**
+
+```tsx
+<StaticTable
+  columns={[
+    { key: "name", label: "Name", colorVariant: "primary" },
+    { key: "status", label: "Status", colorVariant: "success" },
+  ]}
+  rows={[
+    { id: 1, name: "John", status: "Active", colorVariant: "success" },
+    { id: 2, name: "Jane", status: "Warning", colorVariant: "warning" },
+  ]}
+  striped
+/>
+```
+
+#### **Custom Render Functions**
+
+```tsx
+<StaticTable
+  columns={[
+    {
+      key: "progress",
+      label: "Progress",
+      render: (value) => (
+        <div className="flex items-center">
+          <div className="w-16 bg-gray-200 rounded-full h-2">
+            <div
+              className="bg-blue-600 h-2 rounded-full"
+              style={{ width: `${value}%` }}
+            />
+          </div>
+          <span className="ml-2">{value}%</span>
+        </div>
+      ),
+    },
+  ]}
+  rows={[{ id: 1, progress: 75 }]}
+/>
+```
+
+#### **Key Features**
+
+- **Color Variants**: 8 built-in color themes (default, primary, secondary, success, warning, error, info, neutral)
+- **Flexible Styling**: Multiple table variants (default, striped, bordered, compact) and sizes (sm, md, lg)
+- **Custom Renderers**: Full control over cell content with render functions
+- **Loading & Empty States**: Built-in loading spinner and customizable empty state messages
+- **Accessibility**: Proper table semantics, ARIA attributes, and screen reader support
+- **TypeScript Support**: Full type safety with comprehensive interfaces
+- **Comprehensive Testing**: 15+ test suites covering all functionality and edge cases
 
 ---
 
