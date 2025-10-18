@@ -2882,7 +2882,7 @@ function AppContent() {
                           department: "HR",
                           salary: "$60,000",
                           status: "Inactive",
-                          colorVariant: "error",
+                          colorVariant: "danger",
                         },
                       ]}
                     />

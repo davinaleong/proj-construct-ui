@@ -1,5 +1,6 @@
 import { forwardRef } from "react"
 import { cn } from "../../../utils/cn.js"
+import type { ColorVariant as UtilsColorVariant } from "../../../utils/colors.js"
 import type {
   StaticTableProps,
   StaticTableColumn,
@@ -8,49 +9,154 @@ import type {
   TableAlign,
 } from "./types"
 
-// Color variant classes for table elements
-const COLOR_VARIANTS = {
-  default: {
-    row: "bg-stone-50/50 hover:bg-stone-100/50",
-    cell: "text-stone-900",
-    header: "bg-stone-100 text-stone-800 font-medium",
-  },
-  primary: {
-    row: "bg-blue-50/30 hover:bg-blue-100/40",
-    cell: "text-blue-900",
-    header: "bg-blue-100 text-blue-800 font-medium",
-  },
-  secondary: {
-    row: "bg-purple-50/30 hover:bg-purple-100/40",
-    cell: "text-purple-900",
-    header: "bg-purple-100 text-purple-800 font-medium",
-  },
-  success: {
-    row: "bg-green-50/30 hover:bg-green-100/40",
-    cell: "text-green-900",
-    header: "bg-green-100 text-green-800 font-medium",
-  },
-  warning: {
-    row: "bg-yellow-50/30 hover:bg-yellow-100/40",
-    cell: "text-yellow-900",
-    header: "bg-yellow-100 text-yellow-800 font-medium",
-  },
-  error: {
-    row: "bg-red-50/30 hover:bg-red-100/40",
-    cell: "text-red-900",
-    header: "bg-red-100 text-red-800 font-medium",
-  },
-  info: {
-    row: "bg-cyan-50/30 hover:bg-cyan-100/40",
-    cell: "text-cyan-900",
-    header: "bg-cyan-100 text-cyan-800 font-medium",
-  },
-  neutral: {
-    row: "bg-gray-50/30 hover:bg-gray-100/40",
-    cell: "text-gray-900",
-    header: "bg-gray-100 text-gray-800 font-medium",
-  },
-} as const
+// Helper functions to get table-specific color classes using the color utilities
+const getTableRowClasses = (variant: ColorVariant = "default") => {
+  // Map table-specific variants to color utility variants
+  const colorMap: Record<string, UtilsColorVariant> = {
+    error: "danger",
+    neutral: "gray",
+  }
+
+  const utilsVariant = (colorMap[variant] || variant) as UtilsColorVariant
+
+  // Create subtle row background with hover effect based on the variant
+  const colorMapping: Record<UtilsColorVariant, string> = {
+    primary: "bg-blue-50/30 hover:bg-blue-100/40",
+    secondary: "bg-slate-50/30 hover:bg-slate-100/40",
+    danger: "bg-red-50/30 hover:bg-red-100/40",
+    success: "bg-green-50/30 hover:bg-green-100/40",
+    warning: "bg-yellow-50/30 hover:bg-yellow-100/40",
+    info: "bg-sky-50/30 hover:bg-sky-100/40",
+    default: "bg-stone-50/30 hover:bg-stone-100/40",
+    paper: "bg-stone-50/30 hover:bg-stone-100/40",
+    muted: "bg-gray-50/30 hover:bg-gray-100/40",
+    accent: "bg-teal-50/30 hover:bg-teal-100/40",
+    transparent: "bg-transparent hover:bg-gray-50/20",
+    custom: "",
+    slate: "bg-slate-50/30 hover:bg-slate-100/40",
+    gray: "bg-gray-50/30 hover:bg-gray-100/40",
+    zinc: "bg-zinc-50/30 hover:bg-zinc-100/40",
+    neutral: "bg-neutral-50/30 hover:bg-neutral-100/40",
+    stone: "bg-stone-50/30 hover:bg-stone-100/40",
+    red: "bg-red-50/30 hover:bg-red-100/40",
+    orange: "bg-orange-50/30 hover:bg-orange-100/40",
+    amber: "bg-amber-50/30 hover:bg-amber-100/40",
+    yellow: "bg-yellow-50/30 hover:bg-yellow-100/40",
+    lime: "bg-lime-50/30 hover:bg-lime-100/40",
+    green: "bg-green-50/30 hover:bg-green-100/40",
+    emerald: "bg-emerald-50/30 hover:bg-emerald-100/40",
+    teal: "bg-teal-50/30 hover:bg-teal-100/40",
+    cyan: "bg-cyan-50/30 hover:bg-cyan-100/40",
+    sky: "bg-sky-50/30 hover:bg-sky-100/40",
+    blue: "bg-blue-50/30 hover:bg-blue-100/40",
+    indigo: "bg-indigo-50/30 hover:bg-indigo-100/40",
+    violet: "bg-violet-50/30 hover:bg-violet-100/40",
+    purple: "bg-purple-50/30 hover:bg-purple-100/40",
+    fuchsia: "bg-fuchsia-50/30 hover:bg-fuchsia-100/40",
+    pink: "bg-pink-50/30 hover:bg-pink-100/40",
+    rose: "bg-rose-50/30 hover:bg-rose-100/40",
+  }
+
+  return colorMapping[utilsVariant] || colorMapping.default
+}
+
+const getTableCellClasses = (variant: ColorVariant = "default") => {
+  const colorMap: Record<string, UtilsColorVariant> = {
+    error: "danger",
+    neutral: "gray",
+  }
+
+  const utilsVariant = (colorMap[variant] || variant) as UtilsColorVariant
+
+  // Create text color mapping based on color variants
+  const colorMapping: Record<UtilsColorVariant, string> = {
+    primary: "text-blue-900",
+    secondary: "text-slate-900",
+    danger: "text-red-900",
+    success: "text-green-900",
+    warning: "text-yellow-900",
+    info: "text-sky-900",
+    default: "text-stone-900",
+    paper: "text-stone-900",
+    muted: "text-gray-600",
+    accent: "text-teal-900",
+    transparent: "text-gray-900",
+    custom: "",
+    slate: "text-slate-900",
+    gray: "text-gray-900",
+    zinc: "text-zinc-900",
+    neutral: "text-neutral-900",
+    stone: "text-stone-900",
+    red: "text-red-900",
+    orange: "text-orange-900",
+    amber: "text-amber-900",
+    yellow: "text-yellow-900",
+    lime: "text-lime-900",
+    green: "text-green-900",
+    emerald: "text-emerald-900",
+    teal: "text-teal-900",
+    cyan: "text-cyan-900",
+    sky: "text-sky-900",
+    blue: "text-blue-900",
+    indigo: "text-indigo-900",
+    violet: "text-violet-900",
+    purple: "text-purple-900",
+    fuchsia: "text-fuchsia-900",
+    pink: "text-pink-900",
+    rose: "text-rose-900",
+  }
+
+  return colorMapping[utilsVariant] || colorMapping.default
+}
+
+const getTableHeaderClasses = (variant: ColorVariant = "default") => {
+  const colorMap: Record<string, UtilsColorVariant> = {
+    error: "danger",
+    neutral: "gray",
+  }
+
+  const utilsVariant = (colorMap[variant] || variant) as UtilsColorVariant
+
+  // Create header color mapping with background and text colors
+  const colorMapping: Record<UtilsColorVariant, string> = {
+    primary: "bg-blue-100 text-blue-800 font-medium",
+    secondary: "bg-slate-100 text-slate-800 font-medium",
+    danger: "bg-red-100 text-red-800 font-medium",
+    success: "bg-green-100 text-green-800 font-medium",
+    warning: "bg-yellow-100 text-yellow-800 font-medium",
+    info: "bg-sky-100 text-sky-800 font-medium",
+    default: "bg-stone-100 text-stone-800 font-medium",
+    paper: "bg-stone-100 text-stone-800 font-medium",
+    muted: "bg-gray-100 text-gray-800 font-medium",
+    accent: "bg-teal-100 text-teal-800 font-medium",
+    transparent: "bg-transparent text-gray-800 font-medium",
+    custom: "font-medium",
+    slate: "bg-slate-100 text-slate-800 font-medium",
+    gray: "bg-gray-100 text-gray-800 font-medium",
+    zinc: "bg-zinc-100 text-zinc-800 font-medium",
+    neutral: "bg-neutral-100 text-neutral-800 font-medium",
+    stone: "bg-stone-100 text-stone-800 font-medium",
+    red: "bg-red-100 text-red-800 font-medium",
+    orange: "bg-orange-100 text-orange-800 font-medium",
+    amber: "bg-amber-100 text-amber-800 font-medium",
+    yellow: "bg-yellow-100 text-yellow-800 font-medium",
+    lime: "bg-lime-100 text-lime-800 font-medium",
+    green: "bg-green-100 text-green-800 font-medium",
+    emerald: "bg-emerald-100 text-emerald-800 font-medium",
+    teal: "bg-teal-100 text-teal-800 font-medium",
+    cyan: "bg-cyan-100 text-cyan-800 font-medium",
+    sky: "bg-sky-100 text-sky-800 font-medium",
+    blue: "bg-blue-100 text-blue-800 font-medium",
+    indigo: "bg-indigo-100 text-indigo-800 font-medium",
+    violet: "bg-violet-100 text-violet-800 font-medium",
+    purple: "bg-purple-100 text-purple-800 font-medium",
+    fuchsia: "bg-fuchsia-100 text-fuchsia-800 font-medium",
+    pink: "bg-pink-100 text-pink-800 font-medium",
+    rose: "bg-rose-100 text-rose-800 font-medium",
+  }
+
+  return colorMapping[utilsVariant] || colorMapping.default
+}
 
 // Table size classes
 const SIZE_CLASSES = {
@@ -80,7 +186,16 @@ const getColorVariantClasses = (
   type: "row" | "cell" | "header",
   variant: ColorVariant = "default"
 ) => {
-  return COLOR_VARIANTS[variant][type]
+  switch (type) {
+    case "row":
+      return getTableRowClasses(variant)
+    case "cell":
+      return getTableCellClasses(variant)
+    case "header":
+      return getTableHeaderClasses(variant)
+    default:
+      return ""
+  }
 }
 
 // Get alignment class

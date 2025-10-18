@@ -1,18 +1,11 @@
 import type { ReactNode, HTMLAttributes } from "react"
+import type { ColorVariant } from "../../../utils/colors.js"
 
 export type TableVariant = "default" | "striped" | "bordered" | "compact"
 export type TableAlign = "left" | "center" | "right"
 export type TableSize = "sm" | "md" | "lg"
 
-export type ColorVariant =
-  | "default"
-  | "primary"
-  | "secondary"
-  | "success"
-  | "warning"
-  | "error"
-  | "info"
-  | "neutral"
+export type { ColorVariant }
 
 export interface StaticTableColumn {
   /**
