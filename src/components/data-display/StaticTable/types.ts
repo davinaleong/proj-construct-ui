@@ -98,6 +98,12 @@ export type StaticTableProps = {
   variant?: TableVariant
 
   /**
+   * Color variant for the entire table
+   * @default "default"
+   */
+  colorVariant?: ColorVariant
+
+  /**
    * Table size
    * @default "md"
    */

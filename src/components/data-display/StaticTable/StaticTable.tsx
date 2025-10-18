@@ -158,6 +158,69 @@ const getTableHeaderClasses = (variant: ColorVariant = "default") => {
   return colorMapping[utilsVariant] || colorMapping.default
 }
 
+// Helper function to get whole-table color classes
+const getWholeTableClasses = (variant: ColorVariant = "default") => {
+  const colorMap: Record<string, UtilsColorVariant> = {
+    error: "danger",
+    neutral: "gray",
+  }
+
+  const utilsVariant = (colorMap[variant] || variant) as UtilsColorVariant
+
+  // Create whole-table color mapping with paper-like styling
+  const colorMapping: Record<UtilsColorVariant, string> = {
+    primary: "border border-blue-200 bg-blue-50/90 backdrop-blur-sm rounded-lg",
+    secondary:
+      "border border-slate-200 bg-slate-50/90 backdrop-blur-sm rounded-lg",
+    danger: "border border-red-200 bg-red-50/90 backdrop-blur-sm rounded-lg",
+    success:
+      "border border-green-200 bg-green-50/90 backdrop-blur-sm rounded-lg",
+    warning:
+      "border border-yellow-200 bg-yellow-50/90 backdrop-blur-sm rounded-lg",
+    info: "border border-sky-200 bg-sky-50/90 backdrop-blur-sm rounded-lg",
+    default:
+      "border border-stone-200 bg-stone-50/90 backdrop-blur-sm rounded-lg",
+    paper: "border border-stone-200 bg-stone-50/90 backdrop-blur-sm rounded-lg",
+    muted: "border border-gray-200 bg-gray-50/90 backdrop-blur-sm rounded-lg",
+    accent: "border border-teal-200 bg-teal-50/90 backdrop-blur-sm rounded-lg",
+    transparent:
+      "border border-gray-200 bg-white/90 backdrop-blur-sm rounded-lg",
+    custom: "backdrop-blur-sm rounded-lg",
+    slate: "border border-slate-200 bg-slate-50/90 backdrop-blur-sm rounded-lg",
+    gray: "border border-gray-200 bg-gray-50/90 backdrop-blur-sm rounded-lg",
+    zinc: "border border-zinc-200 bg-zinc-50/90 backdrop-blur-sm rounded-lg",
+    neutral:
+      "border border-neutral-200 bg-neutral-50/90 backdrop-blur-sm rounded-lg",
+    stone: "border border-stone-200 bg-stone-50/90 backdrop-blur-sm rounded-lg",
+    red: "border border-red-200 bg-red-50/90 backdrop-blur-sm rounded-lg",
+    orange:
+      "border border-orange-200 bg-orange-50/90 backdrop-blur-sm rounded-lg",
+    amber: "border border-amber-200 bg-amber-50/90 backdrop-blur-sm rounded-lg",
+    yellow:
+      "border border-yellow-200 bg-yellow-50/90 backdrop-blur-sm rounded-lg",
+    lime: "border border-lime-200 bg-lime-50/90 backdrop-blur-sm rounded-lg",
+    green: "border border-green-200 bg-green-50/90 backdrop-blur-sm rounded-lg",
+    emerald:
+      "border border-emerald-200 bg-emerald-50/90 backdrop-blur-sm rounded-lg",
+    teal: "border border-teal-200 bg-teal-50/90 backdrop-blur-sm rounded-lg",
+    cyan: "border border-cyan-200 bg-cyan-50/90 backdrop-blur-sm rounded-lg",
+    sky: "border border-sky-200 bg-sky-50/90 backdrop-blur-sm rounded-lg",
+    blue: "border border-blue-200 bg-blue-50/90 backdrop-blur-sm rounded-lg",
+    indigo:
+      "border border-indigo-200 bg-indigo-50/90 backdrop-blur-sm rounded-lg",
+    violet:
+      "border border-violet-200 bg-violet-50/90 backdrop-blur-sm rounded-lg",
+    purple:
+      "border border-purple-200 bg-purple-50/90 backdrop-blur-sm rounded-lg",
+    fuchsia:
+      "border border-fuchsia-200 bg-fuchsia-50/90 backdrop-blur-sm rounded-lg",
+    pink: "border border-pink-200 bg-pink-50/90 backdrop-blur-sm rounded-lg",
+    rose: "border border-rose-200 bg-rose-50/90 backdrop-blur-sm rounded-lg",
+  }
+
+  return colorMapping[utilsVariant] || colorMapping.default
+}
+
 // Table size classes
 const SIZE_CLASSES = {
   sm: {
@@ -218,13 +281,14 @@ const getCellContent = (
   return String(value ?? "")
 }
 
-// Get effective color variant for a cell (cell > row > column > default)
+// Get effective color variant for a cell (cell > row > column > table > default)
 const getEffectiveColorVariant = (
   cellVariant?: ColorVariant,
   rowVariant?: ColorVariant,
-  columnVariant?: ColorVariant
+  columnVariant?: ColorVariant,
+  tableVariant?: ColorVariant
 ): ColorVariant => {
-  return cellVariant ?? rowVariant ?? columnVariant ?? "default"
+  return cellVariant ?? rowVariant ?? columnVariant ?? tableVariant ?? "default"
 }
 
 export const StaticTable = forwardRef<HTMLTableElement, StaticTableProps>(
@@ -233,6 +297,7 @@ export const StaticTable = forwardRef<HTMLTableElement, StaticTableProps>(
       columns,
       rows,
       variant = "default",
+      colorVariant = "default",
       size = "md",
       striped = false,
       hoverable = true,
@@ -269,10 +334,13 @@ export const StaticTable = forwardRef<HTMLTableElement, StaticTableProps>(
     }
 
     const tableClasses = cn(
-      // Base table styles
-      "w-full border-collapse",
-      "bg-white rounded-lg shadow-sm",
-      "border border-gray-200",
+      // Base table styles with paper-like appearance
+      "w-full border-collapse rounded-sm shadow-lg",
+
+      // Color variant styles (includes paper-like styling)
+      colorVariant === "default"
+        ? "bg-white/95 backdrop-blur-sm border border-stone-200"
+        : getWholeTableClasses(colorVariant),
 
       // Variant-specific styles
       variant === "bordered" && "border-2",
@@ -292,12 +360,13 @@ export const StaticTable = forwardRef<HTMLTableElement, StaticTableProps>(
           <thead>
             <tr>
               {columns.map((column) => {
-                const colorVariant = column.colorVariant ?? "default"
+                const effectiveHeaderVariant =
+                  column.colorVariant ?? colorVariant ?? "default"
                 const headerClasses = cn(
                   sizeClasses.header,
                   getAlignClass(column.align),
-                  getColorVariantClasses("header", colorVariant),
-                  "border-b border-gray-200",
+                  getColorVariantClasses("header", effectiveHeaderVariant),
+                  "border-b border-stone-200",
                   "first:rounded-tl-lg last:rounded-tr-lg"
                 )
 
@@ -340,7 +409,7 @@ export const StaticTable = forwardRef<HTMLTableElement, StaticTableProps>(
               const rowColorVariant = row.colorVariant ?? "default"
               const rowClasses = cn(
                 // Base row styles
-                "border-b border-gray-100 last:border-b-0",
+                "border-b border-stone-100 last:border-b-0",
 
                 // Striped rows (only if no color variant)
                 showStripes && isEven && "bg-gray-50/30",
@@ -360,14 +429,15 @@ export const StaticTable = forwardRef<HTMLTableElement, StaticTableProps>(
                     const effectiveColorVariant = getEffectiveColorVariant(
                       undefined, // No cell-specific variant in this implementation
                       row.colorVariant,
-                      column.colorVariant
+                      column.colorVariant,
+                      colorVariant // Table-level color variant
                     )
 
                     const cellClasses = cn(
                       sizeClasses.cell,
                       getAlignClass(column.align),
                       getColorVariantClasses("cell", effectiveColorVariant),
-                      "border-r border-gray-100 last:border-r-0"
+                      "border-r border-stone-100 last:border-r-0"
                     )
 
                     return (

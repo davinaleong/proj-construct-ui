@@ -104,7 +104,7 @@ export const FloatingNavbar = ({
   return (
     <nav
       className={cn(
-        "fixed z-50 p-4 bg-white/90 backdrop-blur-sm border border-stone-200 rounded-lg shadow-lg",
+        "fixed z-50 p-4 bg-white/90 backdrop-blur-sm border border-stone-200 rounded-sm shadow-lg",
         "transition-all duration-200 ease-in-out",
         getPositionClasses(position),
         className

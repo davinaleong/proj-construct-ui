@@ -2888,6 +2888,202 @@ function AppContent() {
                     />
                   </div>
 
+                  {/* Whole Table Color Variants */}
+                  <div className="mb-8">
+                    <Typography variant="h4" className="mb-4">
+                      Whole Table Color Variants
+                    </Typography>
+                    <Typography variant="body" className="mb-4 text-stone-600">
+                      Apply color variants to the entire table for themed
+                      styling.
+                    </Typography>
+                    <div className="space-y-6">
+                      <div>
+                        <Typography variant="h5" className="mb-2">
+                          Primary Theme
+                        </Typography>
+                        <StaticTable
+                          columns={[
+                            {
+                              key: "id",
+                              label: "ID",
+                              align: "center",
+                              width: "80px",
+                            },
+                            { key: "name", label: "Name", align: "left" },
+                            { key: "status", label: "Status", align: "center" },
+                          ]}
+                          rows={[
+                            { id: 1, name: "John Doe", status: "Active" },
+                            { id: 2, name: "Jane Smith", status: "Active" },
+                            { id: 3, name: "Bob Johnson", status: "Inactive" },
+                          ]}
+                          colorVariant="primary"
+                          striped
+                        />
+                      </div>
+
+                      <div>
+                        <Typography variant="h5" className="mb-2">
+                          Success Theme
+                        </Typography>
+                        <StaticTable
+                          columns={[
+                            {
+                              key: "id",
+                              label: "ID",
+                              align: "center",
+                              width: "80px",
+                            },
+                            { key: "name", label: "Name", align: "left" },
+                            { key: "status", label: "Status", align: "center" },
+                          ]}
+                          rows={[
+                            { id: 1, name: "Task A", status: "Completed" },
+                            { id: 2, name: "Task B", status: "Completed" },
+                            { id: 3, name: "Task C", status: "In Progress" },
+                          ]}
+                          colorVariant="success"
+                        />
+                      </div>
+
+                      <div>
+                        <Typography variant="h5" className="mb-2">
+                          Warning Theme
+                        </Typography>
+                        <StaticTable
+                          columns={[
+                            {
+                              key: "id",
+                              label: "ID",
+                              align: "center",
+                              width: "80px",
+                            },
+                            { key: "alert", label: "Alert", align: "left" },
+                            {
+                              key: "severity",
+                              label: "Severity",
+                              align: "center",
+                            },
+                          ]}
+                          rows={[
+                            {
+                              id: 1,
+                              alert: "High CPU Usage",
+                              severity: "Medium",
+                            },
+                            {
+                              id: 2,
+                              alert: "Low Disk Space",
+                              severity: "High",
+                            },
+                            { id: 3, alert: "Memory Warning", severity: "Low" },
+                          ]}
+                          colorVariant="warning"
+                          striped
+                        />
+                      </div>
+
+                      <div>
+                        <Typography variant="h5" className="mb-2">
+                          Danger Theme
+                        </Typography>
+                        <StaticTable
+                          columns={[
+                            {
+                              key: "id",
+                              label: "ID",
+                              align: "center",
+                              width: "80px",
+                            },
+                            { key: "error", label: "Error", align: "left" },
+                            { key: "impact", label: "Impact", align: "center" },
+                          ]}
+                          rows={[
+                            {
+                              id: 1,
+                              error: "Database Connection Failed",
+                              impact: "Critical",
+                            },
+                            { id: 2, error: "Service Timeout", impact: "High" },
+                            {
+                              id: 3,
+                              error: "Authentication Error",
+                              impact: "Medium",
+                            },
+                          ]}
+                          colorVariant="danger"
+                        />
+                      </div>
+
+                      <div>
+                        <Typography variant="h5" className="mb-2">
+                          Extended Palette Examples
+                        </Typography>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                            <Typography variant="h6" className="mb-2 text-sm">
+                              Violet Theme
+                            </Typography>
+                            <StaticTable
+                              columns={[
+                                {
+                                  key: "feature",
+                                  label: "Feature",
+                                  align: "left",
+                                },
+                                {
+                                  key: "status",
+                                  label: "Status",
+                                  align: "center",
+                                },
+                              ]}
+                              rows={[
+                                {
+                                  id: 1,
+                                  feature: "Authentication",
+                                  status: "Ready",
+                                },
+                                {
+                                  id: 2,
+                                  feature: "Dashboard",
+                                  status: "In Progress",
+                                },
+                              ]}
+                              colorVariant="violet"
+                              size="sm"
+                            />
+                          </div>
+                          <div>
+                            <Typography variant="h6" className="mb-2 text-sm">
+                              Emerald Theme
+                            </Typography>
+                            <StaticTable
+                              columns={[
+                                {
+                                  key: "metric",
+                                  label: "Metric",
+                                  align: "left",
+                                },
+                                {
+                                  key: "value",
+                                  label: "Value",
+                                  align: "right",
+                                },
+                              ]}
+                              rows={[
+                                { id: 1, metric: "Revenue", value: "$125K" },
+                                { id: 2, metric: "Growth", value: "+23%" },
+                              ]}
+                              colorVariant="emerald"
+                              size="sm"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                   {/* Table Variants */}
                   <div className="mb-8">
                     <Typography variant="h4" className="mb-4">
@@ -3033,6 +3229,8 @@ function AppContent() {
 
                   {/* Features Summary */}
                   <Typography variant="body" className="text-stone-600">
+                    ✅ Whole-table color variants with 42 color options
+                    <br />
                     ✅ Color variants for rows and columns with priority
                     hierarchy
                     <br />
