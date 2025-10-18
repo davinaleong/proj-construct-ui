@@ -74,6 +74,7 @@ export function useTable<T extends Record<string, unknown>>(
     columnWidths: initialState.columnWidths || {},
     expandedRows: initialState.expandedRows || new Set(),
     grouping: initialState.grouping || [],
+    editingRows: initialState.editingRows || {},
   }))
 
   // ========================================
@@ -465,6 +466,81 @@ export function useTable<T extends Record<string, unknown>>(
   }, [])
 
   /**
+   * Start editing a row
+   */
+  const startEditing = useCallback(
+    (rowId: string | number) => {
+      const row = data.find(
+        (_, index) => getRowId(data[index], index) === rowId
+      )
+      if (row) {
+        setState((prev) => ({
+          ...prev,
+          editingRows: {
+            ...prev.editingRows,
+            [rowId]: { ...row },
+          },
+        }))
+      }
+    },
+    [data, getRowId]
+  )
+
+  /**
+   * Save row edits
+   */
+  const saveEditing = useCallback((rowId: string | number) => {
+    setState((prev) => {
+      const editedData = prev.editingRows[rowId]
+      if (editedData) {
+        // Remove from editing rows
+        const newEditingRows = { ...prev.editingRows }
+        delete newEditingRows[rowId]
+
+        return {
+          ...prev,
+          editingRows: newEditingRows,
+        }
+      }
+      return prev
+    })
+  }, [])
+
+  /**
+   * Cancel row edits
+   */
+  const cancelEditing = useCallback((rowId: string | number) => {
+    setState((prev) => {
+      const newEditingRows = { ...prev.editingRows }
+      delete newEditingRows[rowId]
+
+      return {
+        ...prev,
+        editingRows: newEditingRows,
+      }
+    })
+  }, [])
+
+  /**
+   * Update a specific cell value during editing
+   */
+  const updateEditingCell = useCallback(
+    (rowId: string | number, columnId: string, value: any) => {
+      setState((prev) => ({
+        ...prev,
+        editingRows: {
+          ...prev.editingRows,
+          [rowId]: {
+            ...prev.editingRows[rowId],
+            [columnId]: value,
+          },
+        },
+      }))
+    },
+    []
+  )
+
+  /**
    * Reset all table state to defaults
    */
   const reset = useCallback(() => {
@@ -490,6 +566,7 @@ export function useTable<T extends Record<string, unknown>>(
       columnWidths: {},
       expandedRows: new Set(),
       grouping: [],
+      editingRows: {},
     })
   }, [defaultPageSize, data.length, columns])
 
@@ -510,6 +587,10 @@ export function useTable<T extends Record<string, unknown>>(
       setColumnWidth,
       toggleRowExpansion,
       setGrouping,
+      startEditing,
+      saveEditing,
+      cancelEditing,
+      updateEditingCell,
       reset,
     }),
     [
@@ -525,6 +606,10 @@ export function useTable<T extends Record<string, unknown>>(
       setColumnWidth,
       toggleRowExpansion,
       setGrouping,
+      startEditing,
+      saveEditing,
+      cancelEditing,
+      updateEditingCell,
       reset,
     ]
   )

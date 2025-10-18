@@ -9,6 +9,13 @@ import type { ColorVariant } from "../../../utils/colors.js"
 export type TableAlign = "left" | "center" | "right"
 export type SortDirection = "asc" | "desc" | null
 export type FilterType = "text" | "number" | "date" | "select" | "boolean"
+export type EditingType =
+  | "text"
+  | "number"
+  | "email"
+  | "select"
+  | "textarea"
+  | "boolean"
 
 export interface TableColumn<T = any> {
   /**
@@ -83,7 +90,29 @@ export interface TableColumn<T = any> {
   reorderable?: boolean
 
   /**
-   * Hide column
+   * Enable editing for this column
+   * @default false
+   */
+  editable?: boolean
+
+  /**
+   * Editing input type
+   * @default "text"
+   */
+  editingType?: EditingType
+
+  /**
+   * Options for select editing type
+   */
+  editingOptions?: Array<{ label: string; value: any }>
+
+  /**
+   * Validation function for edited values
+   */
+  validate?: (value: any) => boolean | string
+
+  /**
+   * Hide column by default
    * @default false
    */
   hidden?: boolean
@@ -244,6 +273,11 @@ export interface TableState<T = any> {
    * Grouped columns
    */
   grouping: string[]
+
+  /**
+   * Currently editing rows (row ID -> edited data)
+   */
+  editingRows: Record<string | number, Partial<T>>
 }
 
 export interface TableRow<T = any> {
@@ -359,6 +393,12 @@ export interface TableOptions<T = any> {
    * @default false
    */
   enableExpanding?: boolean
+
+  /**
+   * Enable inline editing
+   * @default false
+   */
+  enableEditing?: boolean
 
   /**
    * Enable grouping
@@ -494,6 +534,21 @@ export interface TableCallbacks<T = any> {
    * Called when global filter changes
    */
   onGlobalFilterChange?: (value: string) => void
+
+  /**
+   * Called when a row starts being edited
+   */
+  onEditStart?: (rowId: string | number, rowData: T) => void
+
+  /**
+   * Called when row edits are saved
+   */
+  onEditSave?: (rowId: string | number, oldData: T, newData: Partial<T>) => void
+
+  /**
+   * Called when row edits are cancelled
+   */
+  onEditCancel?: (rowId: string | number, rowData: T) => void
 }
 
 export type TableProps<T = any> = {
@@ -607,6 +662,14 @@ export interface UseTableReturn<T = any> {
     setColumnWidth: (columnId: string, width: number) => void
     toggleRowExpansion: (rowId: string | number) => void
     setGrouping: (grouping: string[]) => void
+    startEditing: (rowId: string | number) => void
+    saveEditing: (rowId: string | number) => void
+    cancelEditing: (rowId: string | number) => void
+    updateEditingCell: (
+      rowId: string | number,
+      columnId: string,
+      value: any
+    ) => void
     reset: () => void
   }
 

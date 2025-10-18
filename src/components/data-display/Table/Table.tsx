@@ -1,8 +1,20 @@
-import { forwardRef, useMemo } from "react"
-import { Search, X } from "lucide-react"
+import { forwardRef } from "react"
+import {
+  Search,
+  X,
+  Check,
+  Edit,
+  XCircle,
+  ArrowUpDown,
+  ArrowUp,
+  ArrowDown,
+} from "lucide-react"
 import { cn } from "../../../utils/cn.js"
 import {
   getColorClasses,
+  getTextColorClasses,
+  getBackgroundColorClasses,
+  getBorderColorClasses,
   type ColorVariant as UtilsColorVariant,
 } from "../../../utils/colors.js"
 import { useTable } from "./useTable.js"
@@ -60,33 +72,15 @@ function TableHeader<T extends Record<string, unknown>>({
       <div className="flex items-center gap-2">
         <span>{column.header}</span>
         {column.sortable && (
-          <div className="flex flex-col">
+          <div className="flex items-center">
             {sortDirection === null && (
-              <svg
-                className="w-3 h-3 text-gray-400"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path d="M5 8l5-5 5 5H5zM5 12l5 5 5-5H5z" />
-              </svg>
+              <ArrowUpDown className="w-3 h-3 text-gray-400" />
             )}
             {sortDirection === "asc" && (
-              <svg
-                className="w-3 h-3 text-gray-700"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path d="M5 8l5-5 5 5H5z" />
-              </svg>
+              <ArrowUp className="w-3 h-3 text-gray-700" />
             )}
             {sortDirection === "desc" && (
-              <svg
-                className="w-3 h-3 text-gray-700"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path d="M5 12l5 5 5-5H5z" />
-              </svg>
+              <ArrowDown className="w-3 h-3 text-gray-700" />
             )}
           </div>
         )}
@@ -95,22 +89,26 @@ function TableHeader<T extends Record<string, unknown>>({
   )
 }
 
-// Table cell component
-interface TableCellProps<T extends Record<string, unknown>> {
+// Editable cell component
+interface EditableCellProps<T extends Record<string, unknown>> {
   row: TableRow<T>
   column: TableColumn<T>
   value: unknown
+  editingValue?: unknown
   colorVariant?: string
   size: "sm" | "md" | "lg"
+  onUpdateValue: (value: unknown) => void
 }
 
-function TableCell<T extends Record<string, unknown>>({
+function EditableCell<T extends Record<string, unknown>>({
   row,
   column,
   value,
+  editingValue,
   colorVariant = "default",
   size,
-}: TableCellProps<T>) {
+  onUpdateValue,
+}: EditableCellProps<T>) {
   const sizeClasses = {
     sm: "px-2 py-1 text-sm",
     md: "px-3 py-2 text-sm",
@@ -130,152 +128,179 @@ function TableCell<T extends Record<string, unknown>>({
     getTableCellClasses(colorVariant as UtilsColorVariant)
   )
 
-  if (column.cell) {
+  const inputClasses =
+    "w-full bg-transparent border-none outline-none focus:ring-1 focus:ring-blue-500 rounded-sm px-1"
+
+  // If not editable or not editing, show regular cell
+  const isEditing = editingValue !== undefined
+  if (!column.editable || !isEditing) {
+    if (column.cell) {
+      return (
+        <td className={cellClasses}>
+          {column.cell({
+            value,
+            row: row.original,
+            rowIndex: row.index,
+            column,
+          })}
+        </td>
+      )
+    }
+    return <td className={cellClasses}>{String(value ?? "")}</td>
+  }
+
+  // Render editable input based on editing type
+  const editingType = column.editingType || "text"
+  const currentValue = editingValue ?? value ?? ""
+
+  return (
+    <td className={cellClasses}>
+      {editingType === "select" && column.editingOptions ? (
+        <select
+          value={String(currentValue)}
+          onChange={(e) => onUpdateValue(e.target.value)}
+          className={cn(inputClasses, "cursor-pointer")}
+        >
+          {column.editingOptions.map((option) => (
+            <option key={String(option.value)} value={String(option.value)}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+      ) : editingType === "textarea" ? (
+        <textarea
+          value={String(currentValue)}
+          onChange={(e) => onUpdateValue(e.target.value)}
+          className={cn(inputClasses, "resize-none min-h-[2rem]")}
+          rows={2}
+        />
+      ) : editingType === "boolean" ? (
+        <input
+          type="checkbox"
+          checked={Boolean(currentValue)}
+          onChange={(e) => onUpdateValue(e.target.checked)}
+          className="rounded-sm border-stone-300 text-blue-600 focus:ring-blue-500"
+        />
+      ) : (
+        <input
+          type={
+            editingType === "number"
+              ? "number"
+              : editingType === "email"
+              ? "email"
+              : "text"
+          }
+          value={String(currentValue)}
+          onChange={(e) => {
+            const newValue =
+              editingType === "number" ? Number(e.target.value) : e.target.value
+            onUpdateValue(newValue)
+          }}
+          className={inputClasses}
+        />
+      )}
+    </td>
+  )
+}
+
+// Actions column component for editing
+interface ActionsColumnProps {
+  isEditing: boolean
+  onStartEdit?: () => void
+  onSaveEdit?: () => void
+  onCancelEdit?: () => void
+  size: "sm" | "md" | "lg"
+}
+
+function ActionsColumn({
+  isEditing,
+  onStartEdit,
+  onSaveEdit,
+  onCancelEdit,
+  size,
+}: ActionsColumnProps) {
+  const sizeClasses = {
+    sm: "px-2 py-1",
+    md: "px-3 py-2",
+    lg: "px-4 py-3",
+  }
+
+  const iconSizeClasses = {
+    sm: "w-3 h-3",
+    md: "w-4 h-4",
+    lg: "w-5 h-5",
+  }
+
+  const cellClasses = cn(
+    sizeClasses[size],
+    "border-r border-stone-100 last:border-r-0"
+  )
+
+  if (isEditing) {
     return (
       <td className={cellClasses}>
-        {column.cell({ value, row, rowIndex: row.index, column })}
+        <div className="flex items-center gap-1">
+          <button
+            onClick={onSaveEdit}
+            className="p-1 hover:bg-green-100 rounded-sm text-green-600 hover:text-green-700 transition-colors"
+            aria-label="Save changes"
+          >
+            <Check className={iconSizeClasses[size]} />
+          </button>
+          <button
+            onClick={onCancelEdit}
+            className="p-1 hover:bg-red-100 rounded-sm text-red-600 hover:text-red-700 transition-colors"
+            aria-label="Cancel changes"
+          >
+            <XCircle className={iconSizeClasses[size]} />
+          </button>
+        </div>
       </td>
     )
   }
 
-  return <td className={cellClasses}>{String(value ?? "")}</td>
+  return (
+    <td className={cellClasses}>
+      <div className="flex items-center gap-1">
+        <button
+          onClick={onStartEdit}
+          className="p-1 hover:bg-stone-100 rounded-sm text-stone-600 hover:text-stone-900 transition-colors"
+          aria-label="Edit row"
+        >
+          <Edit className={iconSizeClasses[size]} />
+        </button>
+      </div>
+    </td>
+  )
 }
 
-// Helper functions for color classes (reusing logic from StaticTable)
+// Helper functions for color classes using utils/colors.ts
 const getTableHeaderClasses = (variant: UtilsColorVariant = "default") => {
-  const colorMapping: Record<UtilsColorVariant, string> = {
-    primary: "bg-blue-100 text-blue-800 font-medium",
-    secondary: "bg-slate-100 text-slate-800 font-medium",
-    danger: "bg-red-100 text-red-800 font-medium",
-    success: "bg-green-100 text-green-800 font-medium",
-    warning: "bg-yellow-100 text-yellow-800 font-medium",
-    info: "bg-sky-100 text-sky-800 font-medium",
-    default: "bg-stone-100 text-stone-800 font-medium",
-    paper: "bg-stone-100 text-stone-800 font-medium",
-    muted: "bg-gray-100 text-gray-800 font-medium",
-    accent: "bg-teal-100 text-teal-800 font-medium",
-    transparent: "bg-transparent text-gray-800 font-medium",
-    custom: "font-medium",
-    slate: "bg-slate-100 text-slate-800 font-medium",
-    gray: "bg-gray-100 text-gray-800 font-medium",
-    zinc: "bg-zinc-100 text-zinc-800 font-medium",
-    neutral: "bg-neutral-100 text-neutral-800 font-medium",
-    stone: "bg-stone-100 text-stone-800 font-medium",
-    red: "bg-red-100 text-red-800 font-medium",
-    orange: "bg-orange-100 text-orange-800 font-medium",
-    amber: "bg-amber-100 text-amber-800 font-medium",
-    yellow: "bg-yellow-100 text-yellow-800 font-medium",
-    lime: "bg-lime-100 text-lime-800 font-medium",
-    green: "bg-green-100 text-green-800 font-medium",
-    emerald: "bg-emerald-100 text-emerald-800 font-medium",
-    teal: "bg-teal-100 text-teal-800 font-medium",
-    cyan: "bg-cyan-100 text-cyan-800 font-medium",
-    sky: "bg-sky-100 text-sky-800 font-medium",
-    blue: "bg-blue-100 text-blue-800 font-medium",
-    indigo: "bg-indigo-100 text-indigo-800 font-medium",
-    violet: "bg-violet-100 text-violet-800 font-medium",
-    purple: "bg-purple-100 text-purple-800 font-medium",
-    fuchsia: "bg-fuchsia-100 text-fuchsia-800 font-medium",
-    pink: "bg-pink-100 text-pink-800 font-medium",
-    rose: "bg-rose-100 text-rose-800 font-medium",
-  }
-
-  return colorMapping[variant] || colorMapping.default
+  return getColorClasses(variant, "soft", "font-medium")
 }
 
 const getTableCellClasses = (variant: UtilsColorVariant = "default") => {
-  const colorMapping: Record<UtilsColorVariant, string> = {
-    primary: "text-blue-900",
-    secondary: "text-slate-900",
-    danger: "text-red-900",
-    success: "text-green-900",
-    warning: "text-yellow-900",
-    info: "text-sky-900",
-    default: "text-stone-900",
-    paper: "text-stone-900",
-    muted: "text-gray-600",
-    accent: "text-teal-900",
-    transparent: "text-gray-900",
-    custom: "",
-    slate: "text-slate-900",
-    gray: "text-gray-900",
-    zinc: "text-zinc-900",
-    neutral: "text-neutral-900",
-    stone: "text-stone-900",
-    red: "text-red-900",
-    orange: "text-orange-900",
-    amber: "text-amber-900",
-    yellow: "text-yellow-900",
-    lime: "text-lime-900",
-    green: "text-green-900",
-    emerald: "text-emerald-900",
-    teal: "text-teal-900",
-    cyan: "text-cyan-900",
-    sky: "text-sky-900",
-    blue: "text-blue-900",
-    indigo: "text-indigo-900",
-    violet: "text-violet-900",
-    purple: "text-purple-900",
-    fuchsia: "text-fuchsia-900",
-    pink: "text-pink-900",
-    rose: "text-rose-900",
-  }
-
-  return colorMapping[variant] || colorMapping.default
+  return getTextColorClasses(variant, "strong")
 }
 
 const getWholeTableClasses = (variant: UtilsColorVariant = "default") => {
-  const colorMapping: Record<UtilsColorVariant, string> = {
-    primary: "border border-blue-200 bg-blue-50/90 backdrop-blur-sm rounded-lg",
-    secondary:
-      "border border-slate-200 bg-slate-50/90 backdrop-blur-sm rounded-lg",
-    danger: "border border-red-200 bg-red-50/90 backdrop-blur-sm rounded-lg",
-    success:
-      "border border-green-200 bg-green-50/90 backdrop-blur-sm rounded-lg",
-    warning:
-      "border border-yellow-200 bg-yellow-50/90 backdrop-blur-sm rounded-lg",
-    info: "border border-sky-200 bg-sky-50/90 backdrop-blur-sm rounded-lg",
-    default:
-      "border border-stone-200 bg-stone-50/90 backdrop-blur-sm rounded-lg",
-    paper: "border border-stone-200 bg-stone-50/90 backdrop-blur-sm rounded-lg",
-    muted: "border border-gray-200 bg-gray-50/90 backdrop-blur-sm rounded-lg",
-    accent: "border border-teal-200 bg-teal-50/90 backdrop-blur-sm rounded-lg",
-    transparent:
-      "border border-gray-200 bg-white/90 backdrop-blur-sm rounded-lg",
-    custom: "backdrop-blur-sm rounded-lg",
-    slate: "border border-slate-200 bg-slate-50/90 backdrop-blur-sm rounded-lg",
-    gray: "border border-gray-200 bg-gray-50/90 backdrop-blur-sm rounded-lg",
-    zinc: "border border-zinc-200 bg-zinc-50/90 backdrop-blur-sm rounded-lg",
-    neutral:
-      "border border-neutral-200 bg-neutral-50/90 backdrop-blur-sm rounded-lg",
-    stone: "border border-stone-200 bg-stone-50/90 backdrop-blur-sm rounded-lg",
-    red: "border border-red-200 bg-red-50/90 backdrop-blur-sm rounded-lg",
-    orange:
-      "border border-orange-200 bg-orange-50/90 backdrop-blur-sm rounded-lg",
-    amber: "border border-amber-200 bg-amber-50/90 backdrop-blur-sm rounded-lg",
-    yellow:
-      "border border-yellow-200 bg-yellow-50/90 backdrop-blur-sm rounded-lg",
-    lime: "border border-lime-200 bg-lime-50/90 backdrop-blur-sm rounded-lg",
-    green: "border border-green-200 bg-green-50/90 backdrop-blur-sm rounded-lg",
-    emerald:
-      "border border-emerald-200 bg-emerald-50/90 backdrop-blur-sm rounded-lg",
-    teal: "border border-teal-200 bg-teal-50/90 backdrop-blur-sm rounded-lg",
-    cyan: "border border-cyan-200 bg-cyan-50/90 backdrop-blur-sm rounded-lg",
-    sky: "border border-sky-200 bg-sky-50/90 backdrop-blur-sm rounded-lg",
-    blue: "border border-blue-200 bg-blue-50/90 backdrop-blur-sm rounded-lg",
-    indigo:
-      "border border-indigo-200 bg-indigo-50/90 backdrop-blur-sm rounded-lg",
-    violet:
-      "border border-violet-200 bg-violet-50/90 backdrop-blur-sm rounded-lg",
-    purple:
-      "border border-purple-200 bg-purple-50/90 backdrop-blur-sm rounded-lg",
-    fuchsia:
-      "border border-fuchsia-200 bg-fuchsia-50/90 backdrop-blur-sm rounded-lg",
-    pink: "border border-pink-200 bg-pink-50/90 backdrop-blur-sm rounded-lg",
-    rose: "border border-rose-200 bg-rose-50/90 backdrop-blur-sm rounded-lg",
+  const baseClasses = "backdrop-blur-sm rounded-sm"
+
+  if (variant === "custom") {
+    return baseClasses
   }
 
-  return colorMapping[variant] || colorMapping.default
+  if (variant === "transparent") {
+    return cn(getBorderColorClasses("gray"), "bg-white/90", baseClasses)
+  }
+
+  // Extract just the background color from the utility and add opacity
+  const bgUtilityClass = getBackgroundColorClasses(variant, "subtle")
+  const bgColor = bgUtilityClass.split(" ")[0] // Get first class which is bg-*
+  const backgroundClass = bgColor.includes("bg-") ? bgColor + "/90" : bgColor
+  const borderClass = getBorderColorClasses(variant)
+
+  return cn("border", borderClass, backgroundClass, baseClasses)
 }
 
 export const Table = forwardRef<HTMLDivElement, TableProps>(
@@ -283,7 +308,6 @@ export const Table = forwardRef<HTMLDivElement, TableProps>(
     {
       columns,
       data,
-      getRowId,
       options = {},
       callbacks = {},
       initialState = {},
@@ -377,7 +401,7 @@ export const Table = forwardRef<HTMLDivElement, TableProps>(
       "w-full border-collapse shadow-lg",
       // Color variant styles with paper-like appearance
       colorVariant === "default"
-        ? "bg-white/95 backdrop-blur-sm border border-stone-200 rounded-lg"
+        ? "bg-white/95 backdrop-blur-sm border border-stone-200 rounded-sm"
         : getWholeTableClasses(colorVariant as UtilsColorVariant),
       className
     )
@@ -433,6 +457,22 @@ export const Table = forwardRef<HTMLDivElement, TableProps>(
                     />
                   )
                 })}
+
+                {/* Actions column header */}
+                {options.enableEditing && (
+                  <TableHeader
+                    key="actions"
+                    column={{
+                      id: "actions",
+                      accessor: "actions",
+                      header: "Actions",
+                      width: "100px",
+                      align: "center",
+                    }}
+                    colorVariant={colorVariant}
+                    size={size}
+                  />
+                )}
               </tr>
             </thead>
 
@@ -465,17 +505,47 @@ export const Table = forwardRef<HTMLDivElement, TableProps>(
                       const effectiveColorVariant =
                         row.colorVariant || column.colorVariant || colorVariant
 
+                      const isRowEditing =
+                        options.enableEditing &&
+                        table.state.editingRows[row.id] !== undefined
+                      const editingValue = isRowEditing
+                        ? table.state.editingRows[row.id]?.[
+                            column.accessor as string
+                          ]
+                        : undefined
+
                       return (
-                        <TableCell
+                        <EditableCell
                           key={`${row.id}-${column.id}`}
                           row={row}
                           column={column}
                           value={value}
+                          editingValue={editingValue}
                           colorVariant={effectiveColorVariant}
                           size={size}
+                          onUpdateValue={(newValue) =>
+                            table.actions.updateEditingCell(
+                              row.id,
+                              column.accessor as string,
+                              newValue
+                            )
+                          }
                         />
                       )
                     })}
+
+                    {/* Actions column for editing */}
+                    {options.enableEditing && (
+                      <ActionsColumn
+                        isEditing={
+                          table.state.editingRows[row.id] !== undefined
+                        }
+                        onStartEdit={() => table.actions.startEditing(row.id)}
+                        onSaveEdit={() => table.actions.saveEditing(row.id)}
+                        onCancelEdit={() => table.actions.cancelEditing(row.id)}
+                        size={size}
+                      />
+                    )}
                   </tr>
                 )
               })}

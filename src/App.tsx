@@ -3714,6 +3714,141 @@ function AppContent() {
                     />
                   </div>
 
+                  {/* Editable Table */}
+                  <div className="mb-8">
+                    <Typography variant="h4" className="mb-4">
+                      Editable Data Grid
+                    </Typography>
+                    <Typography variant="body" className="mb-4 text-stone-600">
+                      Enable inline editing with different input types. Click
+                      the edit button to start editing, then use the check
+                      button to save or X button to cancel changes.
+                    </Typography>
+                    <Table
+                      columns={[
+                        {
+                          id: "name",
+                          accessor: "name",
+                          header: "Product Name",
+                          sortable: true,
+                          editable: true,
+                          editingType: "text",
+                        },
+                        {
+                          id: "category",
+                          accessor: "category",
+                          header: "Category",
+                          sortable: true,
+                          editable: true,
+                          editingType: "select",
+                          editingOptions: [
+                            { label: "Electronics", value: "electronics" },
+                            { label: "Clothing", value: "clothing" },
+                            { label: "Books", value: "books" },
+                            { label: "Home & Garden", value: "home" },
+                            { label: "Sports", value: "sports" },
+                          ],
+                        },
+                        {
+                          id: "price",
+                          accessor: "price",
+                          header: "Price",
+                          align: "right",
+                          sortable: true,
+                          editable: true,
+                          editingType: "number",
+                          cell: ({ value }) => `$${Number(value).toFixed(2)}`,
+                        },
+                        {
+                          id: "inStock",
+                          accessor: "inStock",
+                          header: "In Stock",
+                          align: "center",
+                          editable: true,
+                          editingType: "boolean",
+                          cell: ({ value }) => (
+                            <span
+                              className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${
+                                value
+                                  ? "bg-green-100 text-green-800"
+                                  : "bg-red-100 text-red-800"
+                              }`}
+                            >
+                              {value ? "Yes" : "No"}
+                            </span>
+                          ),
+                        },
+                        {
+                          id: "description",
+                          accessor: "description",
+                          header: "Description",
+                          editable: true,
+                          editingType: "textarea",
+                        },
+                      ]}
+                      data={[
+                        {
+                          id: 1,
+                          name: "Wireless Headphones",
+                          category: "electronics",
+                          price: 99.99,
+                          inStock: true,
+                          description:
+                            "High-quality wireless headphones with noise cancellation",
+                        },
+                        {
+                          id: 2,
+                          name: "Cotton T-Shirt",
+                          category: "clothing",
+                          price: 24.99,
+                          inStock: true,
+                          description:
+                            "Comfortable 100% cotton t-shirt in various sizes",
+                        },
+                        {
+                          id: 3,
+                          name: "JavaScript Guide",
+                          category: "books",
+                          price: 39.99,
+                          inStock: false,
+                          description:
+                            "Comprehensive guide to modern JavaScript development",
+                        },
+                        {
+                          id: 4,
+                          name: "Garden Tools Set",
+                          category: "home",
+                          price: 79.99,
+                          inStock: true,
+                          description:
+                            "Complete set of essential gardening tools",
+                        },
+                        {
+                          id: 5,
+                          name: "Running Shoes",
+                          category: "sports",
+                          price: 119.99,
+                          inStock: true,
+                          description:
+                            "Lightweight running shoes with excellent cushioning",
+                        },
+                      ]}
+                      options={{
+                        enableEditing: true,
+                        enableSorting: true,
+                      }}
+                      callbacks={{
+                        onEditStart: (rowId, rowData) =>
+                          console.log("Started editing:", rowId, rowData),
+                        onEditSave: (rowId, oldData, newData) =>
+                          console.log("Saved edits:", rowId, newData),
+                        onEditCancel: (rowId) =>
+                          console.log("Cancelled editing:", rowId),
+                      }}
+                      hoverable
+                    />
+                  </div>
+
                   {/* Loading and Error States */}
                   <div className="mb-8">
                     <Typography variant="h4" className="mb-4">
@@ -3764,6 +3899,10 @@ function AppContent() {
                     ✅ Advanced data grid with sorting and filtering
                     <br />
                     ✅ Global search across all columns
+                    <br />
+                    ✅ Inline editing with multiple input types
+                    <br />
+                    ✅ Actions column with save/cancel controls
                     <br />
                     ✅ Custom cell renderers for complex content
                     <br />
