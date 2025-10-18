@@ -335,11 +335,11 @@ export const StaticTable = forwardRef<HTMLTableElement, StaticTableProps>(
 
     const tableClasses = cn(
       // Base table styles with paper-like appearance
-      "w-full border-collapse rounded-sm shadow-lg",
+      "w-full border-collapse",
 
       // Color variant styles (includes paper-like styling)
       colorVariant === "default"
-        ? "bg-white/95 backdrop-blur-sm border border-stone-200"
+        ? "bg-white/95 backdrop-blur-sm"
         : getWholeTableClasses(colorVariant),
 
       // Variant-specific styles
@@ -353,7 +353,7 @@ export const StaticTable = forwardRef<HTMLTableElement, StaticTableProps>(
     const sizeClasses = SIZE_CLASSES[size]
 
     return (
-      <div className="overflow-x-auto">
+      <div className="overflow-y-hidden overflow-x-auto rounded-sm shadow-lg border border-stone-200 ">
         <table ref={ref} className={tableClasses} {...props}>
           {caption && <caption className="sr-only">{caption}</caption>}
 
@@ -366,8 +366,7 @@ export const StaticTable = forwardRef<HTMLTableElement, StaticTableProps>(
                   sizeClasses.header,
                   getAlignClass(column.align),
                   getColorVariantClasses("header", effectiveHeaderVariant),
-                  "border-b border-stone-200",
-                  "first:rounded-tl-lg last:rounded-tr-lg"
+                  "border-b border-stone-200"
                 )
 
                 return (
