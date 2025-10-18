@@ -1,5 +1,6 @@
 // Data Display Components
 export { StaticTable } from "./StaticTable"
+export { Table, useTable } from "./Table"
 export type {
   StaticTableProps,
   StaticTableColumn,
@@ -10,9 +11,23 @@ export type {
   TableSize,
   ColorVariant,
 } from "./StaticTable"
+export type {
+  TableColumn,
+  TableRow,
+  TableState,
+  TableSort,
+  TableFilter,
+  TablePagination,
+  TableSelection,
+  TableOptions,
+  TableCallbacks,
+  TableProps,
+  UseTableReturn,
+  SortDirection,
+  FilterType,
+} from "./Table"
 
 // Other data display components (to be implemented)
-// export { Table } from "./Table"
 // export { DataList } from "./DataList"
 // export { DescriptionList } from "./DescriptionList"
 // export { Tag } from "./Tag"

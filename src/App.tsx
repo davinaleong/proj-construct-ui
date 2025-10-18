@@ -9,6 +9,8 @@ import {
   Settings,
   Heart,
   Download,
+  Edit,
+  Trash2,
 } from "lucide-react"
 import {
   ThemeProvider,
@@ -36,6 +38,7 @@ import {
 } from "./components/forms"
 import { FloatingNavbar } from "./components/navigation"
 import { StaticTable } from "./components/data-display/StaticTable"
+import { Table } from "./components/data-display/Table"
 import {
   CoreComponentsDemo,
   TypographyShowcase,
@@ -2748,8 +2751,8 @@ function AppContent() {
               </Typography>
 
               {/* StaticTable Component */}
-              <div className="mb-12">
-                <Paper variant="elevated" padding="lg" className="bg-white">
+              <div className="mb-16">
+                <Paper>
                   <Typography variant="h3" className="mb-6">
                     Static Table
                   </Typography>
@@ -3246,6 +3249,536 @@ function AppContent() {
                     <br />
                     ✅ Responsive design with horizontal scroll on mobile
                     <br />✅ Paper theme integration with consistent styling
+                  </Typography>
+                </Paper>
+
+                {/* Table (Advanced Data Grid) Component Showcase */}
+                <Paper>
+                  <div className="mb-8">
+                    <Typography variant="h2" className="mb-4">
+                      Table (Advanced Data Grid)
+                    </Typography>
+                    <Typography variant="body" className="text-stone-600 mb-4">
+                      A powerful data grid component with sorting, filtering,
+                      pagination, and advanced features for complex data
+                      presentation needs.
+                    </Typography>
+                  </div>
+
+                  {/* Basic Table Example */}
+                  <div className="mb-8">
+                    <Typography variant="h4" className="mb-4">
+                      Basic Table with Sorting
+                    </Typography>
+                    <Typography variant="body" className="mb-4 text-stone-600">
+                      Interactive table with sortable columns and hover effects.
+                    </Typography>
+                    <Table
+                      columns={[
+                        {
+                          id: "id",
+                          accessor: "id",
+                          header: "ID",
+                          width: "80px",
+                          sortable: true,
+                          align: "center",
+                        },
+                        {
+                          id: "name",
+                          accessor: "name",
+                          header: "Full Name",
+                          sortable: true,
+                        },
+                        {
+                          id: "role",
+                          accessor: "role",
+                          header: "Role",
+                          sortable: true,
+                        },
+                        {
+                          id: "department",
+                          accessor: "department",
+                          header: "Department",
+                          sortable: true,
+                        },
+                        {
+                          id: "status",
+                          accessor: "status",
+                          header: "Status",
+                          sortable: true,
+                          cell: ({ value }) => (
+                            <span
+                              className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${
+                                value === "active"
+                                  ? "bg-green-100 text-green-800"
+                                  : value === "inactive"
+                                  ? "bg-red-100 text-red-800"
+                                  : "bg-yellow-100 text-yellow-800"
+                              }`}
+                            >
+                              {String(value)}
+                            </span>
+                          ),
+                        },
+                      ]}
+                      data={[
+                        {
+                          id: 1,
+                          name: "Sarah Johnson",
+                          role: "Senior Developer",
+                          department: "Engineering",
+                          status: "active",
+                        },
+                        {
+                          id: 2,
+                          name: "Michael Chen",
+                          role: "Product Manager",
+                          department: "Product",
+                          status: "active",
+                        },
+                        {
+                          id: 3,
+                          name: "Emily Rodriguez",
+                          role: "UX Designer",
+                          department: "Design",
+                          status: "inactive",
+                        },
+                        {
+                          id: 4,
+                          name: "David Kim",
+                          role: "DevOps Engineer",
+                          department: "Engineering",
+                          status: "active",
+                        },
+                        {
+                          id: 5,
+                          name: "Lisa Wang",
+                          role: "Data Analyst",
+                          department: "Analytics",
+                          status: "pending",
+                        },
+                      ]}
+                    />
+                  </div>
+
+                  {/* Color Variants */}
+                  <div className="mb-8">
+                    <Typography variant="h4" className="mb-4">
+                      Color Variants
+                    </Typography>
+                    <div className="space-y-6">
+                      <div>
+                        <Typography variant="h5" className="mb-2">
+                          Primary Theme
+                        </Typography>
+                        <Table
+                          columns={[
+                            {
+                              id: "metric",
+                              accessor: "metric",
+                              header: "Metric",
+                            },
+                            {
+                              id: "value",
+                              accessor: "value",
+                              header: "Value",
+                              align: "right",
+                            },
+                            {
+                              id: "change",
+                              accessor: "change",
+                              header: "Change",
+                              align: "center",
+                            },
+                          ]}
+                          data={[
+                            {
+                              id: 1,
+                              metric: "Revenue",
+                              value: "$125,000",
+                              change: "+12%",
+                            },
+                            {
+                              id: 2,
+                              metric: "Users",
+                              value: "25,643",
+                              change: "+8%",
+                            },
+                            {
+                              id: 3,
+                              metric: "Sessions",
+                              value: "89,231",
+                              change: "+15%",
+                            },
+                          ]}
+                          colorVariant="primary"
+                          size="sm"
+                        />
+                      </div>
+
+                      <div>
+                        <Typography variant="h5" className="mb-2">
+                          Success Theme
+                        </Typography>
+                        <Table
+                          columns={[
+                            {
+                              id: "test",
+                              accessor: "test",
+                              header: "Test Case",
+                            },
+                            {
+                              id: "result",
+                              accessor: "result",
+                              header: "Result",
+                              align: "center",
+                            },
+                            {
+                              id: "duration",
+                              accessor: "duration",
+                              header: "Duration",
+                              align: "right",
+                            },
+                          ]}
+                          data={[
+                            {
+                              id: 1,
+                              test: "Authentication Flow",
+                              result: "✅ Pass",
+                              duration: "2.1s",
+                            },
+                            {
+                              id: 2,
+                              test: "Data Validation",
+                              result: "✅ Pass",
+                              duration: "1.8s",
+                            },
+                            {
+                              id: 3,
+                              test: "Error Handling",
+                              result: "✅ Pass",
+                              duration: "3.2s",
+                            },
+                          ]}
+                          colorVariant="success"
+                          striped
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Advanced Features */}
+                  <div className="mb-8">
+                    <Typography variant="h4" className="mb-4">
+                      Advanced Features Demo
+                    </Typography>
+                    <Typography variant="body" className="mb-4 text-stone-600">
+                      Table with custom cell renderers, event handling, and
+                      complex data.
+                    </Typography>
+                    <Table
+                      columns={[
+                        {
+                          id: "user",
+                          accessor: "name",
+                          header: "User",
+                          cell: ({ value, row }) => (
+                            <div className="flex items-center gap-3">
+                              <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center text-white text-sm font-medium">
+                                {String(value)[0]}
+                              </div>
+                              <div>
+                                <div className="font-medium">
+                                  {String(value)}
+                                </div>
+                                <div className="text-xs text-stone-500">
+                                  {String(row.original.email)}
+                                </div>
+                              </div>
+                            </div>
+                          ),
+                        },
+                        {
+                          id: "progress",
+                          accessor: "progress",
+                          header: "Progress",
+                          align: "center",
+                          cell: ({ value }) => (
+                            <div className="flex items-center gap-2">
+                              <div className="flex-1 bg-stone-200 rounded-full h-2">
+                                <div
+                                  className="bg-blue-500 h-2 rounded-full transition-all duration-300"
+                                  style={{ width: `${value}%` }}
+                                />
+                              </div>
+                              <span className="text-sm font-medium w-12">
+                                {value}%
+                              </span>
+                            </div>
+                          ),
+                        },
+                        {
+                          id: "actions",
+                          accessor: "id",
+                          header: "Actions",
+                          align: "center",
+                          cell: () => (
+                            <div className="flex items-center gap-1">
+                              <button className="p-1 hover:bg-stone-100 rounded text-stone-600 hover:text-stone-900">
+                                <Edit className="w-4 h-4" />
+                              </button>
+                              <button className="p-1 hover:bg-stone-100 rounded text-stone-600 hover:text-red-600">
+                                <Trash2 className="w-4 h-4" />
+                              </button>
+                            </div>
+                          ),
+                        },
+                      ]}
+                      data={[
+                        {
+                          id: 1,
+                          name: "Alex Thompson",
+                          email: "alex@company.com",
+                          progress: 85,
+                        },
+                        {
+                          id: 2,
+                          name: "Jordan Miller",
+                          email: "jordan@company.com",
+                          progress: 92,
+                        },
+                        {
+                          id: 3,
+                          name: "Casey Davis",
+                          email: "casey@company.com",
+                          progress: 67,
+                        },
+                        {
+                          id: 4,
+                          name: "Riley Johnson",
+                          email: "riley@company.com",
+                          progress: 78,
+                        },
+                      ]}
+                      callbacks={{
+                        onRowClick: (row) =>
+                          console.log("Row clicked:", row.original),
+                        onRowDoubleClick: (row) =>
+                          console.log("Row double-clicked:", row.original),
+                      }}
+                      hoverable
+                    />
+                  </div>
+
+                  {/* Search Functionality */}
+                  <div className="mb-8">
+                    <Typography variant="h4" className="mb-4">
+                      Global Search
+                    </Typography>
+                    <Typography variant="body" className="mb-4 text-stone-600">
+                      Global search functionality filters data across all
+                      columns. Search is case-insensitive and searches through
+                      all visible columns. When enabled, the search input
+                      appears above the table.
+                    </Typography>
+                    <Table
+                      columns={[
+                        {
+                          id: "name",
+                          accessor: "name",
+                          header: "Employee Name",
+                          sortable: true,
+                        },
+                        {
+                          id: "department",
+                          accessor: "department",
+                          header: "Department",
+                          sortable: true,
+                        },
+                        {
+                          id: "role",
+                          accessor: "role",
+                          header: "Job Title",
+                          sortable: true,
+                        },
+                        {
+                          id: "email",
+                          accessor: "email",
+                          header: "Email Address",
+                        },
+                        {
+                          id: "location",
+                          accessor: "location",
+                          header: "Office Location",
+                          sortable: true,
+                        },
+                        {
+                          id: "status",
+                          accessor: "status",
+                          header: "Status",
+                          cell: ({ value }) => (
+                            <span
+                              className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${
+                                value === "active"
+                                  ? "bg-green-100 text-green-800"
+                                  : value === "inactive"
+                                  ? "bg-red-100 text-red-800"
+                                  : "bg-yellow-100 text-yellow-800"
+                              }`}
+                            >
+                              {String(value)}
+                            </span>
+                          ),
+                        },
+                      ]}
+                      data={[
+                        {
+                          id: 1,
+                          name: "Alice Chen",
+                          department: "Engineering",
+                          role: "Senior Developer",
+                          email: "alice.chen@company.com",
+                          location: "San Francisco",
+                          status: "active",
+                        },
+                        {
+                          id: 2,
+                          name: "Bob Martinez",
+                          department: "Product",
+                          role: "Product Manager",
+                          email: "bob.martinez@company.com",
+                          location: "New York",
+                          status: "active",
+                        },
+                        {
+                          id: 3,
+                          name: "Carol Wilson",
+                          department: "Design",
+                          role: "UX Designer",
+                          email: "carol.wilson@company.com",
+                          location: "Austin",
+                          status: "pending",
+                        },
+                        {
+                          id: 4,
+                          name: "David Thompson",
+                          department: "Engineering",
+                          role: "DevOps Engineer",
+                          email: "david.thompson@company.com",
+                          location: "Seattle",
+                          status: "active",
+                        },
+                        {
+                          id: 5,
+                          name: "Eva Rodriguez",
+                          department: "Marketing",
+                          role: "Marketing Specialist",
+                          email: "eva.rodriguez@company.com",
+                          location: "Los Angeles",
+                          status: "active",
+                        },
+                        {
+                          id: 6,
+                          name: "Frank Kumar",
+                          department: "Engineering",
+                          role: "Junior Developer",
+                          email: "frank.kumar@company.com",
+                          location: "Boston",
+                          status: "inactive",
+                        },
+                        {
+                          id: 7,
+                          name: "Grace Liu",
+                          department: "Sales",
+                          role: "Sales Manager",
+                          email: "grace.liu@company.com",
+                          location: "Chicago",
+                          status: "active",
+                        },
+                        {
+                          id: 8,
+                          name: "Henry Park",
+                          department: "Design",
+                          role: "UI Designer",
+                          email: "henry.park@company.com",
+                          location: "Portland",
+                          status: "pending",
+                        },
+                      ]}
+                      options={{
+                        enableGlobalSearch: true,
+                        searchPlaceholder: "Search employees...",
+                        enableSorting: true,
+                      }}
+                      hoverable
+                    />
+                  </div>
+
+                  {/* Loading and Error States */}
+                  <div className="mb-8">
+                    <Typography variant="h4" className="mb-4">
+                      States
+                    </Typography>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <Typography variant="h5" className="mb-2">
+                          Loading State
+                        </Typography>
+                        <Table
+                          columns={[
+                            { id: "name", accessor: "name", header: "Name" },
+                            {
+                              id: "status",
+                              accessor: "status",
+                              header: "Status",
+                            },
+                          ]}
+                          data={[]}
+                          options={{ loading: true }}
+                        />
+                      </div>
+                      <div>
+                        <Typography variant="h5" className="mb-2">
+                          Error State
+                        </Typography>
+                        <Table
+                          columns={[
+                            { id: "name", accessor: "name", header: "Name" },
+                            {
+                              id: "status",
+                              accessor: "status",
+                              header: "Status",
+                            },
+                          ]}
+                          data={[]}
+                          options={{
+                            error: "Failed to load data from server",
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Features Summary */}
+                  <Typography variant="body" className="text-stone-600">
+                    ✅ Advanced data grid with sorting and filtering
+                    <br />
+                    ✅ Global search across all columns
+                    <br />
+                    ✅ Custom cell renderers for complex content
+                    <br />
+                    ✅ Event handling (click, double-click, hover)
+                    <br />
+                    ✅ Loading, error, and empty states
+                    <br />
+                    ✅ Color variants with paper-like styling
+                    <br />
+                    ✅ Responsive design with overflow handling
+                    <br />
+                    ✅ TypeScript support with full type safety
+                    <br />
+                    ✅ Extensible architecture for advanced features
+                    <br />✅ Accessibility compliant with proper ARIA labels
                   </Typography>
                 </Paper>
               </div>

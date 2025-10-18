@@ -353,7 +353,7 @@ export const StaticTable = forwardRef<HTMLTableElement, StaticTableProps>(
     const sizeClasses = SIZE_CLASSES[size]
 
     return (
-      <div className="overflow-y-hidden overflow-x-auto rounded-sm shadow-lg border border-stone-200 ">
+      <div className="overflow-y-hidden overflow-x-auto rounded-sm shadow-lg border border-stone-200">
         <table ref={ref} className={tableClasses} {...props}>
           {caption && <caption className="sr-only">{caption}</caption>}
 
