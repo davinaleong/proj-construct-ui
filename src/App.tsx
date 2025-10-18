@@ -39,6 +39,7 @@ import {
 import { FloatingNavbar } from "./components/navigation"
 import { StaticTable } from "./components/data-display/StaticTable"
 import { Table } from "./components/data-display/Table"
+import { DescriptionListShowcase } from "./components/data-display/DescriptionList"
 import {
   CoreComponentsDemo,
   TypographyShowcase,
@@ -3250,6 +3251,38 @@ function AppContent() {
                     ✅ Responsive design with horizontal scroll on mobile
                     <br />✅ Paper theme integration with consistent styling
                   </Typography>
+                </Paper>
+
+                {/* DescriptionList Component Showcase */}
+                <Paper className="mt-16">
+                  <div className="mb-8">
+                    <Typography variant="h3" className="mb-4">
+                      Description List
+                    </Typography>
+                    <Typography variant="body" className="mb-6 text-stone-600">
+                      A flexible component for displaying key-value pairs in
+                      structured formats. Perfect for metadata, specifications,
+                      user profiles, and detailed information displays.
+                    </Typography>
+                    <Typography variant="bodySmall" className="text-stone-500">
+                      ✅ Horizontal and vertical layouts
+                      <br />
+                      ✅ Size variants: small, medium, large
+                      <br />
+                      ✅ Full color system integration (42 variants)
+                      <br />
+                      ✅ Bordered and striped styling options
+                      <br />
+                      ✅ Custom render functions for terms and descriptions
+                      <br />
+                      ✅ Paper theme styling with backdrop blur effects
+                      <br />
+                      ✅ Full accessibility with semantic HTML
+                      <br />✅ TypeScript support with comprehensive interfaces
+                    </Typography>
+                  </div>
+
+                  <DescriptionListShowcase />
                 </Paper>
 
                 {/* Table (Advanced Data Grid) Component Showcase */}

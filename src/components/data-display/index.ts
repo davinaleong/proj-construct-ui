@@ -29,7 +29,13 @@ export type {
 
 // Other data display components (to be implemented)
 // export { DataList } from "./DataList"
-// export { DescriptionList } from "./DescriptionList"
+export { DescriptionList } from "./DescriptionList"
+export type {
+  DescriptionListItem,
+  DescriptionListLayout,
+  DescriptionListSize,
+  DescriptionListProps,
+} from "./DescriptionList"
 // export { Tag } from "./Tag"
 // export { Chip } from "./Chip"
 // export { Tooltip } from "./Tooltip"
