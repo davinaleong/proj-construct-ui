@@ -139,7 +139,7 @@ function EditableCell<T extends Record<string, unknown>>({
         <td className={cellClasses}>
           {column.cell({
             value,
-            row: row.original,
+            row,
             rowIndex: row.index,
             column,
           })}

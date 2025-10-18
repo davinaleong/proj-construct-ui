@@ -32,7 +32,7 @@ import type {
 export function useTable<T extends Record<string, unknown>>(
   columns: TableColumn<T>[],
   data: T[],
-  options: TableOptions<T> = {},
+  options: TableOptions = {},
   initialState: Partial<TableState<T>> = {}
 ): UseTableReturn<T> {
   // ========================================
@@ -337,7 +337,7 @@ export function useTable<T extends Record<string, unknown>>(
   /**
    * Set selection configuration
    */
-  const setSelection = useCallback((selection: Partial<TableSelection<T>>) => {
+  const setSelection = useCallback((selection: Partial<TableSelection>) => {
     setState((prev) => ({
       ...prev,
       selection: prev.selection

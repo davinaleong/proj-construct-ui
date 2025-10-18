@@ -1,9 +1,4 @@
-import type {
-  ReactNode,
-  HTMLAttributes,
-  MouseEvent,
-  KeyboardEvent,
-} from "react"
+import type { ReactNode, HTMLAttributes, MouseEvent } from "react"
 import type { ColorVariant } from "../../../utils/colors.js"
 
 export type TableAlign = "left" | "center" | "right"
@@ -17,7 +12,7 @@ export type EditingType =
   | "textarea"
   | "boolean"
 
-export interface TableColumn<T = any> {
+export interface TableColumn<T = unknown> {
   /**
    * Unique identifier for the column
    */
@@ -75,7 +70,7 @@ export interface TableColumn<T = any> {
   /**
    * Options for select filter type
    */
-  filterOptions?: Array<{ label: string; value: any }>
+  filterOptions?: Array<{ label: string; value: unknown }>
 
   /**
    * Enable column resizing
@@ -104,12 +99,12 @@ export interface TableColumn<T = any> {
   /**
    * Options for select editing type
    */
-  editingOptions?: Array<{ label: string; value: any }>
+  editingOptions?: Array<{ label: string; value: unknown }>
 
   /**
    * Validation function for edited values
    */
-  validate?: (value: any) => boolean | string
+  validate?: (value: unknown) => boolean | string
 
   /**
    * Hide column by default
@@ -131,8 +126,8 @@ export interface TableColumn<T = any> {
    * Custom cell renderer
    */
   cell?: (props: {
-    value: any
-    row: T
+    value: unknown
+    row: TableRow<T>
     rowIndex: number
     column: TableColumn<T>
   }) => ReactNode
@@ -161,7 +156,7 @@ export interface TableFilter {
   /**
    * Filter value
    */
-  value: any
+  value: unknown
 
   /**
    * Filter operator
@@ -206,7 +201,7 @@ export interface TablePagination {
   totalRows?: number
 }
 
-export interface TableSelection<T = any> {
+export interface TableSelection {
   /**
    * Selected row IDs
    */
@@ -223,7 +218,7 @@ export interface TableSelection<T = any> {
   isSomeSelected: boolean
 }
 
-export interface TableState<T = any> {
+export interface TableState<T = unknown> {
   /**
    * Current sorting state
    */
@@ -247,7 +242,7 @@ export interface TableState<T = any> {
   /**
    * Current selection state
    */
-  selection?: TableSelection<T>
+  selection?: TableSelection
 
   /**
    * Column visibility and order
@@ -280,7 +275,7 @@ export interface TableState<T = any> {
   editingRows: Record<string | number, Partial<T>>
 }
 
-export interface TableRow<T = any> {
+export interface TableRow<T = unknown> {
   /**
    * Unique identifier
    */
@@ -327,7 +322,7 @@ export interface TableRow<T = any> {
   expansion?: ReactNode
 }
 
-export interface TableOptions<T = any> {
+export interface TableOptions {
   /**
    * Enable multi-row selection
    * @default false
@@ -474,7 +469,7 @@ export interface TableOptions<T = any> {
   globalFilter?: string
 }
 
-export interface TableCallbacks<T = any> {
+export interface TableCallbacks<T = unknown> {
   /**
    * Called when sorting changes
    */
@@ -493,7 +488,7 @@ export interface TableCallbacks<T = any> {
   /**
    * Called when selection changes
    */
-  onSelectionChange?: (selection: TableSelection<T>) => void
+  onSelectionChange?: (selection: TableSelection) => void
 
   /**
    * Called when row is clicked
@@ -509,7 +504,7 @@ export interface TableCallbacks<T = any> {
    * Called when cell is clicked
    */
   onCellClick?: (
-    cell: any,
+    cell: unknown,
     row: TableRow<T>,
     column: TableColumn<T>,
     event: MouseEvent
@@ -551,7 +546,7 @@ export interface TableCallbacks<T = any> {
   onEditCancel?: (rowId: string | number, rowData: T) => void
 }
 
-export type TableProps<T = any> = {
+export type TableProps<T = unknown> = {
   /**
    * Column definitions
    */
@@ -570,7 +565,7 @@ export type TableProps<T = any> = {
   /**
    * Table options
    */
-  options?: TableOptions<T>
+  options?: TableOptions
 
   /**
    * Event callbacks
@@ -630,7 +625,7 @@ export type TableProps<T = any> = {
   footer?: ReactNode
 } & HTMLAttributes<HTMLDivElement>
 
-export interface UseTableReturn<T = any> {
+export interface UseTableReturn<T = unknown> {
   /**
    * Processed table rows
    */
@@ -654,7 +649,7 @@ export interface UseTableReturn<T = any> {
     setFilters: (filters: TableFilter[]) => void
     setGlobalFilter: (value: string) => void
     setPagination: (pagination: Partial<TablePagination>) => void
-    setSelection: (selection: Partial<TableSelection<T>>) => void
+    setSelection: (selection: Partial<TableSelection>) => void
     toggleRowSelection: (rowId: string | number) => void
     toggleAllRowsSelection: () => void
     setColumnVisibility: (columnId: string, visible: boolean) => void
@@ -668,7 +663,7 @@ export interface UseTableReturn<T = any> {
     updateEditingCell: (
       rowId: string | number,
       columnId: string,
-      value: any
+      value: unknown
     ) => void
     reset: () => void
   }
