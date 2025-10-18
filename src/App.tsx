@@ -40,6 +40,7 @@ import { FloatingNavbar } from "./components/navigation"
 import { StaticTable } from "./components/data-display/StaticTable"
 import { Table } from "./components/data-display/Table"
 import { DescriptionListShowcase } from "./components/data-display/DescriptionList"
+import { TagShowcase } from "./components/data-display/Tag"
 import {
   CoreComponentsDemo,
   TypographyShowcase,
@@ -3283,6 +3284,44 @@ function AppContent() {
                   </div>
 
                   <DescriptionListShowcase />
+                </Paper>
+
+                {/* Tag Component Showcase */}
+                <Paper>
+                  <div className="mb-8">
+                    <Typography variant="h2" className="mb-4">
+                      Tag Component
+                    </Typography>
+                    <Typography variant="bodySmall" className="text-stone-600 mb-4">
+                      Compact, versatile tags for labeling, categorizing, and
+                      organizing content. Perfect for status indicators, filters,
+                      and metadata display.
+                    </Typography>
+                    <Typography variant="bodySmall" className="text-stone-600">
+                      ✅ Size variants: extra small, small, medium, large
+                      <br />
+                      ✅ Visual variants: solid, soft, outline, ghost
+                      <br />
+                      ✅ Full color system integration (42 variants)
+                      <br />
+                      ✅ Dismissible functionality with custom icons
+                      <br />
+                      ✅ Start and end icon support
+                      <br />
+                      ✅ Clickable state with hover effects
+                      <br />
+                      ✅ Dot indicator option
+                      <br />
+                      ✅ Content truncation with ellipsis
+                      <br />
+                      ✅ Paper theme styling with backdrop blur
+                      <br />
+                      ✅ Full accessibility support
+                      <br />✅ TypeScript support with comprehensive interfaces
+                    </Typography>
+                  </div>
+
+                  <TagShowcase />
                 </Paper>
 
                 {/* Table (Advanced Data Grid) Component Showcase */}

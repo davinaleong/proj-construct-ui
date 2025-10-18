@@ -36,7 +36,8 @@ export type {
   DescriptionListSize,
   DescriptionListProps,
 } from "./DescriptionList"
-// export { Tag } from "./Tag"
+export { Tag } from "./Tag"
+export type { TagProps, TagSize, TagVariant } from "./Tag"
 // export { Chip } from "./Chip"
 // export { Tooltip } from "./Tooltip"
 // export { ProgressBar } from "./ProgressBar"
